@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FE936F" offset="0%"></stop>
+            <stop stop-color="#FEAB8C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="Group" transform="translate(1.000000, 1.000000)">
+                <circle id="Oval" fill="url(#linearGradient-1)" cx="24" cy="24" r="24"></circle>
+                <g id="Group-10" transform="translate(11.076923, 13.846154)" stroke="#FFFFFF" fill-rule="nonzero" fill="#FFFFFF">
+                    <rect id="Rectangle-path" x="18.4615385" y="8.07692308" width="9.23076923" height="1.15384615" rx="0.576923077"></rect>
+                    <rect id="Rectangle-path" x="18.4615385" y="3.46153846" width="9.23076923" height="1.15384615" rx="0.576923077"></rect>
+                    <rect id="Rectangle-path" x="20.7692308" y="12.6923077" width="6.92307692" height="1.15384615" rx="0.576923077"></rect>
+                    <path d="M17.8846154,18.4615385 L0.576923077,18.4615385 L0,17.8846154 C0,13.1123077 4.14115385,9.23076923 9.23076923,9.23076923 C14.3203846,9.23076923 18.4615385,13.1123077 18.4615385,17.8846154 L17.8846154,18.4615385 Z M1.17807692,17.3076923 L17.2846154,17.3076923 C16.9673077,13.44 13.4757692,10.3846154 9.23192308,10.3846154 C4.98807692,10.3846154 1.49538462,13.44 1.17807692,17.3076923 Z" id="Shape"></path>
+                    <path d="M9.23076923,10.3846154 C6.36807692,10.3846154 4.03846154,8.055 4.03846154,5.19230769 C4.03846154,2.32961538 6.36807692,0 9.23076923,0 C12.0934615,0 14.4230769,2.32961538 14.4230769,5.19230769 C14.4230769,8.055 12.0934615,10.3846154 9.23076923,10.3846154 Z M9.23076923,1.15384615 C7.00384615,1.15384615 5.19230769,2.96538462 5.19230769,5.19230769 C5.19230769,7.41923077 7.00384615,9.23076923 9.23076923,9.23076923 C11.4576923,9.23076923 13.2692308,7.41923077 13.2692308,5.19230769 C13.2692308,2.96538462 11.4576923,1.15384615 9.23076923,1.15384615 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
