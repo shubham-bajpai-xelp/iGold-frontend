@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>on boarding</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../tools/css/home.css" rel="stylesheet" type="text/css"/>
+        <script src="../tools/js/jquery.js" type="text/javascript"></script>
+    </head>
+    <body class="background">
+        <div class="onboarding_mobilecnt fLeft fmralewayR row">
+            <div class="btnCntmobile fmralewayB">
+                <div class="btnMobile fLeft bgBack">back</div>
+                <div class="btnMobile fRight bgNext">next</div>
+            </div>
+            <div class="mobile_header">
+                <div class="logo fLeft"></div>
+                <div class="icn_profile fRight"></div>
+                <div class="icn_setting fRight"></div>
+            </div>
+            <div class="tab_mobile fLeft">
+                <div class="col100 fLeft">
+                    <div class="col50 fLeft icnBdetails_mactive fmralewayB">Basic Details</div>
+                    <div class="col50 fLeft icnacdetails_m">Account Details</div>
+                </div>
+            </div>
+            <div class="mobiledataCnt fLeft lbl_lft15">
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Bank Name</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Brunch Name</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">User Name</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Brunch Address</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Pin Code</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">City</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">State</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Country</label>
+                </div>
+            </div>
+        </div> 
+        <script>
+             $(document).ready(function(){
+               $('input[type=text]').removeAttr('readonly');
+            $('input').bind('focus',function(){
+              $(this).next('label').addClass('labelActive');  
+            });
+            $('input').bind('blur',function(){
+                if($(this).val()=='' || $(this).val()==0){
+                    $(this).next('label').removeClass('labelActive');
+                }
+                else{
+                  $(this).next('label').addClass('labelActive');  
+                }
+            });
+            $(document).on('click','input[type=text]',function(){
+         $(".mobiledataCnt").animate({ scrollTop: $(this).offset().top + $(this).closest('.mobiledataCnt').scrollTop() - 120}, 600);
+       });
+            });
+        </script>
+    </body>
+</html>
