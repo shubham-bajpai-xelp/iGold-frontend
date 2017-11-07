@@ -1,45 +1,25 @@
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <title>sign in</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../tools/css/home.css" rel="stylesheet" type="text/css"/>
-        <script src="../tools/js/jquery.js" type="text/javascript"></script>
-        <script src="../tools/js/velocity.js" type="text/javascript"></script>
-    </head>
-    <body class="background">
-        <div class="container fLeft fmralewayR pTop60">
-            <div class="headerSection fmralewayB">
-                <div class="wrapperMax">
-                    <div class="logo fLeft"></div>
-                    <div class="icn_profile fRight"></div>
-                    <div class="icn_setting fRight"></div>
-                    <div class="icn_txtcnt fRight icn_bidauction" id="auc" onclick="changeiTab('auc_jewl');">auction</div>
-                    <div class="icn_txtcnt fRight icn_closedauction" id="clsdAuc" onclick="changeiTab('closed_jewl');">closed auction</div>
-                    <div class="icn_txtcnt fRight icn_liveauction" id="liveAuc" onclick="changeiTab('live_jewl');">live auction</div>
-                    <div class="icn_txtcnt fRight icn_dashboard">dashboard</div>
-                </div>
-            </div>
-            <div class="signInpagecnt fLeft row">
-                <div class="signInwrp">
-                    <div class="heading_bidpop fLeft fmralewayB mBottom20">Sign In</div>
-                    <div class="col100 fLeft mBottom10 poR box_shadow">
-                        <input type="text" class="userNametxt fLeft icn_Username" readonly="readonly">
-                        <label class="label transition300 fmralewayB">User Name / Email id</label>
-                    </div>
-                    <div class="col100 fLeft mBottom40 poR box_shadow">
-                        <input type="password" class="userNametxt fLeft icn_Password" readonly="readonly" id="pswrd">
-                        <label class="label transition300 fmralewayB">Password</label>
-                    </div>
-                    <div class="col100 fLeft">
-                        <div class="button fLeft fmralewayB">sign in</div>
-                        <div class="frgt_pswrdtxt fRight fmralewayB">forgot password</div>
-                    </div>
-                </div>  
-            </div>
+<div class="container fLeft fmralewayR pTop60" ng-controller="lgn">
+    <div class="headerSection fmralewayB">
+        <div class="wrapperMax">
+            <div class="logo fLeft"></div>
         </div>
-        <script src="../tools/js/signin.js" type="text/javascript"></script>
-    </body>
-</html>
+    </div>
+    <div class="signInpagecnt fLeft row">
+        <div class="signInwrp">
+            <div class="heading_bidpop fLeft fmralewayB mBottom20">Sign In</div>
+            <div class="col100 fLeft mBottom10 poR box_shadow">
+                <input type="text" class="userNametxt fLeft icn_Username" readonly="readonly" ng-model="username">
+                <label class="label transition300 fmralewayB">User Name / Email id</label>
+            </div>
+            <div class="col100 fLeft mBottom40 poR box_shadow">
+                <input type="password" class="userNametxt fLeft icn_Password" readonly="readonly" id="pswrd" ng-model="password">
+                <label class="label transition300 fmralewayB">Password</label>
+            </div>
+            <div class="col100 fLeft">
+                <div class="button fLeft fmralewayB" ng-click="submit();">sign in</div>
+                <div class="frgt_pswrdtxt fRight fmralewayB">forgot password</div>
+            </div>
+        </div>  
+    </div>
+</div>

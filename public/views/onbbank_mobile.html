@@ -4,11 +4,12 @@
         <title>on boarding</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
         <link href="../tools/css/home.css" rel="stylesheet" type="text/css"/>
         <script src="../tools/js/jquery.js" type="text/javascript"></script>
     </head>
-    <body class="background">
-        <div class="onboarding_mobilecnt fLeft fmralewayR row">
+    <body class="background" ng-app="myapp">
+        <div class="onboarding_mobilecnt fLeft fmralewayR row" ng-controller="mobileonb">
             <div class="btnCntmobile fmralewayB">
                 <div class="btnMobile fLeft bgBack">back</div>
                 <div class="btnMobile fRight bgNext">next</div>
@@ -20,11 +21,12 @@
             </div>
             <div class="tab_mobile fLeft">
                 <div class="col100 fLeft">
-                    <div class="col50 fLeft icnBdetails_mactive fmralewayB">Basic Details</div>
-                    <div class="col50 fLeft icnacdetails_m">Account Details</div>
+                    <a href ng-click="setTab(1)"><div class="col50 fLeft icnBdetails_m fmralewayB" ng-class="{ icnBdetails_mactive: isSet(1) }">Basic Details</div></a>
+                    <a href ng-click="setTab(2)"><div class="col50 fLeft icnacdetails_m fmralewayB" ng-class="{ icnacetails_mactive: isSet(2) }">Account Details</div></a>
                 </div>
             </div>
             <div class="mobiledataCnt fLeft lbl_lft15">
+                <div class="col100 fLeft tabFirst" ng-show="isSet(1)">
                 <div class="col100 fLeft poR box_shadow mBottom10">
                     <input type="text" class="userNametxt fLeft">
                     <label class="label transition300 fmralewayB">Bank Name</label>
@@ -57,26 +59,27 @@
                     <input type="text" class="userNametxt fLeft">
                     <label class="label transition300 fmralewayB">Country</label>
                 </div>
+                </div>
+                <div class="col100 fLeft tabSecond" ng-show="isSet(2)">
+                    <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Loan Manager Name</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Branch Contact no</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">Branch Pool Account no</label>
+                </div>
+                <div class="col100 fLeft poR box_shadow mBottom10">
+                    <input type="text" class="userNametxt fLeft">
+                    <label class="label transition300 fmralewayB">IFSC Code</label>
+                </div>
+                </div>
             </div>
         </div> 
-        <script>
-             $(document).ready(function(){
-               $('input[type=text]').removeAttr('readonly');
-            $('input').bind('focus',function(){
-              $(this).next('label').addClass('labelActive');  
-            });
-            $('input').bind('blur',function(){
-                if($(this).val()=='' || $(this).val()==0){
-                    $(this).next('label').removeClass('labelActive');
-                }
-                else{
-                  $(this).next('label').addClass('labelActive');  
-                }
-            });
-            $(document).on('click','input[type=text]',function(){
-         $(".mobiledataCnt").animate({ scrollTop: $(this).offset().top + $(this).closest('.mobiledataCnt').scrollTop() - 120}, 600);
-       });
-            });
-        </script>
+        <script src="../tools/js/frombnk_mobile.js" type="text/javascript"></script>
     </body>
 </html>
