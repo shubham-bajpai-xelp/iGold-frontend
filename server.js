@@ -8,6 +8,7 @@ app.use(express.static(`${__dirname}/public`));
 app.set('views', `${__dirname}/public/views`);
 app.use('/scripts', express.static(path.join(__dirname + '/public/js/jquery')));
 app.use('/styles', express.static(path.join(__dirname, '/public/css/')));
+app.use('/controls', express.static(path.join(__dirname, '/public/js/controllers')));
 app.use('/img', express.static(path.join(__dirname, '/public/imag/')));
 app.use('/fonts', express.static(path.join(__dirname, '/public/fonts/')));
 app.engine('html', require('ejs').renderFile);

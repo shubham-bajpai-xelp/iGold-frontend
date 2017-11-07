@@ -1,50 +1,103 @@
-angular.module('todoController', [])
-
-	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
-		$scope.formData = {};
-		$scope.loading = true;
-
-		// GET =====================================================================
-		// when landing on the page, get all todos and show them
-		// use the service to get all the todos
-		Todos.get()
-			.success(function(data) {
-				$scope.todos = data;
-				$scope.loading = false;
-			});
-
-		// CREATE ==================================================================
-		// when submitting the add form, send the text to the node API
-		$scope.createTodo = function() {
-
-			// validate the formData to make sure that something is there
-			// if form is empty, nothing will happen
-			if ($scope.formData.text != undefined) {
-				$scope.loading = true;
-
-				// call the create function from our service (returns a promise object)
-				Todos.create($scope.formData)
-
-					// if successful creation, call our get function to get all the new todos
-					.success(function(data) {
-						$scope.loading = false;
-						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.todos = data; // assign our new list of todos
-					});
-			}
-		};
-
-		// DELETE ==================================================================
-		// delete a todo after checking it
-		$scope.deleteTodo = function(id) {
-			$scope.loading = true;
-
-			Todos.delete(id)
-				// if successful creation, call our get function to get all the new todos
-				.success(function(data) {
-					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
-				});
-		};
-	}]);
+var app = angular.module("serviceFactory", []);
+app.factory("dataFactory", [
+  "$http",
+  function($http, dt, $q) {
+    var dataFactory = {};
+    dataFactory.getPostData = function(url, dt) {
+      return $http({
+        url: url,
+        headers: { "x-access-token": common.getCookie("121Policy") },
+        method: "POST",
+        data: dt
+      });
+    };
+    dataFactory.getData = function(url) {
+      return $http({
+        url: url,
+        headers: { "x-access-token": common.getCookie("121Policy") },
+        method: "GET"
+      });
+    };
+    return dataFactory;
+  }
+]);
+app.factory("postAuctionForm", function() {
+  return {
+    validateAuctionForm: function(obj) {
+      var checkFormValidity = true;
+      if (checkFormValidity == true && !obj.bankName) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank name");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.bankBranch) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank branch name");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.bankAddress) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank branch address");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.bankCity) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank branch city");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.bankState) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank branch state");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.bankPincode) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank branch pincode");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.auctionDate) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank auction date");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.auctionTime) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank auction time");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.auctionNumber) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank account number");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.auctionEMDAmount) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank EMD amount");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.bankEMDLastDate) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank EMD last date");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.auctionPacketFile) {
+        //   common.toast(0, common.getMsg(parseInt(4)));
+        alert("Please provide bank packet file");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      return checkFormValidity;
+    }
+  };
+});
