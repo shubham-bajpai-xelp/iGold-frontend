@@ -10,6 +10,7 @@ module.exports = function (app) {
         headerDetails.port = ':8008/';
         headerDetails.nodomain = headerDetails.servers + headerDetails.port;
         headerDetails.service = '';
+        headerDetails.serviceFile = 'main.js';
         headerDetails.title = headerDetails.page;
         headerDetails.controllerFile = '';
         switch (designatedPath) {
@@ -17,6 +18,7 @@ module.exports = function (app) {
                 res.render('bankview.html', { headerDetails: headerDetails });
                 break;
             case '/createAuction':
+                headerDetails.controllerFile = 'auctionController.js';
                 res.render('createAuction.html', { headerDetails: headerDetails });
                 break;
             case '/jewelview':
