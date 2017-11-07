@@ -47,6 +47,7 @@ body,html{margin:0;padding: 0;}
 .mBottom60{margin-bottom:60px;}
 .mBottom30{margin-bottom:30px;}
 .mLeft12{margin-left:12px;}
+a{text-decoration: none;color: #B3B3B3;}
 .p0_10{padding:0px 10%;}
 .p15_3{padding:15px 3%;}
 .brkWord{word-wrap:break-word;}
@@ -82,9 +83,9 @@ body,html{margin:0;padding: 0;}
 .icn_bidauction{background:url(../img/MyAuction.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
 .icn_closedauction{background:url(../img/ClosedAuction.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
 .icn_liveauction{background:url(../img/LiveAuction.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
-.icn_closedauctionSelect{background:url(../img/ClosedAuctionSelected.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
-.icn_liveauctionSelect{background:url(../img/LiveAuctionSelected.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
-.icn_auctionSelect{background:url(../img/MyAuctionSelected.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
+.icn_closedauctionSelect{background:url(../img/ClosedAuctionSelected.svg)no-repeat;background-size:auto 20px; background-position:0px center;color: #FE936F;}
+.icn_liveauctionSelect{background:url(../img/LiveAuctionSelected.svg)no-repeat;background-size:auto 20px; background-position:0px center;color: #FE936F;}
+.icn_auctionSelect{background:url(../img/MyAuctionSelected.svg)no-repeat;background-size:auto 20px; background-position:0px center;color: #FE936F;}
 .icn_dashboard{background:url(../img/Dashboard.svg)no-repeat;background-size:auto 20px; background-position:0px center;}
 .icnAxisbnk{background:url(../img/Axis.png)no-repeat;background-size:auto 60px;background-position:0px center;}
 .icnBob{background:url(../img/BankOfBaroda.png)no-repeat;background-size:auto 60px;background-position:0px center;}
