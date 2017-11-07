@@ -1,178 +1,177 @@
-
 <div class="container fLeft fmralewayR" ng-controller="live" ng-init="selectedTab = 'live'">
-        <div class="popupcnt" id="dltpop">
-            <div class="trashPopwrp fmralewayR row lbl_lft15">
-                <div class="heading_bidpop fLeft fmralewayB mBottom10">
-                    <span class="icnTrash dinline"></span>
-                    <span class="dinline">Cancel Auction</span>
-                    <span class="closePopup fRight" ng-click="closeDelete_popup()"></span>
-                </div>
-                <div class="col100 dflex itemLeft font17 pleft25 clrThem mBottom30">Are You Sure You Want to Cancel the Auction ?</div>
-                <div class="col100 dflex itemCenter mBottom60">
-                    <div class="col70 dflex itemClmn">
-                        <div class="cancl_resn fmralewayB">Reason of Cancellation</div>
-                        <div class="col100 box_shadow dflex dropDown">
-                            <div class="col100  poR">
-                                <input type="text" class="userNametxt fLeft drpdwn">
-                                <label class="label transition300 fmralewayB">Select Reason</label> 
-                            </div>
-                            <div class="dropdown_arrow transition300"></div>
-                            <ul class="box_shadow fmralewayB">
-                                <li class="enterVal fLeft transition300">Not Working</li>
-                            </ul>
+    <div class="popupcnt" id="dltpop">
+        <div class="trashPopwrp fmralewayR row lbl_lft15">
+            <div class="heading_bidpop fLeft fmralewayB mBottom10">
+                <span class="icnTrash dinline"></span>
+                <span class="dinline">Cancel Auction</span>
+                <span class="closePopup fRight" ng-click="closeDelete_popup()"></span>
+            </div>
+            <div class="col100 dflex itemLeft font17 pleft25 clrThem mBottom30">Are You Sure You Want to Cancel the Auction ?</div>
+            <div class="col100 dflex itemCenter mBottom60">
+                <div class="col70 dflex itemClmn">
+                    <div class="cancl_resn fmralewayB">Reason of Cancellation</div>
+                    <div class="col100 box_shadow dflex dropDown">
+                        <div class="col100  poR">
+                            <input type="text" class="userNametxt fLeft drpdwn">
+                            <label class="label transition300 fmralewayB">Select Reason</label>
                         </div>
+                        <div class="dropdown_arrow transition300"></div>
+                        <ul class="box_shadow fmralewayB">
+                            <li class="enterVal fLeft transition300">Not Working</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col100 fLeft">
-                    <center>
-                        <div class="button_back dinline fmralewayB" ng-click="closeDelete_popup()">back</div>
-                        <div class="button dinline fmralewayB">cancel auction</div>
-                    </center>
                 </div>
             </div>
-        </div> 
-            <div ng-include="'vhead.html'"></div>
-            <div class="searchSection fmralewayB" id="srch_livebank">
-                <div class="wrapperMax">
-                    <div class="general_cont fLeft">
-                        <span class="icnLiveauc txtUpper">live auction</span>
-                    </div>
-                    <div class="general_cont fRight">
-                        <span class="srch_cnt">
+            <div class="col100 fLeft">
+                <center>
+                    <div class="button_back dinline fmralewayB" ng-click="closeDelete_popup()">back</div>
+                    <div class="button dinline fmralewayB">cancel auction</div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'views/vhead.html'"></div>
+    <div class="searchSection fmralewayB" id="srch_livebank">
+        <div class="wrapperMax">
+            <div class="general_cont fLeft">
+                <span class="icnLiveauc txtUpper">live auction</span>
+            </div>
+            <div class="general_cont fRight">
+                <span class="srch_cnt">
                             <div class="icn_srch"></div>
                             <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search">
                         </span>
-                    </div>
-                </div>
             </div>
-            <div class="wrapper fLeft row">
-                <div class="wrapperMax">
-                    <div class="tabdata_cnt fLeft">
-                        <div class="accrodinetab_Header  fmralewayB">
-                            <div class="col15 pLeft40">branch / city</div>
-                            <div class="col15 p05">auction id / date & time</div>
-                            <div class="col25 p05">address</div>
-                            <div class="col15 p05"><span>packets / net weight</span></div>
-                            <div class="col15 p05">no of bidders</div>
-                            <div class="col15 p05">time left</div>
-                        </div>
-                        <div class="data_cont fLeft">
-                            <div class="accrodine_Card fLeft">
-                                <div class="data_wrapper">
-                                    <div class="col15">
-                                        <div class="col100 fLeft poR pLeft40">
-                                            <div class="expandIcon" ng-click="openDatatable($event.target)"></div>
-                                            <div class="col100">  
-                                                <span class="txtVal1 fLeft">BTM Layout 1st Stage</span>
-                                                <span class="txtVal2 fLeft fmralewayB txtOver">Bangalore , karnataka</span>
-                                            </div>
-                                        </div>
+        </div>
+    </div>
+    <div class="wrapper fLeft row">
+        <div class="wrapperMax">
+            <div class="tabdata_cnt fLeft">
+                <div class="accrodinetab_Header  fmralewayB">
+                    <div class="col15 pLeft40">branch / city</div>
+                    <div class="col15 p05">auction id / date & time</div>
+                    <div class="col25 p05">address</div>
+                    <div class="col15 p05"><span>packets / net weight</span></div>
+                    <div class="col15 p05">no of bidders</div>
+                    <div class="col15 p05">time left</div>
+                </div>
+                <div class="data_cont fLeft">
+                    <div class="accrodine_Card fLeft">
+                        <div class="data_wrapper">
+                            <div class="col15">
+                                <div class="col100 fLeft poR pLeft40">
+                                    <div class="expandIcon" ng-click="openDatatable($event.target)"></div>
+                                    <div class="col100">
+                                        <span class="txtVal1 fLeft">BTM Layout 1st Stage</span>
+                                        <span class="txtVal2 fLeft fmralewayB txtOver">Bangalore , karnataka</span>
                                     </div>
-                                    <div class="col15 p05">
-                                        <span class="fLeft txtVal1">97877634452423342</span>
-                                        <span class="txtVal2 fLeft fmralewayB">23rd Jul ,2017 | 4.00 pm</span>
-                                    </div>
-                                    <div class="col25 dflex p05">
-                                        <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
-                                    </div>
-                                    <div class="col15 itemClmn p05">
-                                        <span class="txtVal1 fLeft">
+                                </div>
+                            </div>
+                            <div class="col15 p05">
+                                <span class="fLeft txtVal1">97877634452423342</span>
+                                <span class="txtVal2 fLeft fmralewayB">23rd Jul ,2017 | 4.00 pm</span>
+                            </div>
+                            <div class="col25 dflex p05">
+                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
+                            </div>
+                            <div class="col15 itemClmn p05">
+                                <span class="txtVal1 fLeft">
                                             <span>5 Packets</span>
-                                        </span>
-                                        <span class="txtVal2 fmralewayB clrGreen fLeft">876 gm</span>
-                                    </div>
-                                    <div class="col15 itemCenter p05">
-                                        <span class="txtVal1 fmralewayB itemLeft">
+                                </span>
+                                <span class="txtVal2 fmralewayB clrGreen fLeft">876 gm</span>
+                            </div>
+                            <div class="col15 itemCenter p05">
+                                <span class="txtVal1 fmralewayB itemLeft">
                                             125 Bidders
                                         </span>
-                                    </div>
-                                    <div class="col15 dflex">
-                                        <span class="txtVal">
+                            </div>
+                            <div class="col15 dflex">
+                                <span class="txtVal">
                                             <span class="icn_bid"></span>
-                                            <span class="fmralewayB clrGreen">02:50:28</span>
+                                <span class="fmralewayB clrGreen">02:50:28</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col100 fLeft dspnone">
+                            <div class="tabel_header dflex fmralewayB">
+                                <div class="col10 dflex"><span class="itemCenter">loan a/c no</span></div>
+                                <div class="col20 dflex"><span class="itemCenter">packet details</span></div>
+                                <div class="col28 itemCenter"><span class="itemCenter">carat details</span></div>
+                                <div class="col10 itemCenter"><span class="itemCenter">gross  / net </span></div>
+                                <div class="col11 itemRight"><span class="itemCenter">base price</span></div>
+                                <div class="col13 itemRight"><span class="itemCenter">highest bid </span></div>
+                                <div class="col11 itemCenter"><span class="itemCenter"> bidders</span></div>
+                                <div class="col7 icnMore dflex"></div>
+                            </div>
+                            <ul class="dataList fLeft">
+                                <li class="dflex">
+                                    <div class="col10 dflex">
+                                        <span class="txtVal fmralewayB">99888723662552</span>
+                                    </div>
+                                    <div class="col20 dflex p05">
+                                        <span class="txtVal">2 Ear rings, 2 nose pins, 5 bangels, 5 Necklaces, 10 Pendants</span>
+                                    </div>
+                                    <div class="col28 dflex p05">
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                        </div>
+                                    </div>
+                                    <div class="col10 p05 itemClmn">
+                                        <span class="txtVal1  itemCenter"><span>80 gm</span></span>
+                                        <span class="txtVal2  fmralewayB clrGreen itemCenter"><span>78 gm</span></span>
+                                    </div>
+                                    <div class="col11 itemCenter p05">
+                                        <span class="txtVal1 itemRight">
+                                                <span class="spnRpy">1,20,000</span>
                                         </span>
                                     </div>
-                                </div>
-                                 <div class="col100 fLeft dspnone">
-                                <div class="tabel_header dflex fmralewayB">
-                                    <div class="col10 dflex"><span class="itemCenter">loan a/c no</span></div>
-                                    <div class="col20 dflex"><span class="itemCenter">packet details</span></div>
-                                    <div class="col28 itemCenter"><span class="itemCenter">carat details</span></div>
-                                    <div class="col10 itemCenter"><span class="itemCenter">gross  / net </span></div>
-                                    <div class="col11 itemRight"><span class="itemCenter">base price</span></div>
-                                    <div class="col13 itemRight"><span class="itemCenter">highest bid </span></div>
-                                    <div class="col11 itemCenter"><span class="itemCenter"> bidders</span></div>
-                                    <div class="col7 icnMore dflex"></div>
-                                </div>
-                                <ul class="dataList fLeft">
-                                    <li class="dflex">
-                                        <div class="col10 dflex">
-                                            <span class="txtVal fmralewayB">99888723662552</span>  
-                                        </div> 
-                                        <div class="col20 dflex p05">
-                                           <span class="txtVal">2 Ear rings, 2 nose pins, 5 bangels, 5 Necklaces, 10 Pendants</span>  
-                                        </div>
-                                        <div class="col28 dflex p05">
-                                            <div class="col14 p05 itemClmn seperater">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                             <div class="col14 p05 itemClmn seperater">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                             <div class="col14 p05 itemClmn seperater">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                              <div class="col14 p05 itemClmn seperater">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                              <div class="col14 p05 itemClmn seperater">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                             <div class="col14 p05 itemClmn seperater">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                             <div class="col14 p05 itemClmn">
-                                                <span class="txtVal1 itemCenter">18c</span>
-                                                 <span class="txtVal2 fmralewayB itemCenter">16 gm</span> 
-                                            </div>
-                                        </div>
-                                        <div class="col10 p05 itemClmn">
-                                            <span class="txtVal1  itemCenter"><span>80 gm</span></span>
-                                            <span class="txtVal2  fmralewayB clrGreen itemCenter"><span>78 gm</span></span>   
-                                        </div>
-                                        <div class="col11 itemCenter p05">
-                                            <span class="txtVal1 itemRight">
-                                                <span class="spnRpy">1,20,000</span>
-                                            </span>  
-                                        </div>
-                                        <div class="col13 dflex p05">
-                                            <span class="txtVal itemRight">
+                                    <div class="col13 dflex p05">
+                                        <span class="txtVal itemRight">
                                                 <span class="tbleIcncnt icnInfo"></span>
-                                                <span class="spnRpyorng itemCenter">1,50,000</span>
-                                            </span>
-                                        </div>
-                                        <div class="col11 itemCenter fmralewayB p05">
-                                            <span class="txtVal1 itemCenter fmralewayB">
+                                        <span class="spnRpyorng itemCenter">1,50,000</span>
+                                        </span>
+                                    </div>
+                                    <div class="col11 itemCenter fmralewayB p05">
+                                        <span class="txtVal1 itemCenter fmralewayB">
                                                12 Bidders
                                             </span>
-                                        </div>
-                                        <div class="col7">
-                                            <center>
-                                                <div class="icnTrash" ng-click="openDelete_popup()"></div>
-                                            </center>
-                                        </div>
-                                    </li>
-                                </ul>
-                                 </div>
-                            </div>
+                                    </div>
+                                    <div class="col7">
+                                        <center>
+                                            <div class="icnTrash" ng-click="openDelete_popup()"></div>
+                                        </center>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>

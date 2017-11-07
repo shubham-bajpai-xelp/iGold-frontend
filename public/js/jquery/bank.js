@@ -3,7 +3,7 @@
       app.config(function($routeProvider){
        $routeProvider
            .when('/',{
-             templateUrl:'../templates/signin.html' ,
+             templateUrl:'views/signin.html' ,
              controller: 'lgn'
            })
            .when('/bank_liveauction',{
@@ -14,7 +14,7 @@
                   }  
                 }   
                },
-            templateUrl:'../templates/bank_liveauction.html',
+            templateUrl:'views/bank_liveauction.html',
             controller: 'live'
             })
           .when('/bank_closedauction',{
@@ -25,7 +25,7 @@
                   }  
                 }   
                },
-            templateUrl:'../templates/bank_closedauction.html' ,
+            templateUrl:'views/bank_closedauction.html' ,
             controller: 'closed'
             }) 
               .when('/bank_auction',{
@@ -36,7 +36,7 @@
                   }  
                 }   
                },
-            templateUrl:'../templates/bank_auction.html' ,
+            templateUrl:'views/bank_auction.html' ,
             controller: 'auction'
             });
        });
@@ -163,7 +163,12 @@ app.controller('lgn',function($scope,$location,$rootScope){
      var pswrd=$scope.password;
      if(uname=='admin' && pswrd=='admin'){
          $rootScope.loggedIn=true;
-      $location.path('/bank_liveauction');   
+         $location.path('/bank_liveauction');   
+     }
+     else if(uname=='bajpai' && pswrd=='bajpai'){
+        $rootScope.loggedIn=true;
+        $location.path('/jewelview');
+        window.location.href ='jewelview';
      }
      else{
         toaster.pop('error', "error", "text");

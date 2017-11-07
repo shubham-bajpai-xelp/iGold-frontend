@@ -7,15 +7,26 @@ module.exports = function(app) {
         headerDetails.server=req.hostname;
         headerDetails.page=designatedPath.replace('/','');
         headerDetails.services='adminNew';
+        headerDetails.port =':8008/';
+        headerDetails.nodomain = headerDetails.servers+headerDetails.port;
+        headerDetails.service='';
         headerDetails.title=headerDetails.page;
         headerDetails.controllerFile = '';
         switch(designatedPath){
-            case '/jeweller':
-            case '/banker':
-                res.render(headerDetails.service+headerDetails.page+'.html',{headerDetail:headerDetails});
+            case '/bankview':
+                res.render('bankview.html',{headerDetails:headerDetails});
             break;
-            case '/login':
-            res.render(headerDetails.service+headerDetails.page+'.html',{headerDetails:headerDetails});
+            case '/signin':
+                res.render('signin.html',{headerDetails:headerDetails});
+            break;
+            case '/createAuction':
+                res.render('createAuction.html',{headerDetails:headerDetails});
+            break;
+            case '/jewelview':
+                res.render('jewelview.html',{headerDetails:headerDetails});
+            break;
+            case '/':
+                res.render('bankview.html',{headerDetails:headerDetails});
             break;
         }
     });

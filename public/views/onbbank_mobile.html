@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>on boarding</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-        <link href="../tools/css/home.css" rel="stylesheet" type="text/css"/>
-        <script src="../tools/js/jquery.js" type="text/javascript"></script>
-    </head>
-    <body class="background" ng-app="myapp">
-        <div class="onboarding_mobilecnt fLeft fmralewayR row" ng-controller="mobileonb">
-            <div class="btnCntmobile fmralewayB">
-                <div class="btnMobile fLeft bgBack">back</div>
-                <div class="btnMobile fRight bgNext">next</div>
+
+<head>
+    <title>on boarding</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <link href="styles/home.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/jquery.js" type="text/javascript"></script>
+</head>
+
+<body class="background" ng-app="myapp">
+    <div class="onboarding_mobilecnt fLeft fmralewayR row" ng-controller="mobileonb">
+        <div class="btnCntmobile fmralewayB">
+            <div class="btnMobile fLeft bgBack">back</div>
+            <div class="btnMobile fRight bgNext">next</div>
+        </div>
+        <div class="mobile_header">
+            <div class="logo fLeft"></div>
+            <div class="icn_profile fRight"></div>
+            <div class="icn_setting fRight"></div>
+        </div>
+        <div class="tab_mobile fLeft">
+            <div class="col100 fLeft">
+                <a href ng-click="setTab(1)">
+                    <div class="col50 fLeft icnBdetails_m fmralewayB" ng-class="{ icnBdetails_mactive: isSet(1) }">Basic Details</div>
+                </a>
+                <a href ng-click="setTab(2)">
+                    <div class="col50 fLeft icnacdetails_m fmralewayB" ng-class="{ icnacetails_mactive: isSet(2) }">Account Details</div>
+                </a>
             </div>
-            <div class="mobile_header">
-                <div class="logo fLeft"></div>
-                <div class="icn_profile fRight"></div>
-                <div class="icn_setting fRight"></div>
-            </div>
-            <div class="tab_mobile fLeft">
-                <div class="col100 fLeft">
-                    <a href ng-click="setTab(1)"><div class="col50 fLeft icnBdetails_m fmralewayB" ng-class="{ icnBdetails_mactive: isSet(1) }">Basic Details</div></a>
-                    <a href ng-click="setTab(2)"><div class="col50 fLeft icnacdetails_m fmralewayB" ng-class="{ icnacetails_mactive: isSet(2) }">Account Details</div></a>
-                </div>
-            </div>
-            <div class="mobiledataCnt fLeft lbl_lft15">
-                <div class="col100 fLeft tabFirst" ng-show="isSet(1)">
+        </div>
+        <div class="mobiledataCnt fLeft lbl_lft15">
+            <div class="col100 fLeft tabFirst" ng-show="isSet(1)">
                 <div class="col100 fLeft poR box_shadow mBottom10">
                     <input type="text" class="userNametxt fLeft">
                     <label class="label transition300 fmralewayB">Bank Name</label>
@@ -59,9 +65,9 @@
                     <input type="text" class="userNametxt fLeft">
                     <label class="label transition300 fmralewayB">Country</label>
                 </div>
-                </div>
-                <div class="col100 fLeft tabSecond" ng-show="isSet(2)">
-                    <div class="col100 fLeft poR box_shadow mBottom10">
+            </div>
+            <div class="col100 fLeft tabSecond" ng-show="isSet(2)">
+                <div class="col100 fLeft poR box_shadow mBottom10">
                     <input type="text" class="userNametxt fLeft">
                     <label class="label transition300 fmralewayB">Loan Manager Name</label>
                 </div>
@@ -77,9 +83,10 @@
                     <input type="text" class="userNametxt fLeft">
                     <label class="label transition300 fmralewayB">IFSC Code</label>
                 </div>
-                </div>
             </div>
-        </div> 
-        <script src="../tools/js/frombnk_mobile.js" type="text/javascript"></script>
-    </body>
+        </div>
+    </div>
+    <script src="../tools/js/frombnk_mobile.js" type="text/javascript"></script>
+</body>
+
 </html>

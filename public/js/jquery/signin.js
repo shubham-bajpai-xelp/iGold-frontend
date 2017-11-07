@@ -2,7 +2,6 @@
       $(document).ready(function(){
                $('input[type=text]').removeAttr('readonly');
                $('#pswrd').removeAttr('readonly');
-//                $('input[type=password]').removeAttr('readonly');
             $('input').bind('focus',function(){
               $(this).next('label').addClass('labelActive');  
             });

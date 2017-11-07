@@ -2,7 +2,7 @@
       app.config(function($routeProvider){
        $routeProvider
            .when('/',{
-             templateUrl:'../templates/signin.html' ,
+             templateUrl:'views/signin.html' ,
              controller: 'lgn'
            })
            .when('/jewl_liveauction',{
@@ -13,7 +13,7 @@
                   }  
                 }   
                },
-            templateUrl:'../templates/jewl_liveauction.html',
+            templateUrl:'views/jewl_liveauction.html',
             controller: 'live'
             })
           .when('/jewl_closedauction',{
@@ -24,7 +24,7 @@
                   }  
                 }   
                },
-            templateUrl:'../templates/jewl_closedauction.html' ,
+            templateUrl:'views/jewl_closedauction.html' ,
             controller: 'closed'
             }) 
               .when('/jewl_auction',{
@@ -35,7 +35,7 @@
                   }  
                 }   
                },
-            templateUrl:'../templates/jewl_auction.html' ,
+            templateUrl:'views/jewl_auction.html' ,
             controller: 'auction'
             });
        });
