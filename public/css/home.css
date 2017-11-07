@@ -212,7 +212,7 @@ a{text-decoration: none;color: #B3B3B3;}
 /*sign in page*/
 .signInpagecnt{width:100%;height:calc(100vh - 60px);position:relative;}
 .signInwrp{width:300px;height:260px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;}
-.userNametxt{width:100%;height:45px;line-height:45px;color:#4A4E69;font-size:11px;border:none;outline:none;border-radius:2px;background: #fff;padding-left:15px;padding-top:6px;}
+.userNametxt{width:100%;height:45px;line-height:45px;color:#4A4E69;font-size:11px;border:none;outline:none;border-radius:2px;background: #fff;padding-left:15px;padding-top:6px;font-family:ralewayB}
 .userNametxt.icn_Username{background:#fff url(../img/profile.svg)no-repeat;background-size:auto 15px;background-position:10px center;padding-left: 30px;padding-top: 6px;}
 .userNametxt.icn_Password{background:#fff url(../img/Password.svg)no-repeat;background-size:auto 15px;background-position:10px center;padding-left: 30px;padding-top: 6px;}
 .frgt_pswrdtxt{width:auto;height:35px;color:#4A4E69;line-height:35px;font-size:10px;text-align:right;text-transform:uppercase;cursor:pointer;}
