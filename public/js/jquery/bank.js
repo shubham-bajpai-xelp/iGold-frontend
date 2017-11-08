@@ -52,7 +52,12 @@ app.controller('closed', function ($scope) {
             $("#dltpop").velocity({ opacity: [0, 1] }, { duration: 200, delay: 0, ease: 'swing' });
         }, 400);
     };
-
+    $scope.openLogout = function (i) {
+        $(i).find('ul').slideToggle('swing');
+    }
+    $scope.logout = function () {
+        window.location.href = "/";
+    }
 });
 
 app.controller('live', function ($scope) {
@@ -93,9 +98,14 @@ app.controller('live', function ($scope) {
             $("#dltpop").velocity({ opacity: [0, 1] }, { duration: 200, delay: 0, ease: 'swing' });
         }, 400);
     }
+    $scope.openLogout = function (i) {
+        $(i).find('ul').slideToggle('swing');
+    }
+    $scope.logout = function () {
+        window.location.href = "/";
+    }
 });
 app.controller('auction', function ($scope) {
-
     $('input').bind('focus', function () {
         $(this).next('label').addClass('labelActive');
     });
@@ -131,39 +141,12 @@ app.controller('auction', function ($scope) {
             $("#dltpop").velocity({ opacity: [0, 1] }, { duration: 200, delay: 0, ease: 'swing' });
         }, 400);
     };
-});
-app.controller('lgn', function ($scope, $location, $rootScope) {
-    $scope.submit = function () {
-        var uname = $scope.username;
-        var pswrd = $scope.password;
-        if (uname == 'admin' && pswrd == 'admin') {
-            $rootScope.loggedIn = true;
-            $location.path('/bank_liveauction');
-        }
-        else if (uname == 'bajpai' && pswrd == 'bajpai') {
-            $rootScope.loggedIn = true;
-            $location.path('/jewelview');
-            window.location.href = 'jewelview';
-        }
-        else {
-            toaster.pop('error', "error", "text");
-        }
-    };
-    $('input[type=text]').removeAttr('readonly');
-    $('#pswrd').removeAttr('readonly');
-    //                $('input[type=password]').removeAttr('readonly');
-    $('input').bind('focus', function () {
-        $(this).next('label').addClass('labelActive');
-    });
-    $('input').bind('blur', function () {
-        if ($(this).val() == '' || $(this).val() == 0) {
-            $(this).next('label').removeClass('labelActive');
-        }
-        else {
-            $(this).next('label').addClass('labelActive');
-        }
-    });
-
+    $scope.openLogout = function (i) {
+        $(i).find('ul').slideToggle('swing');
+    }
+    $scope.logout = function () {
+        window.location.href = "/";
+    }
 });
 
 

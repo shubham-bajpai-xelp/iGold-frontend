@@ -24,6 +24,12 @@ module.exports = function (app) {
             case '/jewelview':
                 res.render('jewelview.html', { headerDetails: headerDetails });
                 break;
+            case '/bankonboarding_mobile':
+                res.render('onbbank_mobile.html', { headerDetails: headerDetails });
+                break; 
+            case '/jewlonboarding_mobile':
+                res.render('onbjewl_mobile.html', { headerDetails: headerDetails });
+                break;        
             case '/':
                 res.render('signin.html', { headerDetails: headerDetails });
                 break;
