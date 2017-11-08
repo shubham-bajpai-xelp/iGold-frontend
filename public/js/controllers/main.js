@@ -6,7 +6,7 @@ app.factory("dataFactory", [
     dataFactory.getPostData = function(url, dt) {
       return $http({
         url: url,
-        headers: { "x-access-token": common.getCookie("121Policy") },
+        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "POST",
         data: dt
       });
@@ -14,13 +14,31 @@ app.factory("dataFactory", [
     dataFactory.getData = function(url) {
       return $http({
         url: url,
-        headers: { "x-access-token": common.getCookie("121Policy") },
+        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "GET"
       });
     };
     return dataFactory;
   }
 ]);
+app.factory("userSignIn", function() {
+  return {
+    validateLoginForm: function(obj) {
+      var checkFormValidity = true;
+      if (checkFormValidity == true && !obj.username) {
+        alert("Please provide user emailid");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.password) {
+        alert("Please provide user password");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      return checkFormValidity;
+    }
+  };
+});
 app.factory("postAuctionForm", function() {
   return {
     validateAuctionForm: function(obj) {
