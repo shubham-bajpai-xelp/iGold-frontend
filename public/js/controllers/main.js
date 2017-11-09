@@ -1,12 +1,15 @@
-var app = angular.module("serviceFactory", []);
+var app = angular.module("serviceFactory", ['ngCookies']);
 app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
     var dataFactory = {};
+    dataFactory.postFormData = function(url,dt,headers){
+      return $http.post(url, dt, headers);
+    };
     dataFactory.getPostData = function(url, dt) {
       return $http({
         url: url,
-        headers: { "x-access-token": common.getCookie("121Policy") },
+        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "POST",
         data: dt
       });
@@ -14,13 +17,31 @@ app.factory("dataFactory", [
     dataFactory.getData = function(url) {
       return $http({
         url: url,
-        headers: { "x-access-token": common.getCookie("121Policy") },
+        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "GET"
       });
     };
     return dataFactory;
   }
 ]);
+app.factory("userSignIn", function() {
+  return {
+    validateLoginForm: function(obj) {
+      var checkFormValidity = true;
+      if (checkFormValidity == true && !obj.username) {
+        alert("Please provide user emailid");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      if (checkFormValidity == true && !obj.password) {
+        alert("Please provide user password");
+        checkFormValidity = false;
+        return checkFormValidity;
+      }
+      return checkFormValidity;
+    }
+  };
+});
 app.factory("postAuctionForm", function() {
   return {
     validateAuctionForm: function(obj) {
@@ -91,12 +112,12 @@ app.factory("postAuctionForm", function() {
         checkFormValidity = false;
         return checkFormValidity;
       }
-      if (checkFormValidity == true && !obj.auctionPacketFile) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank packet file");
-        checkFormValidity = false;
-        return checkFormValidity;
-      }
+      // if (checkFormValidity == true && !obj.auctionPacketFile) {
+      //   //   common.toast(0, common.getMsg(parseInt(4)));
+      //   alert("Please provide bank packet file");
+      //   checkFormValidity = false;
+      //   return checkFormValidity;
+      // }
       return checkFormValidity;
     }
   };
