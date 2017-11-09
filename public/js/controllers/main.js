@@ -3,6 +3,9 @@ app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
     var dataFactory = {};
+    dataFactory.postFormData = function(url,dt,headers){
+      return $http.post(url, dt, headers);
+    };
     dataFactory.getPostData = function(url, dt) {
       return $http({
         url: url,
@@ -109,12 +112,12 @@ app.factory("postAuctionForm", function() {
         checkFormValidity = false;
         return checkFormValidity;
       }
-      if (checkFormValidity == true && !obj.auctionPacketFile) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank packet file");
-        checkFormValidity = false;
-        return checkFormValidity;
-      }
+      // if (checkFormValidity == true && !obj.auctionPacketFile) {
+      //   //   common.toast(0, common.getMsg(parseInt(4)));
+      //   alert("Please provide bank packet file");
+      //   checkFormValidity = false;
+      //   return checkFormValidity;
+      // }
       return checkFormValidity;
     }
   };

@@ -1,3 +1,17 @@
+app.directive("file", function() {
+  return {
+    scope: {
+      file: "="
+    },
+    link: function(scope, el, attrs) {
+      el.bind("change", function(event) {
+        var file = event.target.files[0];
+        scope.file = file ? file : undefined;
+        scope.$apply();
+      });
+    }
+  };
+});
 app.controller("auctionControl", function(
   $scope,
   $http,
@@ -23,7 +37,7 @@ app.controller("auctionControl", function(
     };
     $scope.checkValid = postAuctionForm.validateAuctionForm(formObj);
     if ($scope.checkValid == true) {
-      var url = "/auction/postAuction";
+      var url = "http://localhost:3000/postAuction";
       var dt = {};
       dt.auctionDate = $scope.auctionData.auctionDate;
       dt.auctionTime = $scope.auctionData.auctionTime;
@@ -34,14 +48,16 @@ app.controller("auctionControl", function(
       dt.pinCode = $scope.auctionData.bankPincode;
       dt.state = $scope.auctionData.bankState;
       dt.user_id = $scope.user_id;
-      dt.user_name = $scope.userEditData.user_name;
-      dt.mobile = $scope.userEditData.mobile;
-      dt.collectionType = id;
-      dataFactory.getPostData(url, dt).then(function(res) {
-        var resStatus = res.status;
-        if(resStatus=='200'){
-
-        }
+      // dt.packetFile = $scope.file;
+      var fd = new FormData();
+      fd.append("auctionDetails", angular.toJson(dt));
+      fd.append("file", $scope.file);
+      var config = {
+        headers: { "Content-Type": undefined },
+        transformRequest: angular.identity
+      };
+      dataFactory.postFormData(url, fd, config).then(function(data) {
+        console.log(data);
       });
     }
   };
