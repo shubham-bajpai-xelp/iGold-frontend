@@ -103,7 +103,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .tbleIcncnt.icnInfo{background-size:auto 11px}
 /*header*/
 /*search header*/
-.searchSection{width:100%;height:50px;position:fixed;top:60px;left:0;line-height:50px; z-index: 20;    background: #FE936F linear-gradient(to right, rgba(255, 255, 255, 0.3) 0, rgba(0, 0, 0, 0) 60%);}
+.searchSection{width:100%;height:50px;position:fixed;top:60px;left:0;line-height:50px; z-index: 20;background: #FE936F linear-gradient(to right, rgba(255, 255, 255, 0.3) 0, rgba(0, 0, 0, 0) 60%);}
 .general_cont{width:auto;height:100%;line-height:50px}
 .icnClosedauc{width: auto;height: 30px;line-height: 30px;color: #fff;font-size: 10px; padding-left: 30px;display: inline-block;background: url(../img/ClosedAuctionWhite.svg)no-repeat;background-size: auto 22px;background-position: 0px center; vertical-align: middle;}
 .icnCreatauc{width: auto;height: 30px;line-height: 30px;color: #fff;font-size: 10px; padding-left: 30px;display: inline-block;background: url(../img/CreateAuction.svg)no-repeat;background-size: auto 22px;background-position: 0px center; vertical-align: middle;}
@@ -144,7 +144,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .profilePnl ul{width:200px;height:auto;background:#fff;box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-webkit-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-moz-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-o-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);position:absolute;right:0;top:45px;z-index:30;list-style-type:none;padding:0;margin:0;display:none;}
 .profilePnl ul li{width:100%;height:40px;border-bottom:1px solid #EBECED;color:#4A4E69;line-height:40px;text-align:left;cursor:pointer;font-size:11px;}
 .profilePnl ul li:last-child{border-bottom:none;}
-.icnLogout{background:url(../img/Logout.svg)no-repeat;background-size:auto 22px;background-position:10px center;padding-left:35px;}
+.icnLogout{background:url(../img/Logout.svg)no-repeat;background-size:auto 20px;background-position:10px center;padding-left:35px;}
 /*common*/
 /*button*/
 .button{width:120px;height:35px;color: #fff;font-size: 10px;text-align: center;line-height: 35px;border-radius: 2px;cursor: pointer; padding: 0px 15px;text-transform: uppercase;background: #FE936F linear-gradient(to right, rgba(255, 255, 255, 0.3) 0, rgba(0, 0, 0, 0) 60%);}
