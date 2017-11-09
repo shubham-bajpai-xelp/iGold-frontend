@@ -21,7 +21,12 @@ app.config(function ($routeProvider) {
 
 app.controller('closed', function ($scope) {
 
-
+    $scope.openLogout = function (i) {
+        $(i).find('ul').slideToggle('swing');
+        }
+      $scope.logout = function () {
+         window.location.href = "/";
+        }
 });
 app.controller('live', function ($scope) {
     $('input').bind('focus', function () {
@@ -76,6 +81,12 @@ app.controller('live', function ($scope) {
             $("#rankpop").velocity({ opacity: [0, 1] }, { duration: 200, delay: 0, ease: 'swing' });
         }, 400);
     };
+    $scope.openLogout = function (i) {
+        $(i).find('ul').slideToggle('swing');
+        }
+      $scope.logout = function () {
+         window.location.href = "/";
+        }
 });
 app.controller('auction', function ($scope) {
 
@@ -120,6 +131,12 @@ app.controller('auction', function ($scope) {
         $('.apply_msgwrp').velocity({ translateY: [-20, 0], opacity: [0, 1] }, { duration: 300, easing: 'easeInOut', display: 'none' });
         $('.emd_msgwrp').velocity({ translateY: [0, 20], opacity: [1, 0] }, { duration: 300, easing: 'easeInOut', display: 'block' });
     };
+    $scope.openLogout = function (i) {
+        $(i).find('ul').slideToggle('swing');
+        }
+      $scope.logout = function () {
+         window.location.href = "/";
+        }
 });
 
 

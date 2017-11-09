@@ -12,8 +12,8 @@
             }); 
             });
             $(document).on('click','.drpdwn',function(){
-                $(this).parent('.col100').next('.dropdown_arrow').addClass('rot180');
-                $(this).parent('.col100').next('.dropdown_arrow').next('ul').slideDown('swing');
+                $(this).parent('.col100').next('.dropdown_arrow').toggleClass('rot180');
+                $(this).parent('.col100').next('.dropdown_arrow').next('ul').slideToggle('swing');
             });
            $(document).click(function (event) {
        if (!$(event.target).closest('.dropDown').length)

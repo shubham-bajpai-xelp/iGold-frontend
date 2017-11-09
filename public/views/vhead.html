@@ -1,7 +1,13 @@
 <div class="headerSection fmralewayB">
     <div class="wrapperMax">
         <div class="logo fLeft"></div>
-        <div class="icn_profile fRight"></div>
+        <div class="icn_profile fRight poR">
+            <div class="profilePnl" ng-click="openLogout($event.target)">
+                <ul>
+                    <li class="icnLogout" ng-click="logout()">Log Out</li>
+                </ul>
+            </div>
+        </div>
         <div class="icn_setting fRight"></div>
         <a href="#!bank_auction">
             <div class="icn_txtcnt fRight icn_bidauction jwl bnk" ng-class="{'icn_auctionSelect':selectedTab === 'auc'}">auction</div>
