@@ -1,6 +1,7 @@
 app.controller("loginControl", function(
   $scope,
   $location,
+  $cookieStore,
   userSignIn,
   dataFactory
 ) {

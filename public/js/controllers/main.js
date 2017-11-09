@@ -1,4 +1,4 @@
-var app = angular.module("serviceFactory", []);
+var app = angular.module("serviceFactory", ['ngCookies']);
 app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
