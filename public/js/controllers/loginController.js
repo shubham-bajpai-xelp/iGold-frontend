@@ -15,21 +15,25 @@ app.controller("loginControl", function(
       var dt = {};
       dt.email = $scope.userDetail.username;
       dt.password = $scope.userDetail.password;
-      var url = "http://192.168.2.154:3000/login";
+      var url = "http://localhost:3000/login";
       dataFactory.getPostData(url, dt).then(function(res) {
-
-        res = res;
-        // if (uname == 'admin' && pswrd == 'admin') {
-        //     window.location.href = "bankview";
-        //     //  $rootScope.loggedIn=true;
-        //     //  $location.path('/bankview');
-        // }
-        // else if (uname == 'bajpai' && pswrd == 'bajpai') {
-        //     window.location.href = "jewelview";
-        // }
-        // else {
-        //     alert('wrong stuff');
-        // }
+        var status = res.data.status;
+        if(status==200){
+            var response = eval('('+res.data.body+')');
+            if (response.userType == 0 && response.userId) {
+                $cookieStore.put('visitorId',response.userId);
+                $cookieStore.put('visitorToken',response.token);
+                window.location.href = "bankview";
+            }
+            else if (response.userType == 1 && response.userId) {
+                $cookieStore.put('visitorId',response.userId);
+                $cookieStore.put('visitorToken',response.token);
+                window.location.href = "jewelview";
+            }
+            else {
+                alert('wrong stuff');
+            }
+        }
       });
     }
   };
