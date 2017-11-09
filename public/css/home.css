@@ -103,7 +103,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .tbleIcncnt.icnInfo{background-size:auto 11px}
 /*header*/
 /*search header*/
-.searchSection{width:100%;height:50px;position:fixed;top:60px;left:0;line-height:50px; z-index: 60;    background: #FE936F linear-gradient(to right, rgba(255, 255, 255, 0.3) 0, rgba(0, 0, 0, 0) 60%);}
+.searchSection{width:100%;height:50px;position:fixed;top:60px;left:0;line-height:50px; z-index: 20;background: #FE936F linear-gradient(to right, rgba(255, 255, 255, 0.3) 0, rgba(0, 0, 0, 0) 60%);}
 .general_cont{width:auto;height:100%;line-height:50px}
 .icnClosedauc{width: auto;height: 30px;line-height: 30px;color: #fff;font-size: 10px; padding-left: 30px;display: inline-block;background: url(../img/ClosedAuctionWhite.svg)no-repeat;background-size: auto 22px;background-position: 0px center; vertical-align: middle;}
 .icnCreatauc{width: auto;height: 30px;line-height: 30px;color: #fff;font-size: 10px; padding-left: 30px;display: inline-block;background: url(../img/CreateAuction.svg)no-repeat;background-size: auto 22px;background-position: 0px center; vertical-align: middle;}
@@ -136,6 +136,15 @@ a{text-decoration: none;color: #B3B3B3;}
 .statusSaved{width:auto;height:25px;border:1px solid #FE936F;color:#FE936F ;font-size:9px;text-transform:uppercase;line-height:25px;text-align:center;padding:0px 10px;}
 .statuscancelled{width:auto;height:25px;border:1px solid #EBECED;color:#B3B3B3 ;font-size:9px;text-transform:uppercase;line-height:25px;text-align:center;padding:0px 10px;}
 .statusApplied{width:auto;height:25px;border:1px solid #2CC185;color:#fff;font-size:9px;text-transform:uppercase;line-height:25px;text-align:center;padding:0px 10px;background:#2CC185;border-radius: 2px;}
+.norecords{width: 100%;height: calc(100vh - 110px);background: url(../img/EmptyState.svg)no-repeat;background-size: auto 17%;background-position: center 150px;padding-top: 22%;opacity: 0.7;}
+.norecords .stts_txt1{width:100%;height:auto;font-size:18px;text-align:center;color:#4A4E69;line-height:25px;}
+.norecords .stts_txt2{width:100%;height:auto;font-size:12px;text-align:center;color:#4A4E69;line-height:20px;}
+/*logout pannel*/
+.profilePnl{position:absolute;width:100%;height:100%;z-index:30;}
+.profilePnl ul{width:200px;height:auto;background:#fff;box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-webkit-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-moz-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-o-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);position:absolute;right:0;top:45px;z-index:30;list-style-type:none;padding:0;margin:0;display:none;}
+.profilePnl ul li{width:100%;height:40px;border-bottom:1px solid #EBECED;color:#4A4E69;line-height:40px;text-align:left;cursor:pointer;font-size:11px;}
+.profilePnl ul li:last-child{border-bottom:none;}
+.icnLogout{background:url(../img/Logout.svg)no-repeat;background-size:auto 20px;background-position:10px center;padding-left:35px;}
 /*common*/
 /*button*/
 .button{width:120px;height:35px;color: #fff;font-size: 10px;text-align: center;line-height: 35px;border-radius: 2px;cursor: pointer; padding: 0px 15px;text-transform: uppercase;background: #FE936F linear-gradient(to right, rgba(255, 255, 255, 0.3) 0, rgba(0, 0, 0, 0) 60%);}
@@ -212,7 +221,7 @@ a{text-decoration: none;color: #B3B3B3;}
 /*sign in page*/
 .signInpagecnt{width:100%;height:calc(100vh - 60px);position:relative;}
 .signInwrp{width:300px;height:260px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;}
-.userNametxt{width:100%;height:45px;line-height:45px;color:#4A4E69;font-size:11px;border:none;outline:none;border-radius:2px;background: #fff;padding-left:15px;padding-top:6px;font-family:ralewayB}
+.userNametxt{width:100%;height:45px;line-height:45px;color:#4A4E69;font-size:11px;border:none;outline:none;border-radius:2px;background: #fff;font-family:ralewayB;padding:6px 15px 0px 15px}
 .userNametxt.icn_Username{background:#fff url(../img/profile.svg)no-repeat;background-size:auto 15px;background-position:10px center;padding-left: 30px;padding-top: 6px;}
 .userNametxt.icn_Password{background:#fff url(../img/Password.svg)no-repeat;background-size:auto 15px;background-position:10px center;padding-left: 30px;padding-top: 6px;}
 .frgt_pswrdtxt{width:auto;height:35px;color:#4A4E69;line-height:35px;font-size:10px;text-align:right;text-transform:uppercase;cursor:pointer;}
