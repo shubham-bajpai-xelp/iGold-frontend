@@ -27,10 +27,16 @@ module.exports = function(app) {
       case "/login":
         res.render("signin.html", { headerDetails: headerDetails });
         break;
+      case '/bankonboarding_mobile':
+        res.render('onbbank_mobile.html', { headerDetails: headerDetails });
+      break; 
+      case '/jewlonboarding_mobile':
+        res.render('onbjewl_mobile.html', { headerDetails: headerDetails });
+      break;  
       case "/":
         headerDetails.controllerFile = "loginController.js";
         res.render("signin.html", { headerDetails: headerDetails });
-        break;
+      break;
     }
   });
 };
