@@ -192,11 +192,9 @@ app.controller('live', function ($scope) {
                 sticky.slideUp('200')
                 dnone.removeClass('dn'); 
             }
-        });   
-        
+        });
 });
 app.controller('auction', function ($scope) {
-
     $('input').bind('focus', function () {
         $(this).next('label').addClass('labelActive');
     });
@@ -258,7 +256,6 @@ app.controller('lgn', function ($scope, $location, $rootScope) {
     };
     $('input[type=text]').removeAttr('readonly');
     $('#pswrd').removeAttr('readonly');
-    //                $('input[type=password]').removeAttr('readonly');
     $('input').bind('focus', function () {
         $(this).next('label').addClass('labelActive');
     });
@@ -270,7 +267,6 @@ app.controller('lgn', function ($scope, $location, $rootScope) {
             $(this).next('label').addClass('labelActive');
         }
     });
-
 });
 
 

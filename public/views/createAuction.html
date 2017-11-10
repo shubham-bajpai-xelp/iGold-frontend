@@ -8,14 +8,13 @@
     <link href="styles/home.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-cookies.min.js"></script>
     <script src="scripts/jquery.js" type="text/javascript"></script>
     <script src="scripts/jquery-ui.js" type="text/javascript"></script>
     <script src="controls/<%=headerDetails.serviceFile%>" type="text/javascript"></script>
     <script src="controls/<%=headerDetails.controllerFile%>" type="text/javascript"></script>
-    <!--        <script src="../tools/js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>-->
     <script src="scripts/jquery.ui.timepicker.js" type="text/javascript"></script>
    <link href="styles/jquery-ui.css" rel="stylesheet" type="text/css" /> 
-
 </head>
 
 <body class="background" ng-controller="auctionControl" ng-app="serviceFactory">
@@ -25,10 +24,6 @@
                 <div class="logo fLeft"></div>
                 <div class="icn_profile fRight"></div>
                 <div class="icn_setting fRight"></div>
-                <!--                <div class="icn_txtcnt fRight icn_bidauction" id="auc" onclick="changeiTab('auc_jewl');">auction</div>
-                <div class="icn_txtcnt fRight icn_closedauctionSelect clrOrng" id="clsdAuc" onclick="changeiTab('closed_jewl');">closed auction</div>
-                 <div class="icn_txtcnt fRight icn_liveauction" id="liveAuc" onclick="changeiTab('live_jewl');">live auction</div>
-                  <div class="icn_txtcnt fRight icn_dashboard">dashboard</div>-->
             </div>
         </div>
         <div class="searchSection fmralewayB">
@@ -49,28 +44,28 @@
                             <div class="col33_33  p10 fLeft">
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankName">
-                                        <label class="label transition300 fmralewayB">enter Bank Name</label>
+                                        <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankName" ng-maxlength="100">
+                                        <label class="label transition300 fmralewayB">enter Bank Name*</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 fLeft poR box_shadow">
-                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankBranch">
-                                    <label class="label transition300 fmralewayB">enter Branch</label>
+                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankBranch" ng-maxlength="50">
+                                    <label class="label transition300 fmralewayB">enter Branch*</label>
                                 </div>
                             </div>
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 fLeft poR box_shadow">
-                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankAddress">
-                                    <label class="label transition300 fmralewayB">enter Branch address</label>
+                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankAddress" ng-maxlength="150">
+                                    <label class="label transition300 fmralewayB">enter Branch address*</label>
                                 </div>
                             </div>
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 box_shadow dflex dropDown">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft drpdwn" ng-model="auctionData.bankCity">
-                                        <label class="label transition300 fmralewayB">enter City</label>
+                                        <input type="text" class="userNametxt fLeft drpdwn" ng-model="auctionData.bankCity" ng-maxlength="50">
+                                        <label class="label transition300 fmralewayB">enter City*</label>
                                     </div>
                                     <div class="dropdown_arrow transition300"></div>
                                     <ul class="box_shadow fmralewayB">
@@ -85,8 +80,8 @@
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 box_shadow dflex dropDown">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft drpdwn" ng-model="auctionData.bankState">
-                                        <label class="label transition300 fmralewayB">enter State</label>
+                                        <input type="text" class="userNametxt fLeft drpdwn" ng-model="auctionData.bankState" ng-maxlength="50">
+                                        <label class="label transition300 fmralewayB">enter State*</label>
                                     </div>
                                     <div class="dropdown_arrow transition300"></div>
                                     <ul class="box_shadow fmralewayB">
@@ -100,8 +95,8 @@
                             </div>
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 fLeft poR box_shadow">
-                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankPincode">
-                                    <label class="label transition300 fmralewayB">enter Pin code</label>
+                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.bankPincode" ng-maxlength="6">
+                                    <label class="label transition300 fmralewayB">enter Pin code*</label>
                                 </div>
                             </div>
                         </div>
@@ -128,29 +123,29 @@
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
                                         <input type="text" class="userNametxt fLeft timepicker" ng-model="auctionData.auctionTime">
-                                        <label class="label transition300 fmralewayB">enter Auction time</label>
+                                        <label class="label transition300 fmralewayB">enter Auction time*</label>
                                     </div>
                                     <div class="icnTime"></div>
                                 </div>
                             </div>
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 fLeft poR box_shadow">
-                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionNumber">
-                                    <label class="label transition300 fmralewayB">enter Auction number</label>
+                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionNumber" ng-maxlength="20">
+                                    <label class="label transition300 fmralewayB">enter Auction number*</label>
                                 </div>
                             </div>
 
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100  poR box_shadow fLeft">
-                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionEMDAmount">
-                                    <label class="label transition300 fmralewayB">enter emd amount</label>
+                                    <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionEMDAmount" ng-maxlength="10">
+                                    <label class="label transition300 fmralewayB">enter emd amount*</label>
                                 </div>
                             </div>
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
                                         <input type="text" class="userNametxt fLeft datepicker" ng-model="auctionData.bankEMDLastDate">
-                                        <label class="label transition300 fmralewayB">enter emd last date</label>
+                                        <label class="label transition300 fmralewayB">enter emd last date*</label>
                                     </div>
                                     <div class="icnDate"></div>
                                 </div>
@@ -167,47 +162,12 @@
                         </div>
                         <div class="col100 fLeft">
                             <div class="col33_33  p10 fLeft">
-                                <div class="col100 box_shadow dflex dropDown">
-                                    <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft drpdwn">
-                                        <label class="label transition300 fmralewayB">enter number of packets</label>
-                                    </div>
-                                    <div class="dropdown_arrow transition300"></div>
-                                    <ul class="box_shadow fmralewayB">
-                                        <li class="enterVal fLeft transition300">One Packet</li>
-                                        <li class="enterVal fLeft transition300">Two Packet</li>
-                                        <li class="enterVal fLeft transition300">Three Packet</li>
-                                        <li class="enterVal fLeft transition300">Four Packet</li>
-                                        <li class="enterVal fLeft transition300">Five Packet</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col33_33  p10 fLeft">
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionPacketFile">
-                                        <label class="label transition300 fmralewayB">upload packet details document</label>
+                                        <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionPacketFile" ng-readonly="true">
+                                        <label class="label transition300 fmralewayB">upload packet details document*</label>
                                     </div>
-                                    <div class="upload poR">Upload<input type="file" class="inpt_file"></div>
-                                </div>
-                            </div>
-                            <div class="col33_33 p10 fLeft">
-                                <div class="col100 fLeft poR box_shadow">
-                                    <input type="text" class="userNametxt fLeft">
-                                    <label class="label transition300 fmralewayB">packet1  loan account number</label>
-                                </div>
-                            </div>
-
-                            <div class="col33_33 p10 fLeft">
-                                <div class="col100  poR box_shadow fLeft">
-                                    <input type="text" class="userNametxt fLeft">
-                                    <label class="label transition300 fmralewayB">packet2  loan account number</label>
-                                </div>
-                            </div>
-                            <div class="col33_33 p10 fLeft">
-                                <div class="col100  poR box_shadow fLeft">
-                                    <input type="text" class="userNametxt fLeft">
-                                    <label class="label transition300 fmralewayB">packet3  loan account number</label>
+                                    <div class="upload poR">Upload<input type="file" file="file" class="inpt_file"></div>
                                 </div>
                             </div>
                         </div>
@@ -225,5 +185,4 @@
     <script src="scripts/dropdown.js" type="text/javascript"></script>
     <script src="scripts/creatAuction.js" type="text/javascript"></script>
 </body>
-
 </html>
