@@ -23,10 +23,10 @@ app.controller('closed', function ($scope) {
 
     $scope.openLogout = function (i) {
         $(i).find('ul').slideToggle('swing');
-    }
-    $scope.logout = function () {
-        window.location.href = "/";
-    }
+        }
+      $scope.logout = function () {
+         window.location.href = "/";
+        }
 });
 app.controller('live', function ($scope) {
     $('input').bind('focus', function () {
@@ -83,10 +83,10 @@ app.controller('live', function ($scope) {
     };
     $scope.openLogout = function (i) {
         $(i).find('ul').slideToggle('swing');
-    }
-    $scope.logout = function () {
-        window.location.href = "/";
-    }
+        }
+      $scope.logout = function () {
+         window.location.href = "/";
+        }
 });
 app.controller('auction', function ($scope) {
 
@@ -133,10 +133,10 @@ app.controller('auction', function ($scope) {
     };
     $scope.openLogout = function (i) {
         $(i).find('ul').slideToggle('swing');
-    }
-    $scope.logout = function () {
-        window.location.href = "/";
-    }
+        }
+      $scope.logout = function () {
+         window.location.href = "/";
+        }
 });
 
 

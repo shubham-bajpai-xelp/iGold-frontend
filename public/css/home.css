@@ -111,7 +111,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .icnAuc{width: auto;height: 30px;line-height: 30px;color: #fff;font-size: 10px; padding-left: 30px;display: inline-block;background: url(../img/MyAuctionWhite.svg)no-repeat;background-size: auto 20px;background-position: 0px center; vertical-align: middle;}
 .srch_cnt{width: 195px;height: 30px;padding-right: 40px;position: relative;background: rgba(255,255,255,0.3);display: inline-block;vertical-align: middle;border-radius: 2px;}
 .icn_srch{width: 30px;height: 30px;background: url(../img/Search.svg)no-repeat;background-size: auto 15px;background-position: center; position: absolute;right: 7px;top: 0;}
-.srch_cnt .srch_input{width:100%;height:100%;border:none;outline:none;color:#fff;padding:0px 10px;line-height:30px;font-size:10px;background:none;}
+.srch_cnt .srch_input{width:100%;height:100%;border:none;outline:none;color:#fff;padding:0px 10px;line-height:30px;font-size:12px;background:none;}
 .srch_cnt .srch_input::-webkit-input-placeholder {color: #fff;}
 .creatAuction{width:auto;height:30px;line-height:30px;color:#fff;font-size:11px;padding:0px 15px 0px 30px;display:inline-block;vertical-align:middle;background:rgba(255,255,255,0.3) url(../img/CreateAuction.svg)no-repeat;background-size:auto 16px;background-position:7px center;border-radius:2px;}
 /*search header*/
@@ -139,6 +139,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .norecords{width: 100%;height: calc(100vh - 110px);background: url(../img/EmptyState.svg)no-repeat;background-size: auto 17%;background-position: center 150px;padding-top: 22%;opacity: 0.7;}
 .norecords .stts_txt1{width:100%;height:auto;font-size:18px;text-align:center;color:#4A4E69;line-height:25px;}
 .norecords .stts_txt2{width:100%;height:auto;font-size:12px;text-align:center;color:#4A4E69;line-height:20px;}
+.stckyHdr{width:100%;height:auto;position:fixed;left:0;top:110px;display:none;z-index:30;}
 /*logout pannel*/
 .profilePnl{position:absolute;width:100%;height:100%;z-index:30;}
 .profilePnl ul{width:200px;height:auto;background:#fff;box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-webkit-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-moz-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);-o-box-shadow: 2px 2px 26px 0 rgba(0, 0, 0, 0.2);position:absolute;right:0;top:45px;z-index:30;list-style-type:none;padding:0;margin:0;display:none;}
