@@ -22,6 +22,7 @@ module.exports = function(app) {
         res.render("createAuction.html", { headerDetails: headerDetails });
         break;
       case "/jewelview":
+      headerDetails.controllerFile = "jewellerController.js";
         res.render("jewelview.html", { headerDetails: headerDetails });
         break;
       case "/login":
