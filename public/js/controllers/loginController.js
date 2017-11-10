@@ -20,13 +20,13 @@ app.controller("loginControl", function(
       dataFactory.getPostData(url, dt).then(function(res) {
         var status = res.data.status;
         if(status==200){
-            var response = eval('('+res.data.body+')');
-            if (response.userType == 0 && response.userId) {
+            var response = JSON.parse(res.data.body);
+            if (response.userType == 1 && response.userId) {
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
                 window.location.href = "bankview";
             }
-            else if (response.userType == 1 && response.userId) {
+            else if (response.userType == 2 && response.userId) {
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
                 window.location.href = "jewelview";
