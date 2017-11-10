@@ -72,39 +72,39 @@
                     <div class="col8 itemCenter">status</div>
                 </div>
                 <div class="data_cont fLeft">
-                    <div class="accrodine_Card fLeft">
+                    <div class="accrodine_Card fLeft" ng-repeat="jewellerDetails in auctionLister">
                         <div class="data_wrapper">
                             <div class="col25">
                                 <div class="col100 fLeft poR pLeft40">
                                     <div class="expandIcon" ng-click="openDatatable($event.target)"></div>
                                     <div class="col100 fLeft  pLeft85 icnCbi">
-                                        <span class="txtVal1 fLeft">Central Bank of India</span>
-                                        <span class="txtVal2 fLeft fmralewayB txtOver">9876543456865439852012</span>
+                                        <span class="txtVal1 fLeft">{{jewellerDetails.bankName}}</span>
+                                        <span class="txtVal2 fLeft fmralewayB txtOver">{{jewellerDetails.bankBranch}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col15">
-                                <span class="txtVal1 fLeft">9876543567897645231</span>
-                                <span class="txtVal2 fLeft fmralewayB">23rd jul ,2017 | 9:00 am</span>
+                                <span class="txtVal1 fLeft">{{jewellerDetails.acutionWithoutHash}}</span>
+                                <span class="txtVal2 fLeft fmralewayB">{{jewellerDetails.auctionDate}} | {{jewellerDetails.auctionTime}}</span>
                             </div>
                             <div class="col20 dflex">
-                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
+                                <span class="txtVal">{{jewellerDetails.address}}</span>
                             </div>
                             <div class="col10 dflex">
                                 <span class="txtVal">
-                                    <span class="spnRpy itemCenter">5,00,000</span>
+                                    <span class="spnRpy itemCenter">{{jewellerDetails.auctionEMDAmount}}</span>
                                 </span>
                             </div>
                             <div class="col10">
-                                <span class="txtVal1 fLeft">7 Packets</span>
-                                <span class="txtVal2 fLeft fmralewayB clrGreen">475 gm</span>
+                                <span class="txtVal1 fLeft">{{(jewellerDetails.packet.length == 1) ? 1 : jewellerDetails.packet.length}} {{(jewellerDetails.packet.length == 1) ? "Packet" : "Packets"}}</span>
+                                <span class="txtVal2 fLeft fmralewayB clrGreen">{{jewellerDetails.grossWeight}} gm</span>
                             </div>
                             <div class="col12">
 
                             </div>
                             <div class="col8 dflex">
                                 <div class="itemCenter col100">
-                                    <div class="statusApplied fmralewayB">applied</div>
+                                    <div class="{{(jewellerDetails.auctionApplied.indexOf(10100101)!== -1 ? 'statusApplied' : 'statusBid')}} fmralewayB" ng-click="openapply_popup()">{{(jewellerDetails.auctionApplied.indexOf(10100101)!== -1 ? 'Applied' : 'Apply')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -127,163 +127,54 @@
                                 </div>
                             </div>
                             <ul class="dataList fLeft">
-                                <li class="dflex">
+                                <li class="dflex" ng-repeat="packetDetails in jewellerDetails.packet">
                                     <div class="col15 dflex">
-                                        <span class="txtVal fmralewayB">99888723662552</span>
+                                        <span class="txtVal fmralewayB">{{packetDetails.packetId}}</span>
                                     </div>
                                     <div class="col30 dflex p05">
-                                        <span class="txtVal">2 Ear rings, 2 nose pins, 5 bangels, 5 Necklaces, 10 Pendants</span>
+                                        <span class="txtVal">{{packetDetails.remarks}}</span>
                                     </div>
                                     <div class="col30 dflex p05">
                                         <div class="col14 p05 itemClmn seperater">
                                             <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">19c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_19}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">20c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_20}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">21c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_21}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">22c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_22}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">23c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_23}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">24c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{packetDetails.carat_24}} gm</span>
                                         </div>
                                     </div>
                                     <div class="col10 p05 itemClmn">
                                         <span class="txtVal1  itemCenter">
-                                            <span>80 gm</span>
+                                            <span>{{packetDetails.grossWeight}} gm</span>
                                         </span>
                                         <span class="txtVal2  fmralewayB clrGreen itemCenter">
-                                            <span>78 gm</span>
+                                            <span>{{packetDetails.netWeight}} gm</span>
                                         </span>
                                     </div>
                                     <div class="col15 itemCenter p05">
                                         <span class="txtVal1 itemCenter">
-                                            <span class="spnRpy">1,20,000</span>
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="accrodine_Card fLeft">
-                        <div class="data_wrapper">
-                            <div class="col25">
-                                <div class="col100 fLeft poR pLeft40">
-                                    <div class="expandIcon" ng-click="openDatatable($event.target)"></div>
-                                    <div class="col100 fLeft  pLeft85 icnCbi">
-                                        <span class="txtVal1 fLeft">Central Bank of India</span>
-                                        <span class="txtVal2 fLeft fmralewayB txtOver">9876543456865439852012</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col15">
-                                <span class="txtVal1 fLeft">9876543567897645231</span>
-                                <span class="txtVal2 fLeft fmralewayB">23rd jul ,2017 | 9:00 am</span>
-                            </div>
-                            <div class="col20 dflex">
-                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
-                            </div>
-                            <div class="col10 dflex">
-                                <span class="txtVal">
-                                    <span class="spnRpy itemCenter">5,00,000</span>
-                                </span>
-                            </div>
-                            <div class="col10">
-                                <span class="txtVal1 fLeft">7 Packets</span>
-                                <span class="txtVal2 fLeft fmralewayB clrGreen">475 gm</span>
-                            </div>
-                            <div class="col12">
-
-                            </div>
-                            <div class="col8 dflex">
-                                <div class="itemCenter col100">
-                                    <div class="statusBid fmralewayB transition300" ng-click="openapply_popup()">apply</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col100 fLeft dspnone">
-                            <div class="tabel_header dflex fmralewayB">
-                                <div class="col15 dflex">
-                                    <span class="itemCenter">loan a/c no</span>
-                                </div>
-                                <div class="col30 dflex">
-                                    <span class="itemCenter">packet details</span>
-                                </div>
-                                <div class="col30 itemCenter">
-                                    <span class="itemCenter">carat details</span>
-                                </div>
-                                <div class="col10 itemCenter">
-                                    <span class="itemCenter">gross / net </span>
-                                </div>
-                                <div class="col15 itemCenter">
-                                    <span class="itemCenter">base price</span>
-                                </div>
-                            </div>
-                            <ul class="dataList fLeft">
-                                <li class="dflex">
-                                    <div class="col15 dflex">
-                                        <span class="txtVal fmralewayB">99888723662552</span>
-                                    </div>
-                                    <div class="col30 dflex p05">
-                                        <span class="txtVal">2 Ear rings, 2 nose pins, 5 bangels, 5 Necklaces, 10 Pendants</span>
-                                    </div>
-                                    <div class="col30 dflex p05">
-                                        <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                        <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                        <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                        <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                        <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                        <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                        <div class="col14 p05 itemClmn">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
-                                        </div>
-                                    </div>
-                                    <div class="col10 p05 itemClmn">
-                                        <span class="txtVal1  itemCenter">
-                                            <span>80 gm</span>
-                                        </span>
-                                        <span class="txtVal2  fmralewayB clrGreen itemCenter">
-                                            <span>78 gm</span>
-                                        </span>
-                                    </div>
-                                    <div class="col15 itemCenter p05">
-                                        <span class="txtVal1 itemCenter">
-                                            <span class="spnRpy">1,20,000</span>
+                                            <span class="spnRpy">{{packetDetails.baseAmount}}</span>
                                         </span>
                                     </div>
                                 </li>

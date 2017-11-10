@@ -18,8 +18,7 @@ app.controller("jewellerControl", function(
     var dt = {};
     var url = "http://localhost:3000/getauction";
     dataFactory.getData(url, dt).then(function(result) {
-        var response  = eval('('+result.data.body+')');
-        console.log(response);
+        var response  = JSON.parse(result.data.body);
         if(result.data.status=='201'){
             $scope.auctionLister=response;
             console.log($scope.auctionLister);
