@@ -2,15 +2,15 @@
     <div class="wrapperMax">
         <div class="logo fLeft"></div>
         <div class="icn_profile fRight poR">
-                <div class="profilePnl" ng-click="openLogout($event.target)">
-                    <ul>
-                        <li class="icnLogout" ng-click="logout()">Log Out</li>
-                    </ul>
-                </div>
+            <div class="profilePnl" ng-click="openLogout($event.target)">
+                <ul>
+                    <li class="icnLogout" ng-click="logout()">Log Out</li>
+                </ul>
             </div>
+        </div>
         <div class="icn_setting fRight"></div>
         <a href="#!jewl_auction">
-            <div class="icn_txtcnt fRight icn_bidauction" ng-class="{'icn_auctionSelect':selectedTab === 'auc'}">auction</div>
+            <div class="icn_txtcnt fRight icn_bidauction" ng-click="fetchUpCommingAuctions()" ng-class="{'icn_auctionSelect':selectedTab === 'auc'}">auction</div>
         </a>
         <a href="#!jewl_closedauction">
             <div class="icn_txtcnt fRight icn_closedauction" ng-class="{'icn_closedauctionSelect':selectedTab === 'clsd'}">closed auction</div>

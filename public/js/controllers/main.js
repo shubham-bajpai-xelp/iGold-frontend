@@ -1,9 +1,9 @@
-var app = angular.module("serviceFactory", ['ngCookies']);
+var app = angular.module("serviceFactory", ["ngCookies", "ngRoute"]);
 app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
     var dataFactory = {};
-    dataFactory.postFormData = function(url,dt,headers){
+    dataFactory.postFormData = function(url, dt, headers) {
       return $http.post(url, dt, headers);
     };
     dataFactory.getPostData = function(url, dt) {
@@ -24,6 +24,21 @@ app.factory("dataFactory", [
     return dataFactory;
   }
 ]);
+app.config(function($routeProvider) {
+  $routeProvider
+    .when("/", {
+      templateUrl: "views/jewl_liveauction.html",
+    })
+    .when("/jewl_liveauction", {
+      templateUrl: "views/jewl_liveauction.html",
+    })
+    .when("/jewl_closedauction", {
+      templateUrl: "views/jewl_closedauction.html",
+    })
+    .when("/jewl_auction", {
+      templateUrl: "views/jewl_auction.html",
+    });
+});
 app.factory("userSignIn", function() {
   return {
     validateLoginForm: function(obj) {
