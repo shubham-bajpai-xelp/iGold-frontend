@@ -1,5 +1,4 @@
-app.controller('bankcontroller', function ($scope,dataFactory,$http,
-    $cookieStore,) {
+app.controller('bankcontroller', function ($scope,dataFactory,$http, $cookieStore,) {
     $('input').bind('focus', function () {
         $(this).next('label').addClass('labelActive');
     });
