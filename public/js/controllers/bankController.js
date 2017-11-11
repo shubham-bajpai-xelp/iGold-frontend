@@ -1,17 +1,5 @@
-var app=angular.module('myapp',['ngRoute']);
-app.config(function ($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'views/bank_liveauction.html',
-        })
-        .when('/bank_closedauction', {
-            templateUrl: 'views/bank_closedauction.html',
-        })
-        .when('/bank_auction', {
-            templateUrl: 'views/bank_auction.html',
-        });
-});
-app.controller('bankcontroller', function ($scope) {
+app.controller('bankcontroller', function ($scope,dataFactory,$http,
+    $cookieStore,) {
     $('input').bind('focus', function () {
         $(this).next('label').addClass('labelActive');
     });
@@ -65,6 +53,38 @@ app.controller('bankcontroller', function ($scope) {
                 dnone.removeClass('dn'); 
             }
         }); 
+        $scope.biddingLength = function(packetObject){
+                var size = 0, eachObject;
+                for (eachObject in packetObject) {
+                    console.log(packetObject[eachObject]['bidding'].length)
+                    if (packetObject[eachObject]['bidding'].length !== 0) size++;
+                }
+                return size;
+        };
+        $scope.fetchbankAuctions = function() {
+            var dt = {};
+            var url = "http://localhost:3000/getauction";
+            dataFactory.getData(url, dt).then(function(result) {
+                var response  = JSON.parse(result.data.body);
+                if(result.data.status=='201'){
+                    $scope.auctionbank=response;
+                    console.log($scope.auctionbank);
+                }
+                else{
+                    alert('Something Went Wrong');
+                }
+              
+            });
+        
+          };
+          $scope.changeStatus=function(i){
+              var rplcCont=''
+              rplcCont+='<span class="itemCenter col100">';
+              rplcCont+='<span class="statusPosted fmralewayB">posted</span>';
+              rplcCont+='</span>';
+           $(i).parents('.data_wrapper').find('.col10').find('.chngstatus').replaceWith(rplcCont);
+          }
+         $scope.fetchbankAuctions();
         $scope.liveauction =[
             {
                 branch: "HSR Layout 1st Stage",
