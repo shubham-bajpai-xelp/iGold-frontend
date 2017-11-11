@@ -1,12 +1,12 @@
 var app = angular.module("serviceFactory", ["ngCookies", "ngRoute"]);
 app.factory("dataFactory", [
   "$http",
-  function($http, dt, $q) {
+  function ($http, dt, $q) {
     var dataFactory = {};
-    dataFactory.postFormData = function(url, dt, headers) {
+    dataFactory.postFormData = function (url, dt, headers) {
       return $http.post(url, dt, headers);
     };
-    dataFactory.getPostData = function(url, dt) {
+    dataFactory.getPostData = function (url, dt) {
       return $http({
         url: url,
         // headers: { "x-access-token": common.getCookie("iGold") },
@@ -14,7 +14,7 @@ app.factory("dataFactory", [
         data: dt
       });
     };
-    dataFactory.getData = function(url) {
+    dataFactory.getData = function (url) {
       return $http({
         url: url,
         // headers: { "x-access-token": common.getCookie("iGold") },
@@ -24,10 +24,10 @@ app.factory("dataFactory", [
     return dataFactory;
   }
 ]);
-app.config(function($routeProvider) {
+app.config(function ($routeProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: "views/jewl_liveauction.html",
+      templateUrl: "views/bank_auction.html",
     })
     .when("/jewl_liveauction", {
       templateUrl: "views/jewl_liveauction.html",
@@ -35,13 +35,23 @@ app.config(function($routeProvider) {
     .when("/jewl_closedauction", {
       templateUrl: "views/jewl_closedauction.html",
     })
-    .when("/jewl_auction", {
-      templateUrl: "views/jewl_auction.html",
+    .when('/bank_closedauction', {
+      templateUrl: 'views/bank_closedauction.html',
+    })
+    .when('/bank_liveAuction', {
+      templateUrl: 'views/bank_liveauction.html',
+    })
+    .when('/bankview', {
+      templateUrl: 'views/bank_auction.html',
+    })
+    .when('/bank_auction', {
+      templateUrl: 'views/bank_auction.html',
     });
+
 });
-app.factory("userSignIn", function() {
+app.factory("userSignIn", function () {
   return {
-    validateLoginForm: function(obj) {
+    validateLoginForm: function (obj) {
       var checkFormValidity = true;
       if (checkFormValidity == true && !obj.username) {
         alert("Please provide user emailid");
@@ -57,9 +67,9 @@ app.factory("userSignIn", function() {
     }
   };
 });
-app.factory("postAuctionForm", function() {
+app.factory("postAuctionForm", function () {
   return {
-    validateAuctionForm: function(obj) {
+    validateAuctionForm: function (obj) {
       var checkFormValidity = true;
       if (checkFormValidity == true && !obj.bankName) {
         //   common.toast(0, common.getMsg(parseInt(4)));

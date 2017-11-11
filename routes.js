@@ -15,6 +15,7 @@ module.exports = function(app) {
     headerDetails.controllerFile = "";
     switch (designatedPath) {
       case "/bankview":
+      headerDetails.controllerFile = "bankController.js";
         res.render("bankview.html", { headerDetails: headerDetails });
         break;
       case "/createAuction":

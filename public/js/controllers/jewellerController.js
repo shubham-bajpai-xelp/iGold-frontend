@@ -28,7 +28,9 @@ app.controller("jewellerControl", function(
         }
       
     });
+
   };
+  $scope.fetchUpCommingAuctions();
   $("input").bind("focus", function() {
     $(this)
       .next("label")
