@@ -199,7 +199,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .txtBox_enterbid{width: 180px;height: 35px;border: 1px solid #EBECED;color: #4A4E69;line-height: 35px;border-radius: 2px;padding: 0px 10px;outline: none;font-size: 12px;}
 .closePopup{width:30px;height:35px;background:url(../img/Close.svg)no-repeat;background-size:auto 20px;background-position:center;cursor:pointer;opacity:0.5;}
 /*rank shit */
-.rankShitwrp{width: 370px;height: 470px;background: #fff;position: absolute;border-radius: 2px;left: 0;right: 0;top: 0; bottom: 0;margin: auto;}
+.rankShitwrp{width: 370px;height: 470px;background: #fff;position: absolute;border-radius: 2px;left: 0;right: 0;top: 0; bottom: 0;margin: auto;display:none;}
 .rnkShitheader{width:100%;height:70px;padding:0px 30px;background:#FE936F;line-height:70px;}
 .rankShit_htxt{width: auto;height: 30px;line-height: 30px;padding-left: 25px;background: url(../img/Badgew.svg)no-repeat; background-size: auto 20px;background-position: 0px center;color: #fff; font-size: 15px;display: inline-block;vertical-align: middle;}
 .close_rankshit{width:30px;height:30px;background:url(../img/CloseW.svg)no-repeat;background-size:auto 20px;background-position:center;cursor:pointer;}
@@ -214,7 +214,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .heading_bidpop .icnTrash{width:25px;background-size: auto 17px;cursor:initial;}
 .cancl_resn{width:100%;height:26px;color:#4A4E69;font-size:11px;text-align:left;line-height:20px;}
 /*apply popup*/
-.appyp_popcnt{width:550px;height:245px;background:#fff;border-radius:5px;padding:30px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;}
+.appyp_popcnt{width:550px;height:245px;background:#fff;border-radius:5px;padding:30px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;display:none;}
 .apply_msgcnt{width:100%;height:100%;position:relative;}
 .apply_msgwrp{width:100%;height:100%;position:absolute;left:0;top:0;}
 .emd_msgwrp{width:100%;height:100%;position:absolute;left:0;top:0;opacity: 0;transform: translateY(20px);display: none;}
