@@ -17,7 +17,8 @@ app.controller("auctionControl", function(
   $http,
   postAuctionForm,
   dataFactory,
-  $q
+  $q,
+  Noty
 ) {
   $scope.auctionData = {};
   $scope.postAuctionDetails = function(id) {
