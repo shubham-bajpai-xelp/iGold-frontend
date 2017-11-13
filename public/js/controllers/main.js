@@ -119,7 +119,7 @@ app.factory("postAuctionForm", function () {
         checkFormValidity = false;
         return checkFormValidity;
       }
-      if (checkFormValidity == true && !obj.auctionNumber) {
+      if (checkFormValidity == true && !obj.accountNumber) {
         //   common.toast(0, common.getMsg(parseInt(4)));
         alert("Please provide bank account number");
         checkFormValidity = false;
