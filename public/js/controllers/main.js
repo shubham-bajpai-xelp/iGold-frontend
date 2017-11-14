@@ -14,9 +14,10 @@ app.factory("dataFactory", [
         data: dt
       });
     };
-    dataFactory.getData = function (url) {
+    dataFactory.getData = function (url,dt) {
       return $http({
         url: url,
+        data: dt,
         // headers: { "x-access-token": common.getCookie("iGold") },
         method: "GET"
       });
@@ -108,77 +109,60 @@ app.factory("postAuctionForm", function () {
     validateAuctionForm: function (obj) {
       var checkFormValidity = true;
       if (checkFormValidity == true && !obj.bankName) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank name");
+        common.msg({type:'error',text: 'Please provide bank name'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankBranch) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank branch name");
+        common.msg({type:'error',text: 'Please provide bank branch name'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankAddress) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank branch address");
+        common.msg({type:'error',text: 'Please provide bank branch address'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankCity) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank branch city");
+        common.msg({type:'error',text: 'Please provide bank branch city'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankState) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank branch state");
+        common.msg({type:'error',text: 'Please provide bank branch state'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankPincode) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank branch pincode");
+        common.msg({type:'error',text: 'Please provide bank branch pincode'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.auctionDate) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank auction date");
+        common.msg({type:'error',text: 'Please provide bank auction date'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.auctionTime) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank auction time");
+        common.msg({type:'error',text: 'Please provide bank auction time'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.accountNumber) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank account number");
+        common.msg({type:'error',text: 'Please provide bank account number'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.auctionEMDAmount) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank EMD amount");
+        common.msg({type:'error',text: 'Please provide bank EMD amount'});
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankEMDLastDate) {
-        //   common.toast(0, common.getMsg(parseInt(4)));
-        alert("Please provide bank EMD last date");
+        common.msg({type:'error',text: 'Please provide bank EMD last date'});
         checkFormValidity = false;
         return checkFormValidity;
       }
-      // if (checkFormValidity == true && !obj.auctionPacketFile) {
-      //   //   common.toast(0, common.getMsg(parseInt(4)));
-      //   alert("Please provide bank packet file");
-      //   checkFormValidity = false;
-      //   return checkFormValidity;
-      // }
       return checkFormValidity;
     }
   };
