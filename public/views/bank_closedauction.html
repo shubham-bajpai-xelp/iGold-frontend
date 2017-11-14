@@ -39,7 +39,7 @@
             <div class="general_cont fRight">
                 <span class="srch_cnt">
                     <div class="icn_srch"></div>
-                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search">
+                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search" ng-model="searchclosebank">
                 </span>
             </div>
         </div>
@@ -47,7 +47,7 @@
        <div class="stckyHdr background row">
         <div class="wrapperMax">
             <div class="accrodinetab_Header  fmralewayB">
-                <div class="col15 pLeft40">bank / auction id</div>
+                <div class="col15 pLeft40">bank / branch</div>
                 <div class="col15">auction id / date & time</div>
                 <div class="col20">address</div>
                 <div class="col15">bank account number</div>
@@ -59,13 +59,13 @@
     </div>
     <div class="wrapper fLeft row">
         <div class="wrapperMax">
-            <div class="norecords fLeft fmralewayR dn">
+            <div class="norecords fLeft fmralewayR" ng-show="(auctionLister|filter:searchclosebank).length == 0">
                 <div class="stts_txt1 fLeft fmralewayB">No Auction Found</div>
                 <div class="stts_txt2 fLeft fmralewayB">We could not find what you are looking for</div>
             </div>
-            <div class="tabdata_cnt fLeft" id="closed_bank">
+            <div class="tabdata_cnt fLeft" id="closed_bank" ng-show="(auctionLister|filter:searchclosebank).length > 0">
                 <div class="accrodinetab_Header  fmralewayB">
-                    <div class="col15 pLeft40">bank / auction id</div>
+                    <div class="col15 pLeft40">bank / branch</div>
                     <div class="col15">auction id / date & time</div>
                     <div class="col20">address</div>
                     <div class="col15">bank account number</div>
@@ -73,26 +73,26 @@
                     <div class="col10">no of bidders</div>
                     <div class="col10">packets / net weight</div>
                 </div>
-                <div class="data_cont fLeft">
+                <div class="data_cont fLeft" ng-repeat="bankerDetails in auctionLister |filter:searchclosebank">
                     <div class="accrodine_Card fLeft">
                         <div class="data_wrapper">
                             <div class="col15">
                                 <div class="col100 fLeft poR pLeft40">
                                     <div class="expandIcon" ng-click="openDatatable($event.target)"></div>
-                                    <span class="txtVal1 fLeft">Jaynagar</span>
-                                    <span class="txtVal2 fLeft fmralewayB txtOver">Bangalore ,Karnataka</span>
+                                    <span class="txtVal1 fLeft">{{bankerDetails.bankName}}</span>
+                                    <span class="txtVal2 fLeft fmralewayB txtOver">{{bankerDetails.bankBranch}}</span>
                                 </div>
                             </div>
                             <div class="col15">
-                                <span class="txtVal1 fLeft">98878653423414452</span>
-                                <span class="txtVal2 fLeft fmralewayB">23rd Jul ,2017 | 4.00 pm</span>
+                                <span class="txtVal1 fLeft txtOver">{{bankerDetails.auctionId}}</span>
+                                <span class="txtVal2 fLeft fmralewayB">{{bankerDetails.auctionEndDateAndTime | date :  "dd MMM, y | hh:mm:ss a"}}</span>
                             </div>
-                            <div class="col20 dflex">
-                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
+                            <div class="col20 dflex p05">
+                                <span class="txtVal">{{bankerDetails.address}}</span>
                             </div>
                             <div class="col15 dflex">
                                 <span class="txtVal">
-                                    9877365543452445424
+                                  {{bankerDetails.EMDAccountNumber}}
                                 </span>
                             </div>
                             <div class="col15">
@@ -105,13 +105,13 @@
                                 <span class="txtVal">125 Bidders</span>
                             </div>
                             <div class="col10">
-                                <span class="txtVal1 fLeft">6 Packets</span>
-                                <span class="txtVal2 fLeft fmralewayB clrGreen">375 gm</span>
+                                <span class="txtVal1 fLeft">{{(bankerDetails.packet.length == 1) ? 1 : bankerDetails.packet.length}} {{(bankerDetails.packet.length == 1) ? "Packet" : "Packets"}}</span>
+                                <span class="txtVal2 fLeft fmralewayB clrGreen">{{bankerDetails.netWeight}} gm</span>
                             </div>
                         </div>
                         <div class="col100 fLeft dspnone">
                             <div class="tabel_header dflex fmralewayB">
-                                <div class="col10 dflex">
+                                <div class="col12 dflex">
                                     <span class="itemCenter">loan a/c no</span>
                                 </div>
                                 <div class="col20 dflex">
@@ -123,7 +123,7 @@
                                 <div class="col9 itemCenter">
                                     <span class="itemCenter">gross / net </span>
                                 </div>
-                                <div class="col12 itemRight">
+                                <div class="col10 itemRight">
                                     <span class="itemCenter">base price /highest bid</span>
                                 </div>
                                 <div class="col12 itemCenter">
@@ -138,54 +138,54 @@
                                 <div class="col5 icnMore dflex icnMore"></div>
                             </div>
                             <ul class="dataList fLeft">
-                                <li class="dflex">
-                                    <div class="col10 dflex">
-                                        <span class="txtVal fmralewayB">99888723662552</span>
+                                <li class="dflex" ng-repeat="datalist in bankerDetails.packet">
+                                    <div class="col12 dflex">
+                                        <span class="txtVal fmralewayB">{{datalist.loanAccountNumber}}</span>
                                     </div>
                                     <div class="col20 dflex p05">
-                                        <span class="txtVal">2 Ear rings, 2 nose pins, 5 bangels, 5 Necklaces, 10 Pendants</span>
+                                        <span class="txtVal">{{datalist.remarks}}</span>
                                     </div>
                                     <div class="col25 dflex">
                                         <div class="col14 p05 itemClmn seperater">
                                             <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">19c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">20c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">21c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">22c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn seperater">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">23c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                         <div class="col14 p05 itemClmn">
-                                            <span class="txtVal1 itemCenter">18c</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">16 gm</span>
+                                            <span class="txtVal1 itemCenter">24c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
                                     </div>
                                     <div class="col9 p05 itemClmn">
                                         <span class="txtVal1  itemCenter">
-                                            <span>80 gm</span>
+                                            <span>{{datalist.grossWeight}} gm</span>
                                         </span>
                                         <span class="txtVal2  fmralewayB clrGreen itemCenter">
-                                            <span>78 gm</span>
+                                            <span>{{datalist.netWeight}} gm</span>
                                         </span>
                                     </div>
-                                    <div class="col12 itemClmn  p05">
+                                    <div class="col10 itemClmn  p05">
                                         <span class="txtVal1 itemRight">
-                                            <span class="spnRpy">1,20,000</span>
+                                            <span class="spnRpy">{{formatInrAmount(datalist.baseAmount)}}</span>
                                         </span>
                                         <span class="txtVal2 itemRight">
                                             <span class="spnRpygreen fmralewayB">1,20,000</span>
@@ -215,8 +215,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>

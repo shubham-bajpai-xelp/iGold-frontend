@@ -6,7 +6,7 @@ function Common() {
             type: data.type,
             layout: 'topRight',
             "speed": 500,
-            "timeout": 5000,
+            "timeout": 500,
             "closeButton": true,
             "closeOnSelfClick": true,
             "closeOnSelfOver": false,
