@@ -14,9 +14,10 @@ app.factory("dataFactory", [
         data: dt
       });
     };
-    dataFactory.getData = function (url) {
+    dataFactory.getData = function (url,dt) {
       return $http({
         url: url,
+        data: dt,
         // headers: { "x-access-token": common.getCookie("iGold") },
         method: "GET"
       });

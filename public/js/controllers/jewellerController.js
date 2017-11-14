@@ -11,6 +11,8 @@ app.controller("jewellerControl", function(
   $q
 ) {
   $scope.auctionLister = [];
+  $scope.signedInJewellerId = "";
+  $scope.appliedAuctionId = $cookies.get('visitorId');
   $scope.auctionClosed = "closed";
   $scope.auctionUpcoming = "upcoming";
   $scope.auctionLive = "live";
@@ -21,6 +23,13 @@ app.controller("jewellerControl", function(
   };
   $scope.logout = function() {
     window.location.href = "/";
+  };
+  $scope.ifJewellerExist = function(myArray){
+    return angular.forEach(myArray, function(value, key){
+      if(value.jewellerId == $cookies.get('visitorId')){
+        return true;
+      }
+    });
   };
   $scope.fetchUpCommingAuctions = function(auctionType) {
     var dt = {};
@@ -200,7 +209,7 @@ app.controller("jewellerControl", function(
     { translateY: "100vh", opacity: 0 },
     { delay: 0, duration: 0, display: "none" }
   );
-  $scope.openapply_popup = function() {
+  $scope.openapply_popup = function(auctionId) {
     $("#applypop").css("display", "block");
     $("#applypop").velocity(
       { opacity: [1, 0] },
@@ -210,6 +219,8 @@ app.controller("jewellerControl", function(
       { translateY: [0, "100vh"], opacity: [1, 0] },
       { delay: 180, duration: 600, easing: [20, 6], display: "block" }
     );
+    $scope.signedInJewellerId = $cookies.get('visitorId');
+    $scope.appliedAuctionId = auctionId;
   };
   $scope.closeapply_popup = function() {
     $("#applypop").fadeOut();
@@ -241,6 +252,34 @@ app.controller("jewellerControl", function(
       { translateY: [0, 20], opacity: [1, 0] },
       { duration: 300, easing: "easeInOut", display: "block" }
     );
+    $scope.fillAuctionEmdDetails($scope.appliedAuctionId);
+  };
+  $scope.fillAuctionEmdDetails = function(){
+    var dt = {};
+    dt.auctionId = $scope.appliedAuctionId;
+    var url = 'http://localhost:3000/getauction/'+dt.auctionId;
+    dataFactory.getData(url,dt)
+    .then(function(result) {
+      var response = JSON.parse(result.data.body);
+      $scope.auctionEMDAmount=response.auctionEMDAmount;
+      $scope.auctionDateAndTime=response.auctionDateAndTime;
+    });
+  }
+  $scope.applyForAuction = function(){
+    var dt = {};
+    var url = 'http://localhost:3000/jeweller/applyForAuction';
+    dt.auctionId = $scope.appliedAuctionId;
+    dt.jewellerId = $scope.signedInJewellerId;
+    dataFactory.getPostData(url,dt)
+    .then(function(result) {
+        var response = JSON.parse(result.data.body);
+        if(result.data.status==201){
+          alert('EMD has been paid for particular auction id');
+          $scope.closeapply_popup();
+
+
+        }
+    });
   };
   $scope.openLogout = function(i) {
     $(i)
