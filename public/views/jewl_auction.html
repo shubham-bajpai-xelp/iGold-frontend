@@ -24,17 +24,17 @@
                     <div class="col100 fLeft">
                         <div class="inform_Minimumbid fLeft icnInfo">
                             <span class="dinline">To Apply for this auction you need to pay EMD amount of </span>
-                            <span class="spnRpy fmralewayB dinline">1,00,000</span>
+                            <span class="spnRpy fmralewayB dinline">{{formatInrAmount(auctionEMDAmount)}}</span>
                         </div>
                         <div class="inform_Minimumbid fLeft">
                             <span class="dinline">before
-                                <span class="fmralewayB">05th November 2017</span>
+                                <span class="fmralewayB">{{auctionDateAndTime|date :  "dd MMMM, y"}}</span>
                             </span>
                         </div>
                     </div>
                     <div class="col100 fLeft mTop50">
                         <center>
-                            <div class="button dinline fmralewayB">pay emd</div>
+                            <div class="button dinline fmralewayB" ng-click="applyForAuction()">pay emd</div>
                         </center>
                     </div>
                 </div>
@@ -50,19 +50,19 @@
             <div class="general_cont fRight">
                 <span class="srch_cnt">
                     <div class="icn_srch"></div>
-                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search">
+                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search" ng-model="searchauctionjewel">
                 </span>
             </div>
         </div>
     </div>
     <div class="wrapper fLeft row">
         <div class="wrapperMax">
-            <div class="norecords fLeft fmralewayR dn">
+            <div class="norecords fLeft fmralewayR" ng-show="(auctionLister |filter:searchauctionjewel).length==0">
                 <div class="stts_txt1 fLeft fmralewayB">No Auction Found</div>
                 <div class="stts_txt2 fLeft fmralewayB">We could not find what you are looking for</div>
             </div>
             <div class="tabdata_cnt fLeft" id="auc_jewl">
-                <div class="accrodinetab_Header  fmralewayB">
+                <div class="accrodinetab_Header  fmralewayB" ng-show="(auctionLister|filter:searchauctionjewel).length > 0">
                     <div class="col25">bank / branch</div>
                     <div class="col15">auction id / date & time</div>
                     <div class="col20">address</div>
@@ -72,7 +72,7 @@
                     <div class="col8 itemCenter">status</div>
                 </div>
                 <div class="data_cont fLeft">
-                    <div class="accrodine_Card fLeft" ng-repeat="jewellerDetails in auctionLister">
+                    <div class="accrodine_Card fLeft" ng-repeat="jewellerDetails in auctionLister |filter:searchauctionjewel" ng-show="(auctionLister|filter:searchauctionjewel).length > 0">
                         <div class="data_wrapper">
                             <div class="col25">
                                 <div class="col100 fLeft poR pLeft40">
@@ -84,27 +84,27 @@
                                 </div>
                             </div>
                             <div class="col15">
-                                <span class="txtVal1 fLeft">{{jewellerDetails.acutionWithoutHash}}</span>
-                                <span class="txtVal2 fLeft fmralewayB">{{jewellerDetails.auctionDate}} | {{jewellerDetails.auctionTime}}</span>
+                                <span class="txtVal1 fLeft">{{jewellerDetails._id}}</span>
+                                <span class="txtVal2 fLeft fmralewayB">{{jewellerDetails.auctionEndDateAndTime | date :  "dd MMM, y | hh:mm:ss a"}}</span>
                             </div>
                             <div class="col20 dflex">
                                 <span class="txtVal">{{jewellerDetails.address}}</span>
                             </div>
                             <div class="col10 dflex">
                                 <span class="txtVal">
-                                    <span class="spnRpy itemCenter">{{jewellerDetails.auctionEMDAmount}}</span>
+                                    <span class="spnRpy itemCenter">{{formatInrAmount(jewellerDetails.auctionEMDAmount)}}</span>
                                 </span>
                             </div>
                             <div class="col10">
                                 <span class="txtVal1 fLeft">{{(jewellerDetails.packet.length == 1) ? 1 : jewellerDetails.packet.length}} {{(jewellerDetails.packet.length == 1) ? "Packet" : "Packets"}}</span>
-                                <span class="txtVal2 fLeft fmralewayB clrGreen">{{jewellerDetails.grossWeight}} gm</span>
+                                <span class="txtVal2 fLeft fmralewayB clrGreen">{{jewellerDetails.netWeight}} gm</span>
                             </div>
                             <div class="col12">
 
                             </div>
                             <div class="col8 dflex">
                                 <div class="itemCenter col100">
-                                    <div class="{{(jewellerDetails.auctionApplied.indexOf(10100101)!== -1 ? 'statusApplied' : 'statusBid')}} fmralewayB" ng-click="openapply_popup()">{{(jewellerDetails.auctionApplied.indexOf(10100101)!== -1 ? 'Applied' : 'Apply')}}</div>
+                                    <div class="{{(ifJewellerExist(jewellerDetails.auctionApplied).length == true ? 'statusApplied' : 'statusBid')}} fmralewayB" ng-click="openapply_popup(jewellerDetails.auctionId)">{{(ifJewellerExist(jewellerDetails.auctionApplied).length ? 'Applied' : 'Apply')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                                     </div>
                                     <div class="col15 itemCenter p05">
                                         <span class="txtVal1 itemCenter">
-                                            <span class="spnRpy">{{packetDetails.baseAmount}}</span>
+                                            <span class="spnRpy">{{formatInrAmount(packetDetails.baseAmount)}}</span>
                                         </span>
                                     </div>
                                 </li>
