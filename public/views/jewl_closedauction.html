@@ -8,19 +8,19 @@
             <div class="general_cont fRight">
                 <span class="srch_cnt">
                     <div class="icn_srch"></div>
-                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search">
+                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search" ng-model="searchclosejewel">
                 </span>
             </div>
         </div>
     </div>
     <div class="wrapper fLeft row">
         <div class="wrapperMax">
-            <div class="norecords fLeft fmralewayR dn">
+            <div class="norecords fLeft fmralewayR" ng-show="(auctionLister|filter:searchclosejewel).length == 0">
                 <div class="stts_txt1 fLeft fmralewayB">No Auction Found</div>
                 <div class="stts_txt2 fLeft fmralewayB">We could not find what you are looking for</div>
             </div>
             <div class="tabdata_cnt fLeft">
-                <div class="accrodinetab_Header  fmralewayB">
+                <div class="accrodinetab_Header  fmralewayB" ng-show="(auctionLister|filter:searchclosejewel).length > 0">
                     <div class="col20">bank / branch</div>
                     <div class="col14">auction id / date & time</div>
                     <div class="col18">address</div>
@@ -29,19 +29,19 @@
                     <div class="col13">packets / neight weight</div>
                     <div class="col8 txtCenter">winner details</div>
                 </div>
-                <div class="data_cont fLeft">
+                <div class="data_cont fLeft" ng-repeat="jewellerDetails in auctionLister |filter:searchclosejewel" ng-show="(auctionLister|filter:searchclosejewel).length > 0">
                     <div class="accrodine_Card fLeft">
                         <div class="data_wrapper">
                             <div class="col20  pLeft85 icnCbi">
-                                <span class="txtVal1 fLeft">Central Bank of India</span>
-                                <span class="txtVal2 fLeft fmralewayB txtOver">Railway Line Brunch</span>
+                                <span class="txtVal1 fLeft">{{jewellerDetails.bankName}}</span>
+                                <span class="txtVal2 fLeft fmralewayB txtOver">{{jewellerDetails.bankBranch}}</span>
                             </div>
                             <div class="col14">
-                                <span class="txtVal1 fLeft">98878653423414452</span>
-                                <span class="txtVal2 fLeft fmralewayB">23rd Jul ,2017 | 4.00 pm</span>
+                                <span class="txtVal1 fLeft">{{jewellerDetails._id}}</span>
+                                <span class="txtVal2 fLeft fmralewayB">{{jewellerDetails.auctionEndDateAndTime | date :  "dd MMM, y | hh:mm:ss a"}}</span>
                             </div>
                             <div class="col18 dflex">
-                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
+                                <span class="txtVal">{{jewellerDetails.address}}</span>
                             </div>
                             <div class="col14">
                                 <span class="txtVal1 fLeft">
@@ -50,11 +50,11 @@
                                 </span>
                             </div>
                             <div class="col13 dflex">
-                                <span class="txtVal">098765432456789</span>
+                                <span class="txtVal">{{jewellerDetails.EMDAccountNumber}}</span>
                             </div>
                             <div class="col13">
-                                <span class="txtVal1 fLeft">5 Packets</span>
-                                <span class="txtVal2 fLeft clrGreen fmralewayB">876 gm</span>
+                                <span class="txtVal1 fLeft">{{(jewellerDetails.packet.length == 1) ? 1 : jewellerDetails.packet.length}} {{(jewellerDetails.packet.length == 1) ? "Packet" : "Packets"}}</span>
+                                <span class="txtVal2 fLeft clrGreen fmralewayB">{{jewellerDetails.netWeight}} gm</span>
                             </div>
                             <div class="col8">
                                 <center>
@@ -66,72 +66,6 @@
                     <div class="accrodine_Card fLeft">
                         <div class="data_wrapper">
                             <div class="col20  pLeft85 icnCbi">
-                                <span class="txtVal1 fLeft">Central Bank of India</span>
-                                <span class="txtVal2 fLeft fmralewayB txtOver">Railway Line Brunch</span>
-                            </div>
-                            <div class="col14">
-                                <span class="txtVal1 fLeft">98878653423414452</span>
-                                <span class="txtVal2 fLeft fmralewayB">23rd Jul ,2017 | 4.00 pm</span>
-                            </div>
-                            <div class="col18 dflex">
-                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
-                            </div>
-                            <div class="col14">
-                                <span class="txtVal1 fLeft">
-                                    <span class="spnRpy fLeft">5,00,000</span>
-                                <span class="txtVal2 fLeft fmralewayB">23 days</span>
-                                </span>
-                            </div>
-                            <div class="col13 dflex">
-                                <span class="txtVal">098765432456789</span>
-                            </div>
-                            <div class="col13">
-                                <span class="txtVal1 fLeft">5 Packets</span>
-                                <span class="txtVal2 fLeft clrGreen fmralewayB">876 gm</span>
-                            </div>
-                            <div class="col8">
-                                <center>
-                                    <div class="icnPdf"></div>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accrodine_Card fLeft">
-                        <div class="data_wrapper">
-                            <div class="col20  pLeft85 icnAxisbnk">
-                                <span class="txtVal1 fLeft">Central Bank of India</span>
-                                <span class="txtVal2 fLeft fmralewayB txtOver">Railway Line Brunch</span>
-                            </div>
-                            <div class="col14">
-                                <span class="txtVal1 fLeft">98878653423414452</span>
-                                <span class="txtVal2 fLeft fmralewayB">23rd Jul ,2017 | 4.00 pm</span>
-                            </div>
-                            <div class="col18 dflex">
-                                <span class="txtVal">Station Road railway lines,solapur ,Maharashtra, 413002</span>
-                            </div>
-                            <div class="col14">
-                                <span class="txtVal1 fLeft">
-                                    <span class="spnRpy fLeft">5,00,000</span>
-                                <span class="txtVal2 fLeft fmralewayB">23 days</span>
-                                </span>
-                            </div>
-                            <div class="col13 dflex">
-                                <span class="txtVal">098765432456789</span>
-                            </div>
-                            <div class="col13">
-                                <span class="txtVal1 fLeft">5 Packets</span>
-                                <span class="txtVal2 fLeft clrGreen fmralewayB">876 gm</span>
-                            </div>
-                            <div class="col8">
-                                <center>
-                                    <div class="icnPdf"></div>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accrodine_Card fLeft">
-                        <div class="data_wrapper">
-                            <div class="col20  pLeft85 icnBob">
                                 <span class="txtVal1 fLeft">Central Bank of India</span>
                                 <span class="txtVal2 fLeft fmralewayB txtOver">Railway Line Brunch</span>
                             </div>

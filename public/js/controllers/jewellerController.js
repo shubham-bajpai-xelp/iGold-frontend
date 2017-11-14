@@ -1,15 +1,19 @@
 app.controller("jewellerControl", function(
   $scope,
   $http,
+  $route,
   $cookies,
+  $location,
   // $cookieStore,
+  basicFunctionalities,
   postAuctionForm,
   dataFactory,
   $q
 ) {
-  $scope.auctionClosed="closed";
-  $scope.auctionUpcoming="upcoming";
-  $scope.auctionLive="live";
+  $scope.auctionLister = [];
+  $scope.auctionClosed = "closed";
+  $scope.auctionUpcoming = "upcoming";
+  $scope.auctionLive = "live";
   $scope.openLogout = function(i) {
     $(i)
       .find("ul")
@@ -20,23 +24,38 @@ app.controller("jewellerControl", function(
   };
   $scope.fetchUpCommingAuctions = function(auctionType) {
     var dt = {};
-    dt.auctionType=auctionType;
-    dt.jewellerId=$cookies.get('visitorId');
-    alert(typeof auctionType);
+    dt.auctionType = auctionType;
+    dt.jewellerId = $cookies.get("visitorId");
     var url = "http://localhost:3000/jeweller/getauction";
     dataFactory.putData(url, dt).then(function(result) {
-        var response  = JSON.parse(result.data.body);
-        if(result.data.status=='201'){
-            $scope.auctionLister=response;
-        }
-        else{
-            alert('Something Went Wrong');
-        }
-      
+      var response = JSON.parse(result.data.body);
+      if(result.data.status == 201) {
+          $scope.auctionLister = response;
+          console.log($scope.auctionLister)
+      } else {
+        alert("Something Went Wrong");
+      }
     });
-
   };
-  $scope.fetchUpCommingAuctions();
+  $scope.formatInrAmount = function(ammount){
+    return basicFunctionalities.validateINRformat(ammount);
+  };
+  switch($location.url()){
+    case '/jewl_closedauction':
+      $scope.fetchUpCommingAuctions('closed');
+    break;
+    case '/#%2F!':
+    case '/jewl_auction':
+      $scope.fetchUpCommingAuctions('upcoming');
+    break;
+    case '/jewl_liveauction':
+      $scope.fetchUpCommingAuctions('live');
+    break;
+    default:
+    $scope.fetchUpCommingAuctions('upcoming');
+    break;
+  }
+  
   $("input").bind("focus", function() {
     $(this)
       .next("label")
@@ -182,7 +201,7 @@ app.controller("jewellerControl", function(
     { delay: 0, duration: 0, display: "none" }
   );
   $scope.openapply_popup = function() {
-   $("#applypop").css("display", "block");
+    $("#applypop").css("display", "block");
     $("#applypop").velocity(
       { opacity: [1, 0] },
       { delay: 0, duration: 300, ease: "swing" }
