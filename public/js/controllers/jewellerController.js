@@ -1,11 +1,15 @@
 app.controller("jewellerControl", function(
   $scope,
   $http,
-  $cookieStore,
+  $cookies,
+  // $cookieStore,
   postAuctionForm,
   dataFactory,
   $q
 ) {
+  $scope.auctionClosed="closed";
+  $scope.auctionUpcoming="upcoming";
+  $scope.auctionLive="live";
   $scope.openLogout = function(i) {
     $(i)
       .find("ul")
@@ -14,14 +18,16 @@ app.controller("jewellerControl", function(
   $scope.logout = function() {
     window.location.href = "/";
   };
-  $scope.fetchUpCommingAuctions = function() {
+  $scope.fetchUpCommingAuctions = function(auctionType) {
     var dt = {};
-    var url = "http://localhost:3000/getauction";
-    dataFactory.getData(url, dt).then(function(result) {
+    dt.auctionType=auctionType;
+    dt.jewellerId=$cookies.get('visitorId');
+    alert(typeof auctionType);
+    var url = "http://localhost:3000/jeweller/getauction";
+    dataFactory.putData(url, dt).then(function(result) {
         var response  = JSON.parse(result.data.body);
         if(result.data.status=='201'){
             $scope.auctionLister=response;
-            console.log($scope.auctionLister);
         }
         else{
             alert('Something Went Wrong');
