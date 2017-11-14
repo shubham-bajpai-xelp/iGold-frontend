@@ -34,30 +34,27 @@ app.factory("dataFactory", [
 ]);
 app.config(function ($routeProvider) {
   $routeProvider
+    // .when("/", {
+    //   templateUrl: "views/jewl_auction.html",
+    //   title: 'Jeweller Upcoming'
+    // })
+    // .when("/jewl_liveauction", {
+    //   templateUrl: "views/jewl_liveauction.html",
+    //   title: 'Jeweller Live Auctions'
+    // })
+    // .when("/jewl_closedauction", {
+    //   templateUrl: "views/jewl_closedauction.html",
+    //   title: 'Jeweller Closed Auctions'
+    // })
     .when("/", {
-      templateUrl: "views/jewl_auction.html",
-      title: 'Jeweller Upcoming'
-    })
-    .when("/jewl_liveauction", {
-      templateUrl: "views/jewl_liveauction.html",
-      title: 'Jeweller Live Auctions'
-    })
-    .when("/jewl_closedauction", {
-      templateUrl: "views/jewl_closedauction.html",
-      title: 'Jeweller Closed Auctions'
-    })
-    /*.when('/bank_closedauction', {
-      templateUrl: 'views/bank_closedauction.html',
+      templateUrl: 'views/bank_auction.html',
     })
     .when('/bank_liveAuction', {
       templateUrl: 'views/bank_liveauction.html',
     })
-    .when('/bankview', {
-      templateUrl: 'views/bank_auction.html',
-    })
-    .when('/bank_auction', {
-      templateUrl: 'views/bank_auction.html',
-    });*/
+    .when('/bank_closedauction', {
+      templateUrl: 'views/bank_closedauction.html',
+    });
 
 });
 app.factory('basicFunctionalities',function(){

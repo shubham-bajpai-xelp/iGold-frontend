@@ -1,4 +1,9 @@
-app.controller('bankcontroller', function ($scope,dataFactory,$http, $cookieStore,) {
+app.controller('bankcontroller', function ($scope,dataFactory,$http, $cookies,$location, basicFunctionalities,
+    postAuctionForm,$q,) {
+        $scope.auctionLister = [];
+        $scope.auctionClosed = "closed";
+        $scope.auctionUpcoming = "upcoming";
+        $scope.auctionLive = "live";  
     $('input').bind('focus', function () {
         $(this).next('label').addClass('labelActive');
     });
@@ -60,22 +65,39 @@ app.controller('bankcontroller', function ($scope,dataFactory,$http, $cookieStor
                 }
                 return size;
         };
-        $scope.fetchbankAuctions = function() {
+        $scope.fetchUpCommingAuctions = function(auctionType) {
             var dt = {};
-            var url = "http://localhost:3000/getauction";
-            dataFactory.getData(url, dt).then(function(result) {
-                var response  = JSON.parse(result.data.body);
-                if(result.data.status=='201'){
-                    $scope.auctionbank=response;
-                    console.log($scope.auctionbank);
-                }
-                else{
-                    alert('Something Went Wrong');
-                }
-              
+            dt.auctionType = auctionType;
+            dt.jewellerId = $cookies.get("visitorId");
+            var url = "http://localhost:3000/banker/getauction";
+            dataFactory.putData(url, dt).then(function(result) {
+              var response = JSON.parse(result.data.body);
+              if(result.data.status == 201) {
+                  $scope.auctionLister = response;
+                  console.log($scope.auctionLister)
+              } else {
+                alert("Something Went Wrong");
+              }
             });
-        
           };
+          $scope.formatInrAmount = function(ammount){
+            return basicFunctionalities.validateINRformat(ammount);
+          };
+          switch($location.url()){
+            case '/bank_closedauction':
+              $scope.fetchUpCommingAuctions('closed');
+            break;
+            case '/#%2F!':
+            case '/bank_auction':
+              $scope.fetchUpCommingAuctions('upcoming');
+            break;
+            case '/bank_liveAuction':
+              $scope.fetchUpCommingAuctions('live');
+            break;
+            default:
+            $scope.fetchUpCommingAuctions('upcoming');
+            break;
+          }
           $scope.changeStatus=function(i){
               var rplcCont=''
               rplcCont+='<span class="itemCenter col100">';
@@ -83,82 +105,4 @@ app.controller('bankcontroller', function ($scope,dataFactory,$http, $cookieStor
               rplcCont+='</span>';
            $(i).parents('.data_wrapper').find('.col10').find('.chngstatus').replaceWith(rplcCont);
           }
-         $scope.fetchbankAuctions();
-        $scope.liveauction =[
-            {
-                branch: "HSR Layout 1st Stage",
-                city: "karnataka",
-                auctionid: "97877634452423342",
-                datetime: "19 Jul ,2017 | 4.00 pm",
-                address: "vill:sukadal, post:bud bud,dist:burdwan ,state:westbengal,pin:713403",
-                packet: "50 Packets",
-                netweight: "236gm",
-                noofbidders: "130 Bidders",
-                value: [
-                    {
-                        loanacno: "99888723662552",
-                        packetdetails: "2 Ear rings, 2 nose pins, 5 bangels, 5 Necklaces, 10 Pendants",
-                        gross:"80gm",
-                        net:"78gm",
-                        baseprc:"1,00,000",
-                        hgstbid:"1,50,000",
-                        bidders:"12 Bidders",
-                        caret:[
-                        {
-                          crt:"18c",
-                          weight:"20gm"
-                        },
-                        {
-                         crt:"16c",
-                        weight:"20gm",  
-                        },   
-                        {
-                         crt:"16c",
-                           weight:"20gm",  
-                        },
-                        {
-                             crt:"30c",
-                              weight:"20gm",  
-                        } ,
-                        {
-                             crt:"40c",
-                             weight:"20gm",  
-                       }  
-                       ]
-                    },
-                    {
-                        loanacno: "99888723662552",
-                        packetdetails: "5 Ear rings, 4 nose pins, 5 bangels, 5 Necklaces, 10 Pendants",
-                        gross:"80gm",
-                        net:"78gm",
-                        baseprc:"1,00,000",
-                        hgstbid:"1,50,000",
-                        bidders:"15 Bidders",
-                        caret:[
-                            {
-                              crt:"18c",
-                              weight:"20gm"
-                            },
-                            {
-                             crt:"16c",
-                            weight:"20gm",  
-                            },   
-                            {
-                             crt:"16c",
-                               weight:"20gm",  
-                            },
-                            {
-                                 crt:"20c",
-                                  weight:"20gm",  
-                            } ,
-                            {
-                                 crt:"40c",
-                                 weight:"20gm",  
-                           }  
-                           ]
-                    }
-                ]
-            }, 
-        ]; 
-        
 });

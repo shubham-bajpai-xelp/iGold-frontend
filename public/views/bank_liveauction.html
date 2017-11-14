@@ -39,7 +39,7 @@
             <div class="general_cont fRight">
                 <span class="srch_cnt">
                     <div class="icn_srch"></div>
-                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search" ng-model="liveauc">
+                    <input type="text" class="srch_input fLeft fmralewayR" placeholder="Search" ng-model="searchlivebank">
                 </span>
             </div>
         </div>
@@ -60,11 +60,11 @@
     </div>
     <div class="wrapper fLeft row">
         <div class="wrapperMax">
-            <div class="norecords fLeft fmralewayR dn">
+            <div class="norecords fLeft fmralewayR" ng-show="(auctionLister|filter:searchlivebank).length==0">
                 <div class="stts_txt1 fLeft fmralewayB">No Auction Found</div>
                 <div class="stts_txt2 fLeft fmralewayB">We could not find what you are looking for</div>
             </div>
-            <div class="tabdata_cnt fLeft">
+            <div class="tabdata_cnt fLeft" ng-show="(auctionLister|filter:searchlivebank).length > 0">
                 <div class="accrodinetab_Header  fmralewayB sub_header">
                     <div class="col15 pLeft40">branch / city</div>
                     <div class="col15 p05">auction id / date & time</div>
@@ -75,34 +75,34 @@
                     <div class="col15 p05">no of bidders</div>
                     <div class="col15 p05">time left</div>
                 </div>
-                <div class="data_cont fLeft" ng-repeat="tm in liveauction | filter:liveauc">
+                <div class="data_cont fLeft" ng-repeat="bankerDetails in auctionLister |filter:searchlivebank">
                     <div class="accrodine_Card fLeft">
                         <div class="data_wrapper">
                             <div class="col15">
                                 <div class="col100 fLeft poR pLeft40">
                                     <div class="expandIcon" ng-click="openDatatable($event.target)"></div>
                                     <div class="col100">
-                                        <span class="txtVal1 fLeft txtOver">{{tm.branch}}</span>
-                                        <span class="txtVal2 fLeft fmralewayB txtOver">{{tm.city}}</span>
+                                        <span class="txtVal1 fLeft txtOver">{{bankerDetails.bankBranch}}</span>
+                                        <span class="txtVal2 fLeft fmralewayB txtOver">{{bankerDetails.bankBranch}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col15 p05">
-                                <span class="fLeft txtVal1">{{tm.auctionid}}</span>
-                                <span class="txtVal2 fLeft fmralewayB">{{tm.datetime}}</span>
+                                <span class="fLeft txtVal1 txtOver">{{bankerDetails.auctionId}}</span>
+                                <span class="txtVal2 fLeft fmralewayB">{{bankerDetails.auctionEndDateAndTime | date :  "dd MMM, y | hh:mm:ss a"}}</span>
                             </div>
                             <div class="col25 dflex p05">
-                                <span class="txtVal">{{tm.address}}</span>
+                                <span class="txtVal">{{bankerDetails.address}}</span>
                             </div>
                             <div class="col15 itemClmn p05">
                                 <span class="txtVal1 fLeft">
-                                    <span>{{tm.packet}}</span>
+                                    <span>{{(bankerDetails.packet.length == 1) ? 1 : bankerDetails.packet.length}} {{(bankerDetails.packet.length == 1) ? "Packet" : "Packets"}}</span>
                                 </span>
-                                <span class="txtVal2 fmralewayB clrGreen fLeft">{{tm.netweight}}</span>
+                                <span class="txtVal2 fmralewayB clrGreen fLeft">{{bankerDetails.netWeight}}</span>
                             </div>
                             <div class="col15 itemCenter p05">
                                 <span class="txtVal1 fmralewayB itemLeft">
-                                    {{tm.noofbidders}}
+                                    120
                                 </span>
                             </div>
                             <div class="col15 dflex">
@@ -138,40 +138,65 @@
                                 <div class="col7 icnMore dflex"></div>
                             </div>
                             <ul class="dataList fLeft">
-                                <li class="dflex" ng-repeat="vl in tm.value">
+                                <li class="dflex" ng-repeat="datalist in bankerDetails.packet">
                                     <div class="col10 dflex">
-                                        <span class="txtVal fmralewayB">{{vl.loanacno}}</span>
+                                        <span class="txtVal fmralewayB">{{datalist.loanAccountNumber}}</span>
                                     </div>
                                     <div class="col20 dflex p05">
-                                        <span class="txtVal">{{vl.packetdetails}}</span>
+                                        <span class="txtVal">{{datalist.remarks}}</span>
                                     </div>
-                                    <div class="col28 dflex p05">
-                                        <div class="col14 p05 itemClmn seperater" ng-repeat="crt in vl.caret">
-                                            <span class="txtVal1 itemCenter">{{crt.crt}}</span>
-                                            <span class="txtVal2 fmralewayB itemCenter">{{crt.weight}}</span>
+                                    <div class="col28 dflex">
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">18c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_18}} gm</span>
                                         </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">19c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_19}} gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">20c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_20}} gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">21c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_21}} gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">22c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_22}} gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn seperater">
+                                            <span class="txtVal1 itemCenter">23c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_23}} gm</span>
+                                        </div>
+                                        <div class="col14 p05 itemClmn">
+                                            <span class="txtVal1 itemCenter">24c</span>
+                                            <span class="txtVal2 fmralewayB itemCenter">{{datalist.carat_24}} gm</span>
+                                        </div>  
                                     </div>
                                     <div class="col10 p05 itemClmn">
                                         <span class="txtVal1  itemCenter">
-                                            <span>{{vl.gross}}</span>
+                                            <span>{{datalist.grossWeight}}</span>
                                         </span>
                                         <span class="txtVal2  fmralewayB clrGreen itemCenter">
-                                            <span>{{vl.net}}</span>
+                                            <span>{{datalist.netWeight}}</span>
                                         </span>
                                     </div>
                                     <div class="col11 itemCenter p05">
                                         <span class="txtVal1 itemRight">
-                                            <span class="spnRpy">{{vl.baseprc}}</span>
+                                            <span class="spnRpy">{{formatInrAmount(datalist.baseAmount)}}</span>
                                         </span>
                                     </div>
                                     <div class="col13 dflex p05">
                                         <span class="txtVal itemRight">
                                             <span class="tbleIcncnt icnInfo"></span>
-                                            <span class="spnRpyorng itemCenter">{{vl.hgstbid}}</span>                                        </span>
+                                            <span class="spnRpyorng itemCenter">2,00,000</span>
+                                        </span>
                                     </div>
                                     <div class="col11 itemCenter fmralewayB p05">
                                         <span class="txtVal1 itemCenter fmralewayB">
-                                           {{vl.bidders}}
+                                           124
                                         </span>
                                     </div>
                                     <div class="col7">
