@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="col15">
-                                <span class="txtVal1 fLeft">{{getdataauction.acutionWithoutHash}}</span>
+                                <span class="txtVal1 fLeft">{{getdataauction._id}}</span>
                                 <span class="txtVal2 fLeft fmralewayB">{{getdataauction.auctionDate}} | {{getdataauction.auctionTime}}</span>
                             </div>
                             <div class="col20 dflex">
@@ -106,7 +106,7 @@
                             </div>
                             <div class="col10">
                                 <span class="txtVal1 fLeft">{{(getdataauction.packet.length == 1) ? 1 : getdataauction.packet.length}} {{(getdataauction.packet.length == 1) ? "Packet" : "Packets"}}</span>
-                                <span class="txtVal2 fLeft fmralewayB clrGreen">{{getdataauction.grossWeight}} gm</span>
+                                <span class="txtVal2 fLeft fmralewayB clrGreen">{{getdataauction.netWeight}} gm</span>
                             </div>
                             <div class="col10 itemCenter">
                                 <span class="txtVal1 itemCenter">
@@ -150,7 +150,7 @@
                             <ul class="dataList fLeft">
                                 <li class="dflex" ng-repeat="listval in getdataauction.packet">
                                     <div class="col15 dflex">
-                                        <span class="txtVal fmralewayB">{{listval.packetId}}2</span>
+                                        <span class="txtVal fmralewayB">{{listval.loanAccountNumber}}</span>
                                     </div>
                                     <div class="col20 dflex p05">
                                         <span class="txtVal">{{listval.remarks}}</span>

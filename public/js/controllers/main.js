@@ -111,7 +111,7 @@ app.factory("postAuctionForm", function () {
         checkFormValidity = false;
         return checkFormValidity;
       }
-      if (checkFormValidity == true && !obj.auctionNumber) {
+      if (checkFormValidity == true && !obj.accountNumber) {
         common.msg({type:'error',text: 'Please provide bank account number'});
         checkFormValidity = false;
         return checkFormValidity;
@@ -126,12 +126,6 @@ app.factory("postAuctionForm", function () {
         checkFormValidity = false;
         return checkFormValidity;
       }
-      // if (checkFormValidity == true && !obj.auctionPacketFile) {
-      //   //   common.toast(0, common.getMsg(parseInt(4)));
-      //   alert("Please provide bank packet file");
-      //   checkFormValidity = false;
-      //   return checkFormValidity;
-      // }
       return checkFormValidity;
     }
   };

@@ -16,9 +16,9 @@ app.controller("auctionControl", function(
   $scope,
   $http,
   postAuctionForm,
+  $cookies,
   dataFactory,
-  $q,
-  Noty
+  $q
 ) {
   $scope.auctionData = {};
   $scope.postAuctionDetails = function(id) {
@@ -31,7 +31,7 @@ app.controller("auctionControl", function(
       bankPincode: $scope.auctionData.bankPincode,
       auctionDate: $scope.auctionData.auctionDate,
       auctionTime: $scope.auctionData.auctionTime,
-      auctionNumber: $scope.auctionData.auctionNumber,
+      accountNumber: $scope.auctionData.accountNumber,
       auctionEMDAmount: $scope.auctionData.auctionEMDAmount,
       bankEMDLastDate: $scope.auctionData.bankEMDLastDate,
       auctionPacketFile: $scope.auctionData.auctionPacketFile
@@ -42,14 +42,22 @@ app.controller("auctionControl", function(
       var dt = {};
       dt.auctionDate = $scope.auctionData.auctionDate;
       dt.auctionTime = $scope.auctionData.auctionTime;
-      dt.auctionEMDAmount = 25000;
-      dt.auctionEMDLastDate = "23-10-2017";
-      dt.bankId = $scope.auctionData.bankEMDLastDate;
-      dt.EMDAccountNo = $scope.auctionData.auctionEMDAmount;
+      dt.auctionEMDAmount = $scope.auctionData.auctionEMDAmount;
+      dt.auctionEMDLastDate = $scope.auctionData.bankEMDLastDate;
+      dt.bankName = $scope.auctionData.bankName;
+      dt.bankBranch = $scope.auctionData.bankBranch;
+      dt.bankId = $cookies.get('visitorId');
+      dt.bankClass= "axis_bank";
+      dt.address=$scope.auctionData.bankAddress;
+      dt.city= $scope.auctionData.bankCity;
+      dt.auctionDate= $scope.auctionData.auctionDate;
+      dt.auctionTime= $scope.auctionData.auctionTime;
+      dt.auctionEMDAmount=$scope.auctionData.auctionEMDAmount;
+      dt.EMDAccountNumber= $scope.auctionData.accountNumber;
+      dt.description= "";
+      dt.EMDAccountNo = $scope.auctionData.auctionNumber;
       dt.pinCode = $scope.auctionData.bankPincode;
       dt.state = $scope.auctionData.bankState;
-      dt.user_id = $scope.user_id;
-      // dt.packetFile = $scope.file;
       var fd = new FormData();
       fd.append("auctionDetails", angular.toJson(dt));
       fd.append("file", $scope.file);
@@ -57,8 +65,9 @@ app.controller("auctionControl", function(
         headers: { "Content-Type": undefined },
         transformRequest: angular.identity
       };
-      dataFactory.postFormData(url, fd, config).then(function(data) {
-        console.log(data);
+      dataFactory.postFormData(url, fd, config).then(function(resp) {
+        var response = JSON.parse(resp.data.body);
+        console.log(response);
       });
     }
   };
