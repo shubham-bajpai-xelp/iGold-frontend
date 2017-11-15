@@ -18,6 +18,10 @@
     <link href="styles/noty.css" rel="stylesheet" type="text/css" />
     <script src="scripts/noty.min.js"></script>
     <link href="styles/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script>
+        var page = "<%=headerDetails.page%>";
+        var auctionId = "<%=auctionId%>";
+    </script>
 </head>
 
 <body class="background" ng-controller="auctionControl" ng-app="serviceFactory" ng-init="notification">
@@ -32,7 +36,8 @@
         <div class="searchSection fmralewayB">
             <div class="wrapperMax">
                 <div class="general_cont fLeft">
-                    <span class="icnCreatauc txtUpper">create auction</span>
+                    <span class="icnCreatauc txtUpper" ng-if="pageName == 'createAuction'">create auction</span>
+                    <span class="icnCreatauc txtUpper" ng-if="pageName == 'updateAuction'">update auction</span>
                 </div>
             </div>
         </div>

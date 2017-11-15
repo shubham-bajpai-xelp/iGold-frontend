@@ -264,6 +264,11 @@ app.controller("jewellerControl", function(
       $scope.auctionEMDAmount=response.auctionEMDAmount;
       $scope.auctionDateAndTime=response.auctionDateAndTime;
     });
+  };
+  $scope.convertToMilliseconds = function(datewithtime){
+    var date = new Date(datewithtime);
+    var milliseconds = date.getTime(); 
+    return milliseconds;
   }
   $scope.applyForAuction = function(){
     var dt = {};

@@ -1,8 +1,30 @@
 module.exports = function(app) {
   const headerDetails = {};
+  app.post("/*", function(req, res, next) {
+    var designatedPath = req.path;
+    headerDetails.protocol = req.protocol;
+    let {auctionId,bankId,jewellerId,status} = req.query;
+    headerDetails.servers = headerDetails.protocol + "://" + req.hostname;
+    headerDetails.server = req.hostname;
+    headerDetails.page = designatedPath.replace("/", "");
+    headerDetails.services = "adminNew";
+    headerDetails.port = ":8008/";
+    headerDetails.nodomain = headerDetails.servers + headerDetails.port;
+    headerDetails.service = "";
+    headerDetails.serviceFile = "main.js";
+    headerDetails.title = headerDetails.page;
+    headerDetails.controllerFile = "";
+    switch (designatedPath) {
+      case "/updateAuction":
+        headerDetails.controllerFile = "auctionController.js";
+        res.render("createAuction.html", { headerDetails: headerDetails,'auctionId': auctionId});
+      break;
+    }
+  });
   app.get("/*", function(req, res, next) {
     var designatedPath = req.path;
     headerDetails.protocol = req.protocol;
+    let {auctionId,bankId,jewellerId,status} = req.query;
     headerDetails.servers = headerDetails.protocol + "://" + req.hostname;
     headerDetails.server = req.hostname;
     headerDetails.page = designatedPath.replace("/", "");
@@ -20,7 +42,7 @@ module.exports = function(app) {
         break;
       case "/createAuction":
         headerDetails.controllerFile = "auctionController.js";
-        res.render("createAuction.html", { headerDetails: headerDetails });
+        res.render("createAuction.html", { headerDetails: headerDetails,auctionId:''});
         break;
       case "/jewelview":
       headerDetails.controllerFile = "jewellerController.js";

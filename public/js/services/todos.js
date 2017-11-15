@@ -1,17 +1,7 @@
-angular.module('todoService', [])
-
-	// super simple service
-	// each function returns a promise object 
-	.factory('Todos', ['$http',function($http) {
-		return {
-			get : function() {
-				return $http.get('www.google.com');
-			},
-			// create : function(todoData) {
-			// 	return $http.post('/api/todos', todoData);
-			// },
-			// delete : function(id) {
-			// 	return $http.delete('/api/todos/' + id);
-			// }
-		}
-	}]);
+app.service('getMomentData', function() {
+    var pending = [];
+    this.get = function(duration) {
+        duration = moment.duration(duration - interval, 'milliseconds');
+		return duration.hours() + ":" + duration.minutes() + ":" + duration.seconds();
+    };
+});
