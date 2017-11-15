@@ -47,7 +47,8 @@ app.controller("auctionControl", function(
       dt.auctionEMDLastDate = $scope.auctionData.bankEMDLastDate;
       dt.bankName = $scope.auctionData.bankName;
       dt.bankBranch = $scope.auctionData.bankBranch;
-      dt.bankId = $cookies.get('visitorId');
+      var bankId = $cookies.get('visitorId');
+      dt.bankId = bankId.split('"')[1];
       dt.bankClass= "axis_bank";
       dt.address=$scope.auctionData.bankAddress;
       dt.city= $scope.auctionData.bankCity;

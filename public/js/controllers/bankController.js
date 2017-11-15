@@ -137,32 +137,45 @@ app.controller("bankcontroller", function(
       $scope.fetchUpCommingAuctions("upcoming");
       break;
   }
-  $scope.updateAuctionStatus = function($event,auction_id){
+  $scope.submit_post_via_hidden_form = function(url, params) {
+    var f = $(
+      "<form target='_blank' method='POST' style='display:none;'></form>"
+    )
+      .attr({ action: url })
+      .appendTo(document.body);
+    for (var i in params) {
+      if (params.hasOwnProperty(i)) {
+        $('<input type="hidden" />')
+          .attr({
+            name: i,
+            value: params[i]
+          })
+          .appendTo(f);
+      }
+    }
+    f.submit();
+    f.remove();
+  };
+  $scope.updateAuctionStatus = function($event, auction_id) {
     var dt = {};
     var url = "http://localhost:3000/banker/updateauction";
-        dt.auctionId = auction_id;
-        dt.status = 1;
-        var bankData = $cookies.get('visitorId');
-        dt.bankId = bankData.split('"')[1];
-        dataFactory.postFormData(url,dt)
-        .then(function(response){
-            var result = response.data.body;
-            if(response.data.status==201){
-                $scope.changeStatus($event);
-            }
-            else{
-                alert('Due to some issue we are not able to update the status of saved auction');
-            }
-        });
+    dt.auctionId = auction_id;
+    dt.status = 1;
+    var bankData = $cookies.get("visitorId");
+    dt.bankId = bankData.split('"')[1];
+    dataFactory.postFormData(url, dt).then(function(response) {
+      var result = response.data.body;
+      if (response.data.status == 201) {
+        $scope.changeStatus($event);
+      } else {
+        alert(
+          "Due to some issue we are not able to update the status of saved auction"
+        );
+      }
+    });
   };
-  $scope.auctionEditMode=function(auctionId){
-    var myForm = document.createElement("form");
-        myForm.action='updateAuction';
-        myForm.target="_blank";
-        myForm.method="POST";
-        myForm.submit();
-    var popupWindow = window.open('updateAuction');
-        popupWindow.mySharedData = auctionId;
+  $scope.auctionEditMode = function(auctionId) {
+    $scope.submit_post_via_hidden_form("updateAuction?auctionId="+auctionId);
   }
   $scope.changeStatus = function(i) {
     var rplcCont = "";
@@ -174,6 +187,6 @@ app.controller("bankcontroller", function(
       .find(".col10")
       .find(".chngstatus")
       .replaceWith(rplcCont);
-      $(i).remove();
+    $(i).remove();
   };
 });
