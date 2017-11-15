@@ -1,7 +1,6 @@
 module.exports = function(app) {
   const headerDetails = {};
   app.get("/*", function(req, res, next) {
-    console.log(req.body)
     var designatedPath = req.path;
     headerDetails.protocol = req.protocol;
     headerDetails.servers = headerDetails.protocol + "://" + req.hostname;

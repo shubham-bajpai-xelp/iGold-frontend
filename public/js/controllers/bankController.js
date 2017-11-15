@@ -142,7 +142,8 @@ app.controller("bankcontroller", function(
     var url = "http://localhost:3000/banker/updateauction";
         dt.auctionId = auction_id;
         dt.status = 1;
-        dt. bankId = $cookies.get('visitorId');
+        var bankData = $cookies.get('visitorId');
+        dt.bankId = bankData.split('"')[1];
         dataFactory.postFormData(url,dt)
         .then(function(response){
             var result = response.data.body;
@@ -150,11 +151,16 @@ app.controller("bankcontroller", function(
                 $scope.changeStatus($event);
             }
             else{
-                alert('error','Due to some issue we are not able to update the status of saved auction');
+                alert('Due to some issue we are not able to update the status of saved auction');
             }
         });
   };
   $scope.auctionEditMode=function(auctionId){
+    var myForm = document.createElement("form");
+        myForm.action='updateAuction';
+        myForm.target="_blank";
+        myForm.method="POST";
+        myForm.submit();
     var popupWindow = window.open('updateAuction');
         popupWindow.mySharedData = auctionId;
   }
