@@ -4,6 +4,7 @@ app.controller("bankcontroller", function(
   $http,
   $cookies,
   $location,
+  getMomentData,
   basicFunctionalities,
   postAuctionForm,
   $q
@@ -28,6 +29,11 @@ app.controller("bankcontroller", function(
         .addClass("labelActive");
     }
   });
+  $scope.convertToMilliseconds = function(datewithtime){
+    var date = new Date(datewithtime);
+    var milliseconds = date.getTime(); 
+    return milliseconds;
+  }
   $scope.openDatatable = function(i) {
     if ($(i).hasClass("expandRotate")) {
       $(i).removeClass("expandRotate");

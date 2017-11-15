@@ -1,4 +1,4 @@
-var app = angular.module("serviceFactory", ["ngCookies", "ngRoute"]);
+var app = angular.module("serviceFactory", ["ngCookies", "ngRoute","timer"]);
 app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
@@ -9,7 +9,6 @@ app.factory("dataFactory", [
     dataFactory.getPostData = function(url, dt) {
       return $http({
         url: url,
-        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "POST",
         data: dt
       });
@@ -18,7 +17,6 @@ app.factory("dataFactory", [
       return $http({
         url: url,
         data: dt,
-        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "GET"
       });
     };
@@ -26,7 +24,6 @@ app.factory("dataFactory", [
       return $http({
         url: url,
         data: dt,
-        // headers: { "x-access-token": common.getCookie("iGold") },
         method: "PUT"
       });
     };
@@ -35,19 +32,19 @@ app.factory("dataFactory", [
 ]);
 app.config(function($routeProvider) {
   $routeProvider
-    // .when("/", {
-    //   templateUrl: "views/jewl_auction.html",
-    //   title: 'Jeweller Upcoming'
-    // })
-    // .when("/jewl_liveauction", {
-    //   templateUrl: "views/jewl_liveauction.html",
-    //   title: 'Jeweller Live Auctions'
-    // })
-    // .when("/jewl_closedauction", {
-    //   templateUrl: "views/jewl_closedauction.html",
-    //   title: 'Jeweller Closed Auctions'
-    // })
     .when("/", {
+      templateUrl: "views/jewl_auction.html",
+      title: 'Jeweller Upcoming'
+    })
+    .when("/jewl_liveauction", {
+      templateUrl: "views/jewl_liveauction.html",
+      title: 'Jeweller Live Auctions'
+    })
+    .when("/jewl_closedauction", {
+      templateUrl: "views/jewl_closedauction.html",
+      title: 'Jeweller Closed Auctions'
+    })
+    /*.when("/", {
       templateUrl: "views/bank_auction.html"
     })
     .when("/bank_liveAuction", {
@@ -55,7 +52,7 @@ app.config(function($routeProvider) {
     })
     .when("/bank_closedauction", {
       templateUrl: "views/bank_closedauction.html"
-    });
+    });*/
 });
 app.factory("basicFunctionalities", function() {
   return {
@@ -193,11 +190,21 @@ app.directive("stopwatch", function() {
       $scope.start = function(data) {
         if(data){
           $scope.runClock = $interval(function(data) {
-            return $scope.time = moment().hour(data).minute(data).second($scope.counter--)
-              .format("HH : mm : ss");
-          }, 1000);
+          $scope.time = moment()
+            .hour(0)
+            .minute(0)
+            .second($scope.counter++)
+            .format("HH : mm : ss");
+        }, 1000);
         }
       };
     }
+  };
+});
+app.service('getMomentData', function() {
+  var pending = [];
+  this.get = function(duration,interval) {
+      duration = moment.duration(duration - interval, 'milliseconds');
+  return duration.hours() + ":" + duration.minutes() + ":" + duration.seconds();
   };
 });

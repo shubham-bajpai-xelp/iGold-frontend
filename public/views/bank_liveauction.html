@@ -108,7 +108,7 @@
                             <div class="col15 dflex">
                                 <span class="txtVal">
                                     <span class="icn_bid"></span>
-                                <span class="fmralewayB clrGreen" stopwatch="{{bankerDetails.auctionEndDateAndTime|date :  'hh:mm:ss'}}">02:50:28</span>
+                                <span class="fmralewayB clrGreen"><timer end-time="convertToMilliseconds(bankerDetails.auctionEndDateAndTime)" interval="1000">{{hhours}}:{{mminutes}}:{{seconds}}</timer></span>
                                 </span>
                             </div>
                         </div>
