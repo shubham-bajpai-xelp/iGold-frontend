@@ -24,6 +24,7 @@ module.exports = function(app) {
   app.get("/*", function(req, res, next) {
     var designatedPath = req.path;
     headerDetails.protocol = req.protocol;
+    let {auctionId,bankId,jewellerId,status} = req.query;
     headerDetails.servers = headerDetails.protocol + "://" + req.hostname;
     headerDetails.server = req.hostname;
     headerDetails.page = designatedPath.replace("/", "");
@@ -41,7 +42,7 @@ module.exports = function(app) {
         break;
       case "/createAuction":
         headerDetails.controllerFile = "auctionController.js";
-        res.render("createAuction.html", { headerDetails: headerDetails });
+        res.render("createAuction.html", { headerDetails: headerDetails,auctionId:''});
         break;
       case "/jewelview":
       headerDetails.controllerFile = "jewellerController.js";
