@@ -20,6 +20,7 @@ app.controller("auctionControl", function(
   dataFactory,
   $q
 ) {
+  $scope.pageName=page;
   $scope.auctionData = {};
   $scope.postAuctionDetails = function(id) {
     var formObj = {

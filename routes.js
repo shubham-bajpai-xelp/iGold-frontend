@@ -1,6 +1,7 @@
 module.exports = function(app) {
   const headerDetails = {};
   app.get("/*", function(req, res, next) {
+    console.log(req.body)
     var designatedPath = req.path;
     headerDetails.protocol = req.protocol;
     headerDetails.servers = headerDetails.protocol + "://" + req.hostname;
@@ -19,6 +20,7 @@ module.exports = function(app) {
         res.render("bankview.html", { headerDetails: headerDetails });
         break;
       case "/createAuction":
+      case "/updateAuction":
         headerDetails.controllerFile = "auctionController.js";
         res.render("createAuction.html", { headerDetails: headerDetails });
         break;

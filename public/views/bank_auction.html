@@ -121,8 +121,8 @@
                             <div class="col10">
                                 <center>
                                     <div class="icnTrash" ng-click="openDelete_popup()"></div>
-                                    <div class="icnEdit"></div>
-                                    <div class="icnPost" ng-click="changeStatus($event.target)"></div>
+                                    <div class="icnEdit" ng-click="auctionEditMode(bankerDetails.auctionId)"></div>
+                                    <div class="icnPost" ng-click="updateAuctionStatus($event.target,bankerDetails.auctionId)"></div>
                                 </center>
                             </div>
                         </div>
