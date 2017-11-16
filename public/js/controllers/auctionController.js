@@ -39,7 +39,7 @@ app.controller("auctionControl", function(
     };
     $scope.checkValid = postAuctionForm.validateAuctionForm(formObj);
     if ($scope.checkValid == true) {
-      var url = "http://localhost:3000/postAuction";
+      var url = "http://localhost:3000/banker/postAuction";
       var dt = {};
       dt.auctionDate = $scope.auctionData.auctionDate;
       dt.auctionTime = $scope.auctionData.auctionTime;
