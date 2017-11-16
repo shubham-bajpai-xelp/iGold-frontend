@@ -25,7 +25,7 @@
             <div class="col100 fLeft">
                 <center>
                     <div class="button_back dinline fmralewayB" ng-click="closeDelete_popup()">back</div>
-                    <div class="button dinline fmralewayB">cancel auction</div>
+                    <div class="button dinline fmralewayB" ng-click="cancelAuction()">cancel auction</div>
                 </center>
             </div>
         </div>
@@ -81,7 +81,7 @@
                     <div class="col10 icnMore"></div>
                 </div>
                 <div class="data_cont fLeft" ng-repeat="bankerDetails in auctionLister">
-                    <div class="accrodine_Card fLeft">
+                    <div class="accrodine_Card fLeft poR">
                         <div class="data_wrapper">
                             <div class="col15">
                                 <div class="col100 fLeft poR pLeft40">
@@ -120,42 +120,42 @@
                             </div>
                             <div class="col10">
                                 <center>
-                                    <div class="icnTrash" ng-click="openDelete_popup()"></div>
-                                    <div class="icnEdit" ng-click="auctionEditMode(bankerDetails.auctionId)"></div>
-                                    <div class="icnPost" ng-click="updateAuctionStatus($event.target,bankerDetails.auctionId)"></div>
+                                    <div class="icnTrash showTooltip" ng-click="openDelete_popup()"><div class="toolTipcnt transition300">delete</div></div>
+                                    <div class="icnEdit showTooltip" ng-click="auctionEditMode(bankerDetails.auctionId)"> <div class="toolTipcnt transition300">edit</div></div>
+                                    <div class="icnPost showTooltip" ng-click="updateAuctionStatus($event.target,bankerDetails.auctionId)"> <div class="toolTipcnt transition300">post</div></div>
                                 </center>
                             </div>
                         </div>
-                        <div class="col100 fLeft dspnone">
+                        <div class="col100 fLeft dspnone recancel">
                             <div class="tabel_header dflex fmralewayB">
-                                <div class="col15 dflex">
+                                <div class="col18 dflex chng_stp1">
                                     <span class="itemCenter">loan a/c no</span>
                                 </div>
-                                <div class="col20 dflex">
+                                <div class="col23 dflex chng_stp5">
                                     <span class="itemCenter">packet details</span>
                                 </div>
-                                <div class="col30 itemCenter">
+                                <div class="col33 itemCenter chng_stp2">
                                     <span class="itemCenter">carat details</span>
                                 </div>
-                                <div class="col10 itemCenter">
+                                <div class="col13 itemCenter chng_stp3">
                                     <span class="itemCenter">gross / net </span>
                                 </div>
-                                <div class="col10 itemCenter">
+                                <div class="col13 itemCenter chng_stp4">
                                     <span class="itemCenter">base price </span>
                                 </div>
-                                <div class="col15 dflex">
+                                <div class="col15 dflex dn clm_rsn">
                                     <span class="itemCenter">reason for cancellation</span>
                                 </div>
                             </div>
                             <ul class="dataList fLeft">
                                 <li class="dflex" ng-repeat="listval in bankerDetails.packet">
-                                    <div class="col15 dflex">
+                                    <div class="col18 dflex chng_stp1">
                                         <span class="txtVal fmralewayB">{{listval.loanAccountNumber}}</span>
                                     </div>
-                                    <div class="col20 dflex p05">
+                                    <div class="col23 dflex p05 chng_stp5">
                                         <span class="txtVal">{{listval.remarks}}</span>
                                     </div>
-                                    <div class="col30 dflex p05">
+                                    <div class="col33 dflex p05 chng_stp2">
                                         <div class="col14 p05 itemClmn seperater">
                                             <span class="txtVal1 itemCenter">18c</span>
                                             <span class="txtVal2 fmralewayB itemCenter">{{listval.carat_18}} gm</span>
@@ -185,7 +185,7 @@
                                             <span class="txtVal2 fmralewayB itemCenter">{{listval.carat_24}} gm</span>
                                         </div>
                                     </div>
-                                    <div class="col10 p05 itemClmn">
+                                    <div class="col13 p05 itemClmn chng_stp3">
                                         <span class="txtVal1  itemCenter">
                                             <span>{{listval.grossWeight}} gm</span>
                                         </span>
@@ -193,12 +193,12 @@
                                             <span>{{listval.netWeight}} gm</span>
                                         </span>
                                     </div>
-                                    <div class="col10 itemCenter p05">
+                                    <div class="col13 itemCenter p05 chng_stp4">
                                         <span class="txtVal1 itemCenter">
                                             <span class="spnRpy">{{formatInrAmount(listval.baseAmount)}}</span>
                                         </span>
                                     </div>
-                                    <div class="col15 dflex p05">
+                                    <div class="col15 dflex p05 dn clm_rsn">
                                         <span class="txtVal">fsdfsd dfdsfdsfds dsfsfsaf dsfgdsfdsaf dsfdsfdsa</span>
                                     </div>
                                 </li>

@@ -157,6 +157,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .row .colAut{width:auto;height:auto;}
 .row .col100{width:100%;height:auto;}
 .row .col20{width:20%;height:auto;}
+.row .col23{width:23%;height:auto;}
 .row .col14{width:14%;height:auto;}
 .row .col15{width:15%;height:auto;}
 .row .col18{width:18%;height:auto;}
@@ -172,6 +173,7 @@ a{text-decoration: none;color: #B3B3B3;}
 .row .col25{width:25%;height:auto;}
 .row .col28{width:28%;height:auto;}
 .row .col30{width:30%;height:auto;}
+.row .col33{width:33%;height:auto;}
 .row .col33_33{width:33.33%;height:auto;}
 .row .col50{width:50%;height:auto;}
 .row .col70{width:70%;height:auto;}
@@ -186,6 +188,40 @@ a{text-decoration: none;color: #B3B3B3;}
 .seperater{position:relative;}
 .seperater:after{content:'';width:1px;height:60%;right:0;top:0;bottom:0;margin:auto;border-right:1px solid #EBECED;position:absolute;}
 .input_submit{border:none;outline:none;}
+/*auction*/
+.lostAuctionwrp{width: 100%;height: 100%;position: absolute;left: 0;top: 0; background: rgba(0,0,0,0.7);z-index: 10; color: #fff;text-align: center;font-size: 20px;text-transform: uppercase;}
+/*button loader*/
+.dummy_btncnt{width:auto;height:100%;float:left;position:relative;}
+.addPointer{pointer-events: none;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;color:transparent!important;}
+.loaderNxt:before{content:"";position:absolute;width:25px;height:25px;left:0;right:0;top:0;bottom:0;margin:auto;border-radius: 50%;border: 0.1rem solid rgba(0,0,0,0.2);border-top-color: rgba(255,255,255,01);display: inline-block;-webkit-animation-name: spin;-webkit-animation-duration: 1s;-webkit-animation-iteration-count: infinite; animation-name: spin;animation-duration: 1s;animation-iteration-count: infinite;animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85);}
+@-webkit-keyframes spin {
+    0% {
+     -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+     transform: rotate(0deg);
+   }
+  
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+/*tool tip*/
+.showTooltip{position:relative;}
+.toolTipcnt{width: auto;height: 25px;position: absolute;right: 30px;top: 0; line-height: 25px;padding: 0px 15px;color: #fff;background: #FE936F;text-align: center;border-radius: 2px;font-size: 10px;text-transform: uppercase;bottom: 0;margin: auto;pointer-events:none;transform:translateX(-30px);-webkit-transform:translateX(-30px);-moz-transform:translateX(-30px);opacity:0;}
+.toolTipcnt::after {content: "";position: absolute;top: 50%;left: 100%; margin-top: -5px;border-width: 5px;border-style: solid;border-color: transparent transparent transparent #FE936F;}
+.showTooltip:hover .toolTipcnt{transform:translateX(0px);-webkit-transform:translateX(0px);-moz-transform:translateX(0px);opacity:1;}
 /*bidding popup*/
 .popupcnt{width:100%;height:100%;position:fixed;background:rgba(0,0,0,0.7);z-index:999;left:0;top:0;display:none;opacity:0;}
 .bidPopwrp{width: 690px;height: 440px;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;background: #fff;padding: 25px;border-radius: 3px;opacity:0;transform:translateY(100vh);-webkit-transform:translateY(100vh);-moz-transform:translateY(100vh); }
