@@ -135,7 +135,7 @@ app.controller("bankcontroller", function(
     }
     return size;
   };
-  $scope.fetchUpCommingAuctions = function(auctionType) {
+  $scope.fetchbankAuctions = function(auctionType) {
     var dt = {};
     dt.auctionType = auctionType;
     dt.bankId      = bankerId;
@@ -155,17 +155,17 @@ app.controller("bankcontroller", function(
   };
   switch ($location.url()) {
     case "/bank_closedauction":
-      $scope.fetchUpCommingAuctions("closed");
+      $scope.fetchbankAuctions("closed");
       break;
     case "/#%2F!":
     case "/bank_auction":
-      $scope.fetchUpCommingAuctions("upcoming");
+      $scope.fetchbankAuctions("upcoming");
       break;
     case "/bank_liveAuction":
-      $scope.fetchUpCommingAuctions("live");
+      $scope.fetchbankAuctions("live");
       break;
     default:
-      $scope.fetchUpCommingAuctions("upcoming");
+      $scope.fetchbankAuctions("upcoming");
       break;
   }
   $scope.submit_post_via_hidden_form = function(url, params) {
