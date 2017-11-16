@@ -1,4 +1,4 @@
-app.controller("bankcontroller", function(
+app.controller("bankcontroller", function (
   $scope,
   dataFactory,
   $http,
@@ -15,12 +15,12 @@ app.controller("bankcontroller", function(
   $scope.auctionClosed = "closed";
   $scope.auctionUpcoming = "upcoming";
   $scope.auctionLive = "live";
-  $("input").bind("focus", function() {
+  $("input").bind("focus", function () {
     $(this)
       .next("label")
       .addClass("labelActive");
   });
-  $("input").bind("blur", function() {
+  $("input").bind("blur", function () {
     if ($(this).val() == "" || $(this).val() == 0) {
       $(this)
         .next("label")
@@ -31,31 +31,14 @@ app.controller("bankcontroller", function(
         .addClass("labelActive");
     }
   });
-  $scope.convertToMilliseconds = function(datewithtime){
+  $scope.convertToMilliseconds = function (datewithtime) {
     var date = new Date(datewithtime);
-    var milliseconds = date.getTime(); 
+    var milliseconds = date.getTime();
     return milliseconds;
   };
   $scope.particularAuctionfinished = function(auctionId){
     $scope.updateAuctionStatus(auctionId,2);
   };
-  $scope.updateAuctionStatus = function(auctionId,status){
-    var url = 'http://localhost:3000/banker/updateauction';
-    var dt = {};
-        dt.auctionId=auctionId;
-        dt.bankId=bankerId;
-        dt.status=status;
-        dataFactory.getPostData(url,dt)
-        .then(function(response){
-          if(response.data.status==201){
-            $('.liveAuction_'+auctionId).remove();
-            alert('Auction followed with number as '+auctionId+' has been completed');
-          }
-          else{
-            alert('Auction has been completed followed with number as '+auctionId+' but due to some technical error we are not able to update the status of winner');
-          }
-        });
-  }
   $scope.$on('timer-tick', function (event, args) {
     $scope.timerConsole += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
   });
@@ -82,20 +65,9 @@ app.controller("bankcontroller", function(
     { translateY: "100vh", opacity: 0 },
     { delay: 0, duration: 0, display: "none" }
   );
-  $scope.openDelete_popup = function() {
-    $("#dltpop").css("display", "block");
-    $("#dltpop").velocity(
-      { opacity: [1, 0] },
-      { delay: 0, duration: 300, ease: "swing" }
-    );
-    $(".trashPopwrp").velocity(
-      { translateY: [0, "100vh"], opacity: [1, 0] },
-      { delay: 180, duration: 600, easing: [20, 6], display: "block" }
-    );
-  };
-  $scope.closeDelete_popup = function() {
+  $scope.closeDelete_popup = function () {
     $("#dltpop").fadeOut();
-    setTimeout(function() {
+    setTimeout(function () {
       $(".trashPopwrp").velocity(
         { translateY: ["100vh", 0], opacity: [0, 1] },
         { delay: 0, duration: 200, ease: "swing", display: "none" }
@@ -106,15 +78,15 @@ app.controller("bankcontroller", function(
       );
     }, 400);
   };
-  $scope.openLogout = function(i) {
+  $scope.openLogout = function (i) {
     $(i)
       .find("ul")
       .slideToggle("swing");
   };
-  $scope.logout = function() {
+  $scope.logout = function () {
     window.location.href = "/";
   };
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     var dnone = $(".sub_header"),
       scroll = $(window).scrollTop();
     var sticky = $(".stckyHdr");
@@ -126,7 +98,7 @@ app.controller("bankcontroller", function(
       dnone.removeClass("dn");
     }
   });
-  $scope.biddingLength = function(packetObject) {
+  $scope.biddingLength = function (packetObject) {
     var size = 0,
       eachObject;
     for (eachObject in packetObject) {
@@ -140,7 +112,7 @@ app.controller("bankcontroller", function(
     dt.auctionType = auctionType;
     dt.bankId      = bankerId;
     var url = "http://localhost:3000/banker/getauction";
-    dataFactory.putData(url, dt).then(function(result) {
+    dataFactory.putData(url, dt).then(function (result) {
       var response = JSON.parse(result.data.body);
       if (result.data.status == 201) {
         $scope.auctionLister = response;
@@ -150,7 +122,7 @@ app.controller("bankcontroller", function(
       }
     });
   };
-  $scope.formatInrAmount = function(ammount) {
+  $scope.formatInrAmount = function (ammount) {
     return basicFunctionalities.validateINRformat(ammount);
   };
   switch ($location.url()) {
@@ -168,7 +140,7 @@ app.controller("bankcontroller", function(
       $scope.fetchbankAuctions("upcoming");
       break;
   }
-  $scope.submit_post_via_hidden_form = function(url, params) {
+  $scope.submit_post_via_hidden_form = function (url, params) {
     var f = $(
       "<form target='_blank' method='POST' style='display:none;'></form>"
     )
@@ -187,27 +159,32 @@ app.controller("bankcontroller", function(
     f.submit();
     f.remove();
   };
-  $scope.updateAuctionStatus = function($event, auction_id) {
+  $scope.updateAuctionStatus = function ($event, auction_id) {
     var dt = {};
     var url = "http://localhost:3000/banker/updateauction";
     dt.auctionId = auction_id;
     dt.status = 1;
     dt.bankId = bankerId;
-    dataFactory.postFormData(url, dt).then(function(response) {
+    dataFactory.postFormData(url, dt).then(function (response) {
       var result = response.data.body;
       if (response.data.status == 201) {
+        common.msg({
+          type: "success",
+          text: "Auction has been updated to post status"
+        });
         $scope.changeStatus($event);
       } else {
-        alert(
-          "Due to some issue we are not able to update the status of saved auction"
-        );
+        common.msg({
+          type: "error",
+          text: "Due to some issue we are not able to update the status of saved auction"
+        });
       }
     });
   };
-  $scope.auctionEditMode = function(auctionId) {
-    $scope.submit_post_via_hidden_form("updateAuction?auctionId="+auctionId);
+  $scope.auctionEditMode = function (auctionId) {
+    $scope.submit_post_via_hidden_form("updateAuction?auctionId=" + auctionId);
   }
-  $scope.changeStatus = function(i) {
+  $scope.changeStatus = function (i) {
     var rplcCont = "";
     rplcCont += '<span class="itemCenter col100">';
     rplcCont += '<span class="statusPosted fmralewayB">posted</span>';
@@ -219,4 +196,40 @@ app.controller("bankcontroller", function(
       .replaceWith(rplcCont);
     $(i).remove();
   };
+  $('#dltpop').velocity({ opacity: 0, display: "none" }, { delay: 0, duration: 0 });
+  $('.trashPopwrp').velocity({ translateY: "100vh", opacity: 0 }, { delay: 0, duration: 0, display: 'none' });
+  $scope.openDelete_popup = function () {
+    $("#dltpop").css("display", "block");
+    $('#dltpop').velocity({ opacity: [1, 0] }, { delay: 0, duration: 300, ease: 'swing' });
+    $(".trashPopwrp").velocity({ translateY: [0, '100vh'], opacity: [1, 0] }, { delay: 180, duration: 600, easing: [20, 6], display: 'block' });
+    $('input').bind('focus', function () {
+      $(this).next('label').addClass('labelActive');
+    });
+    $('input').bind('blur', function () {
+      if ($(this).val() == '' || $(this).val() == 0) {
+        $(this).next('label').removeClass('labelActive');
+      }
+      else {
+        $(this).next('label').addClass('labelActive');
+      }
+    });
+  };
+  $scope.cancelAuction = function () {
+    $scope.closeDelete_popup();
+    $scope.inculdeCancelreason();
+  };
+  $scope.inculdeCancelreason = function () {
+    $('.chng_stp1').addClass('col15');
+    $('.chng_stp1').removeClass('col18');
+    $('.chng_stp2').removeClass('col33');
+    $('.chng_stp2').addClass('col30');
+    $('.chng_stp3').removeClass('col13');
+    $('.chng_stp3').addClass('col10');
+    $('.chng_stp4').removeClass('col13');
+    $('.chng_stp4').addClass('col10');
+    $('.chng_stp5').removeClass('col23');
+    $('.chng_stp5').addClass('col20');
+    $('.clm_rsn').removeClass('dn');
+  };
+
 });

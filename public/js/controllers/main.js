@@ -32,19 +32,19 @@ app.factory("dataFactory", [
 ]);
 app.config(function($routeProvider) {
   $routeProvider
-    /*.when("/", {
-      templateUrl: "views/jewl_auction.html",
-      title: 'Jeweller Upcoming'
-    })
-    .when("/jewl_liveauction", {
-      templateUrl: "views/jewl_liveauction.html",
-      title: 'Jeweller Live Auctions'
-    })
-    .when("/jewl_closedauction", {
-      templateUrl: "views/jewl_closedauction.html",
-      title: 'Jeweller Closed Auctions'
-    })*/
-    .when("/", {
+    // .when("/", {
+    //   templateUrl: "views/jewl_auction.html",
+    //   title: 'Jeweller Upcoming'
+    // })
+    // .when("/jewl_liveauction", {
+    //   templateUrl: "views/jewl_liveauction.html",
+    //   title: 'Jeweller Live Auctions'
+    // })
+    // .when("/jewl_closedauction", {
+    //   templateUrl: "views/jewl_closedauction.html",
+    //   title: 'Jeweller Closed Auctions'
+    // })
+   .when("/", {
       templateUrl: "views/bank_auction.html"
     })
     .when("/bank_liveAuction", {
@@ -87,13 +87,17 @@ app.factory("userSignIn", function() {
     validateLoginForm: function(obj) {
       var checkFormValidity = true;
       if (checkFormValidity == true && !obj.username) {
-        alert("Please provide user emailid");
+        common.msg({ type: "error", text: "Please provide user emailid" });
         checkFormValidity = false;
+        $('.dummy_btncnt').removeClass('loaderNxt');
+        $('.button').removeClass('addPointer');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.password) {
-        alert("Please provide user password");
+        common.msg({ type: "error", text: "Please provide user password" });
         checkFormValidity = false;
+        $('.dummy_btncnt').removeClass('loaderNxt');
+        $('.button').removeClass('addPointer');
         return checkFormValidity;
       }
       return checkFormValidity;
