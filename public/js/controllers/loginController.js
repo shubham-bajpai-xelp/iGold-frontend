@@ -7,6 +7,8 @@ app.controller("loginControl", function(
 ) {
   $scope.userDetail = {};
   $scope.validate = function() {
+    $('.dummy_btncnt').addClass('loaderNxt');
+      $('.button').addClass('addPointer');
     var formObj = {
       username: $scope.userDetail.username,
       password: $scope.userDetail.password
@@ -25,15 +27,25 @@ app.controller("loginControl", function(
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
                 window.location.href = "bankview";
+                common.msg({type:'success',text: 'login successfully'});
             }
             else if (response.userType == 2 && response.userId) {
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
                 window.location.href = "jewelview";
+                common.msg({type:'success',text: 'login successfully'});
             }
-            else {
-                alert('wrong stuff');
-            }
+           
+              else{
+                  common.msg({type:'error',text: 'Please provide proper email id & password'});
+                  $('.dummy_btncnt').removeClass('loaderNxt');
+                  $('.button').removeClass('addPointer');
+              }
+        }
+        else{
+          common.msg({type:'error',text: 'Please provide proper email id & password'});
+          $('.dummy_btncnt').removeClass('loaderNxt');
+          $('.button').removeClass('addPointer');
         }
       });
     }
