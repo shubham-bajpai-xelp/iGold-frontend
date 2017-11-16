@@ -32,7 +32,7 @@ app.factory("dataFactory", [
 ]);
 app.config(function($routeProvider) {
   $routeProvider
-    .when("/", {
+    /*.when("/", {
       templateUrl: "views/jewl_auction.html",
       title: 'Jeweller Upcoming'
     })
@@ -43,8 +43,8 @@ app.config(function($routeProvider) {
     .when("/jewl_closedauction", {
       templateUrl: "views/jewl_closedauction.html",
       title: 'Jeweller Closed Auctions'
-    })
-    /*.when("/", {
+    })*/
+    .when("/", {
       templateUrl: "views/bank_auction.html"
     })
     .when("/bank_liveAuction", {
@@ -52,7 +52,7 @@ app.config(function($routeProvider) {
     })
     .when("/bank_closedauction", {
       templateUrl: "views/bank_closedauction.html"
-    });*/
+    });
 });
 app.factory("basicFunctionalities", function() {
   return {

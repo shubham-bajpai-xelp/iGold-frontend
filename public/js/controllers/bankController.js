@@ -10,6 +10,8 @@ app.controller("bankcontroller", function(
   $q
 ) {
   $scope.auctionLister = [];
+  var bankerId = $cookies.get("visitorId");
+      bankerId = bankerId.split('"')[1];
   $scope.auctionClosed = "closed";
   $scope.auctionUpcoming = "upcoming";
   $scope.auctionLive = "live";
@@ -33,7 +35,30 @@ app.controller("bankcontroller", function(
     var date = new Date(datewithtime);
     var milliseconds = date.getTime(); 
     return milliseconds;
+  };
+  $scope.particularAuctionfinished = function(auctionId){
+    $scope.updateAuctionStatus(auctionId,2);
+  };
+  $scope.updateAuctionStatus = function(auctionId,status){
+    var url = 'http://localhost:3000/banker/updateauction';
+    var dt = {};
+        dt.auctionId=auctionId;
+        dt.bankId=bankerId;
+        dt.status=status;
+        dataFactory.getPostData(url,dt)
+        .then(function(response){
+          if(response.data.status==201){
+            $('.liveAuction_'+auctionId).remove();
+            alert('Auction followed with number as '+auctionId+' has been completed');
+          }
+          else{
+            alert('Auction has been completed followed with number as '+auctionId+' but due to some technical error we are not able to update the status of winner');
+          }
+        });
   }
+  $scope.$on('timer-tick', function (event, args) {
+    $scope.timerConsole += $scope.timerType  + ' - event.name = '+ event.name + ', timeoutId = ' + args.timeoutId + ', millis = ' + args.millis +'\n';
+  });
   $scope.openDatatable = function(i) {
     if ($(i).hasClass("expandRotate")) {
       $(i).removeClass("expandRotate");
@@ -113,7 +138,7 @@ app.controller("bankcontroller", function(
   $scope.fetchUpCommingAuctions = function(auctionType) {
     var dt = {};
     dt.auctionType = auctionType;
-    dt.jewellerId = $cookies.get("visitorId");
+    dt.bankId      = bankerId;
     var url = "http://localhost:3000/banker/getauction";
     dataFactory.putData(url, dt).then(function(result) {
       var response = JSON.parse(result.data.body);
@@ -167,8 +192,7 @@ app.controller("bankcontroller", function(
     var url = "http://localhost:3000/banker/updateauction";
     dt.auctionId = auction_id;
     dt.status = 1;
-    var bankData = $cookies.get("visitorId");
-    dt.bankId = bankData.split('"')[1];
+    dt.bankId = bankerId;
     dataFactory.postFormData(url, dt).then(function(response) {
       var result = response.data.body;
       if (response.data.status == 201) {

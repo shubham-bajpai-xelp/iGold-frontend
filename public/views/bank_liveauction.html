@@ -76,7 +76,7 @@
                     <div class="col15 p05">time left</div>
                 </div>
                 <div class="data_cont fLeft" ng-repeat="bankerDetails in auctionLister |filter:searchlivebank">
-                    <div class="accrodine_Card fLeft">
+                    <div class="accrodine_Card fLeft liveAuction_{{bankerDetails.auctionId}}">
                         <div class="data_wrapper">
                             <div class="col15">
                                 <div class="col100 fLeft poR pLeft40">
@@ -108,7 +108,7 @@
                             <div class="col15 dflex">
                                 <span class="txtVal">
                                     <span class="icn_bid"></span>
-                                <span class="fmralewayB clrGreen"><timer end-time="convertToMilliseconds(bankerDetails.auctionEndDateAndTime)" interval="1000">{{hhours}}:{{mminutes}}:{{seconds}}</timer></span>
+                                <span class="fmralewayB clrGreen"><timer end-time="convertToMilliseconds(bankerDetails.auctionEndDateAndTime)" finish-callback="particularAuctionfinished(bankerDetails.auctionId)" interval="1000">{{hhours}}:{{mminutes}}:{{seconds}}</timer></span>
                                 </span>
                             </div>
                         </div>
