@@ -71,6 +71,7 @@ app.controller("auctionControl", function(
         var response = JSON.parse(resp.data.body);
         console.log(response);
       });
+      $('.button').addClass('addPointer loaderNxt');
     }
   };
 });
