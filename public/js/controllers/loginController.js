@@ -6,7 +6,7 @@ app.controller("loginControl", function(
   dataFactory
 ) {
   $scope.userDetail = {};
-  $scope.validate = function() {
+  $scope.validate = function(e) {
     $('.dummy_btncnt').addClass('loaderNxt');
       $('.button').addClass('addPointer');
     var formObj = {
@@ -33,6 +33,9 @@ app.controller("loginControl", function(
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
                 window.location.href = "jewelview";
+                if(e.keyCode == 13){
+                  window.location.href = "jewelview";
+                }
                 common.msg({type:'success',text: 'login successfully'});
             }
            
@@ -69,3 +72,4 @@ app.controller("loginControl", function(
     }
   });
 });
+
