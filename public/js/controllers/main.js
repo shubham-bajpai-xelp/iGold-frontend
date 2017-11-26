@@ -112,10 +112,12 @@ app.factory("postAuctionForm", function() {
         common.msg({ type: "error", text: "Please provide bank name" });
         checkFormValidity = false;
         return checkFormValidity;
+        $('.button').removeClass('addPointer loaderNxt');
       }
       if (checkFormValidity == true && !obj.bankBranch) {
         common.msg({ type: "error", text: "Please provide bank branch name" });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankAddress) {
@@ -123,17 +125,20 @@ app.factory("postAuctionForm", function() {
           type: "error",
           text: "Please provide bank branch address"
         });
+        $('.button').removeClass('addPointer loaderNxt');
         checkFormValidity = false;
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankCity) {
         common.msg({ type: "error", text: "Please provide bank branch city" });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankState) {
         common.msg({ type: "error", text: "Please provide bank branch state" });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankPincode) {
@@ -142,16 +147,19 @@ app.factory("postAuctionForm", function() {
           text: "Please provide bank branch pincode"
         });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.auctionDate) {
         common.msg({ type: "error", text: "Please provide bank auction date" });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.auctionTime) {
         common.msg({ type: "error", text: "Please provide bank auction time" });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.accountNumber) {
@@ -160,11 +168,13 @@ app.factory("postAuctionForm", function() {
           text: "Please provide bank account number"
         });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.auctionEMDAmount) {
         common.msg({ type: "error", text: "Please provide bank EMD amount" });
         checkFormValidity = false;
+        $('.button').removeClass('addPointer loaderNxt');
         return checkFormValidity;
       }
       if (checkFormValidity == true && !obj.bankEMDLastDate) {
@@ -172,6 +182,7 @@ app.factory("postAuctionForm", function() {
           type: "error",
           text: "Please provide bank EMD last date"
         });
+        $('.button').removeClass('addPointer loaderNxt');
         checkFormValidity = false;
         return checkFormValidity;
       }

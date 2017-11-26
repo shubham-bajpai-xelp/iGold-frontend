@@ -74,16 +74,16 @@
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 box_shadow dflex dropDown">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft drpdwn" ng-model="auctionData.bankCity" ng-maxlength="50">
+                                        <input type="text" class="userNametxt fLeft drpdwn mk" ng-model="auctionData.bankCity" ng-maxlength="50">
                                         <label class="label transition300 fmralewayB">enter City*</label>
                                     </div>
                                     <div class="dropdown_arrow transition300"></div>
                                     <ul class="box_shadow fmralewayB">
-                                        <li class="enterVal fLeft transition300">Kolkata</li>
-                                        <li class="enterVal fLeft transition300">Bangalore</li>
-                                        <li class="enterVal fLeft transition300">Chennai</li>
-                                        <li class="enterVal fLeft transition300">Mumbai</li>
-                                        <li class="enterVal fLeft transition300">Delhi</li>
+                                        <li class="enterVal fLeft transition300" show-notifications>Kolkata</li>
+                                        <li class="enterVal fLeft transition300" show-notifications>Bangalore</li>
+                                        <li class="enterVal fLeft transition300" show-notifications>Chennai</li>
+                                        <li class="enterVal fLeft transition300" show-notifications>Mumbai</li>
+                                        <li class="enterVal fLeft transition300" show-notifications>Delhi</li>
                                     </ul>
                                 </div>
                             </div>
@@ -95,11 +95,11 @@
                                     </div>
                                     <div class="dropdown_arrow transition300"></div>
                                     <ul class="box_shadow fmralewayB">
-                                        <li class="enterVal fLeft transition300">West Bengal</li>
-                                        <li class="enterVal fLeft transition300">karnataka</li>
-                                        <li class="enterVal fLeft transition300">Maharasthra</li>
-                                        <li class="enterVal fLeft transition300">goa</li>
-                                        <li class="enterVal fLeft transition300">Assam</li>
+                                        <li class="enterVal fLeft transition300" show-state>West Bengal</li>
+                                        <li class="enterVal fLeft transition300" show-state>karnataka</li>
+                                        <li class="enterVal fLeft transition300" show-state>Maharasthra</li>
+                                        <li class="enterVal fLeft transition300" show-state>goa</li>
+                                        <li class="enterVal fLeft transition300" show-state>Assam</li>
                                     </ul>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                             <div class="col33_33  p10 fLeft">
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft datepicker" ng-model="auctionData.auctionDate" id="lb">
+                                        <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionDate" id="lb" datepicker>
                                         <label class="label transition300 fmralewayB">enter Auction date</label>
                                     </div>
                                     <div class="icnDate"></div>
@@ -132,7 +132,7 @@
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft timepicker" ng-model="auctionData.auctionTime" id="vm">
+                                        <input type="text" class="userNametxt fLeft" ng-model="auctionData.auctionTime" id="vm" timepicker>
                                         <label class="label transition300 fmralewayB">enter Auction time*</label>
                                     </div>
                                     <div class="icnTime"></div>
@@ -154,7 +154,7 @@
                             <div class="col33_33 p10 fLeft">
                                 <div class="col100 box_shadow dflex">
                                     <div class="col100  poR">
-                                        <input type="text" class="userNametxt fLeft datepicker" ng-model="auctionData.bankEMDLastDate" id="tm">
+                                        <input type="text" class="userNametxt fLeft datepicker" ng-model="auctionData.bankEMDLastDate" id="tm" datepicker>
                                         <label class="label transition300 fmralewayB">enter emd last date*</label>
                                     </div>
                                     <div class="icnDate"></div>
@@ -187,13 +187,12 @@
             <div class="col100 p15_3 fLeft">
                 <center>
                     <div class="button_back dinline fmralewayB">back</div>
-                    <div class="button dinline fmralewayB" ng-click="postAuctionDetails()">next</div>
+                    <div class="button dinline fmralewayB poR" ng-click="postAuctionDetails()">next</div>
                 </center>
             </div>
         </div>
     </div>
     <script src="scripts/dropdown.js" type="text/javascript"></script>
-    <script src="scripts/creatAuction.js" type="text/javascript"></script>
 </body>
 
 </html>

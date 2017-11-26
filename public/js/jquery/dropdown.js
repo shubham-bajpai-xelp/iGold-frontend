@@ -15,6 +15,10 @@
                 $(this).parent('.col100').next('.dropdown_arrow').toggleClass('rot180');
                 $(this).parent('.col100').next('.dropdown_arrow').next('ul').slideToggle('swing');
             });
+            $(document).on('click','.dropdown_arrow',function(){
+                $(this).next('ul').slideToggle('swing');
+                $(this).toggleClass('rot180');
+            });
            $(document).click(function (event) {
        if (!$(event.target).closest('.dropDown').length)
        {
@@ -25,7 +29,6 @@
            }
        }
    });
-   
    $(document).on('click','.enterVal',function(){
        $(this).parent('ul').prev('.dropdown_arrow').prev('.col100').find('label').addClass('labelActive');
        $(this).parent('ul').slideUp('swing');
