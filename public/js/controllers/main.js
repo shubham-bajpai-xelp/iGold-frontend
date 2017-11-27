@@ -1,4 +1,4 @@
-var app = angular.module("serviceFactory", ["ngCookies", "ngRoute","timer"]);
+var app = angular.module("serviceFactory", ["ui.router","timer","ngCookies"]);
 app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
@@ -30,41 +30,49 @@ app.factory("dataFactory", [
     return dataFactory;
   }
 ]);
-app.config(function($routeProvider) {
-  $routeProvider
-     .when("/", {
-       templateUrl: "views/signin.html",
-       title: 'Login / Signup'
-     })
-	 .when("/jewel_upcoming", {
-       templateUrl: "views/jewl_auction.html",
-       title: 'Jeweller Upcoming'
-     })
-	 .when("/jewl_dashboard", {
-       templateUrl: "views/jewl_auction.html",
-       title: 'Jeweller Upcoming'
-     })
-     .when("/jewl_liveauction", {
-       templateUrl: "views/jewl_liveauction.html",
-       title: 'Jeweller Live Auctions'
-     })
-     .when("/jewl_closedauction", {
-       templateUrl: "views/jewl_closedauction.html",
-       title: 'Jeweller Closed Auctions'
-     })
-   .when("/bank_dashboard", {
+
+app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+  $locationProvider.html5Mode(true);
+  // $urlRouterProvider
+          // .when('/banker-dashboard', 'banker/banker-dashboard/')
+          // .when('/jeweller-dashboard', 'jeweller/jeweller-upcoming-auction/')
+          // .when('/jeweller/jeweller-upcoming-auction', 'login')
+  $stateProvider
+    .state("banker-dashboard", {
+      url: '/banker-dashboard',
       templateUrl: "views/bank_auction.html",
-	  title: 'Bank Dashboard'
+	    title: 'Bank Dashboard'
     })
-	.when("/bank_auction", {
+	.state("banker-dashboard.banker-upcoming-auctions", {
+      url: '/banker-upcoming-auctions',
       templateUrl: "views/bank_auction.html",
 	  title: 'Bank Upcoming Auction'
     })
-    .when("/bank_liveAuction", {
+    .state("banker-dashboard.banker-live-auctions", {
+      url: '/banker-live-auctions',
       templateUrl: "views/bank_liveauction.html"
     })
-    .when("/bank_closedauction", {
+    .state("banker-dashboard.banker-closed-auction", {
+      url: '/banker-closed-auction',
       templateUrl: "views/bank_closedauction.html"
+    })
+    .state("jeweller-dashboard", {
+          url: "/jeweller-dashboard",
+          templateUrl: "views/jewl_auction.html",
+    })
+    .state("jeweller-dashboard.jeweller-live-auction", {
+      url: '/jeweller-live-auction',
+      templateUrl: "views/jewl_liveauction.html",
+      title: 'Jeweller Live Auctions'
+    })
+    .state("jeweller-dashboard.jeweller-closed-auction", {
+      url: '/jeweller-closed-auction',
+      templateUrl: "views/jewl_closedauction.html",
+      title: 'Jeweller Closed Auctions'
+    })
+    .state("jeweller-dashboard.jeweller-upcoming-auction", {
+      url: "/jeweller-upcoming-auction",
+      templateUrl: "views/jewl_auction.html",
     });
 });
 app.factory("basicFunctionalities", function() {

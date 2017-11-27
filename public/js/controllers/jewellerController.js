@@ -1,11 +1,10 @@
 app.controller("jewellerControl", function(
   $scope,
   $http,
-  $route,
   $cookies,
   $filter,
   $location,
-  // $cookieStore,
+  $cookieStore,
   basicFunctionalities,
   postAuctionForm,
   dataFactory,
@@ -34,40 +33,53 @@ app.controller("jewellerControl", function(
       }
     });
   };
-  $scope.fetchUpCommingAuctions = function(auctionType) {
+  $scope.fetchUpCommingAuctions = function(auctionType,i) {
     var dt = {};
     dt.auctionType = auctionType;
+    switch(auctionType){
+      case 'closed':
+        $scope.selectedTab = 'clsd';
+      break;
+      case 'upcoming':
+        $scope.selectedTab = 'auc';
+      break;
+      case 'live':
+        $scope.selectedTab = 'live';
+      break;
+      default:
+      $scope.selectedTab = 'auc';
+      break;
+    }
     dt.jewellerId = $cookies.get("visitorId");
     var url = "http://localhost:3000/jeweller/getauction";
     dataFactory.putData(url, dt).then(function(result) {
       var response = JSON.parse(result.data.body);
       if(result.data.status == 201) {
           $scope.auctionLister = response;
-          console.log($scope.auctionLister)
+          console.log($scope.auctionLister);
       } else {
         alert("Something Went Wrong");
       }
     });
+    if($(i).hasClass('clsd')){
+     $(i).addClass('icn_closedauctionSelect');
+     $('.live').removeClass('icn_liveauctionSelect');
+     $('.auc').removeClass('icn_auctionSelect');
+    }
+    else if ($(i).hasClass('live')){
+      $(i).addClass('icn_liveauctionSelect');
+      $('.clsd').removeClass('icn_closedauctionSelect');
+      $('.auc').removeClass('icn_auctionSelect');
+    }
+    else if ($(i).hasClass('auc')){
+      $(i).addClass('icn_auctionSelect');
+      $('.clsd').removeClass('icn_closedauctionSelect');
+      $('.live').removeClass('icn_liveauctionSelect');
+    }
   };
   $scope.formatInrAmount = function(ammount){
     return basicFunctionalities.validateINRformat(ammount);
   };
-  switch($location.url()){
-    case '/jewl_closedauction':
-      $scope.fetchUpCommingAuctions('closed');
-    break;
-    case '/#%2F!':
-    case '/jewl_auction':
-      $scope.fetchUpCommingAuctions('upcoming');
-    break;
-    case '/jewl_liveauction':
-      $scope.fetchUpCommingAuctions('live');
-    break;
-    default:
-    $scope.fetchUpCommingAuctions('upcoming');
-    break;
-  }
-  
   $("input").bind("focus", function() {
     $(this)
       .next("label")
