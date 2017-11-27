@@ -26,16 +26,20 @@ app.controller("loginControl", function(
             if (response.userType == 1 && response.userId) {
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
-                window.location.href = "bankview";
+                window.location.href = "bankview/bank_dashboard";
                 common.msg({type:'success',text: 'login successfully'});
             }
             else if (response.userType == 2 && response.userId) {
                 $cookieStore.put('visitorId',response.userId);
                 $cookieStore.put('visitorToken',response.token);
+<<<<<<< Updated upstream
                 window.location.href = "jewelview";
                 if(e.keyCode == 13){
                   window.location.href = "jewelview";
                 }
+=======
+                window.location.href = "jewelview/jewl_dashboard";
+>>>>>>> Stashed changes
                 common.msg({type:'success',text: 'login successfully'});
             }
            

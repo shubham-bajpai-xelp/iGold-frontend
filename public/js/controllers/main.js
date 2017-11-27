@@ -32,20 +32,33 @@ app.factory("dataFactory", [
 ]);
 app.config(function($routeProvider) {
   $routeProvider
-    // .when("/", {
-    //   templateUrl: "views/jewl_auction.html",
-    //   title: 'Jeweller Upcoming'
-    // })
-    // .when("/jewl_liveauction", {
-    //   templateUrl: "views/jewl_liveauction.html",
-    //   title: 'Jeweller Live Auctions'
-    // })
-    // .when("/jewl_closedauction", {
-    //   templateUrl: "views/jewl_closedauction.html",
-    //   title: 'Jeweller Closed Auctions'
-    // })
-   .when("/", {
-      templateUrl: "views/bank_auction.html"
+     .when("/", {
+       templateUrl: "views/signin.html",
+       title: 'Login / Signup'
+     })
+	 .when("/jewel_upcoming", {
+       templateUrl: "views/jewl_auction.html",
+       title: 'Jeweller Upcoming'
+     })
+	 .when("/jewl_dashboard", {
+       templateUrl: "views/jewl_auction.html",
+       title: 'Jeweller Upcoming'
+     })
+     .when("/jewl_liveauction", {
+       templateUrl: "views/jewl_liveauction.html",
+       title: 'Jeweller Live Auctions'
+     })
+     .when("/jewl_closedauction", {
+       templateUrl: "views/jewl_closedauction.html",
+       title: 'Jeweller Closed Auctions'
+     })
+   .when("/bank_dashboard", {
+      templateUrl: "views/bank_auction.html",
+	  title: 'Bank Dashboard'
+    })
+	.when("/bank_auction", {
+      templateUrl: "views/bank_auction.html",
+	  title: 'Bank Upcoming Auction'
     })
     .when("/bank_liveAuction", {
       templateUrl: "views/bank_liveauction.html"
@@ -55,8 +68,8 @@ app.config(function($routeProvider) {
     });
 });
 app.factory("basicFunctionalities", function() {
-  return {
-    validateINRformat: function(nStr) {
+	var basicFunctionalities = {};
+    basicFunctionalities.validateINRformat= function(nStr) {
       nStr += "";
       x = nStr.split(".");
       x1 = x[0];
@@ -79,8 +92,20 @@ app.factory("basicFunctionalities", function() {
         }
       }
       return x1 + x2;
-    }
-  };
+    };
+	basicFunctionalities.validJewellerBiddingValue= function(biddingAmount){
+		var checkTrue = true;
+			biddingAmount = parseFloat(biddingAmount);
+		if(checkTrue == true && (biddingAmount < 100 || biddingAmount == "" || biddingAmount == "0" )){
+			check = false;
+			common.msg({ type: "error", text: 'Bidding amount can not be less than 100 rupees'});
+			return false;
+		}
+		if(checkTrue == true){
+			return true;
+		}
+	}
+	return basicFunctionalities;
 });
 app.factory("userSignIn", function() {
   return {

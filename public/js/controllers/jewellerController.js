@@ -3,6 +3,7 @@ app.controller("jewellerControl", function(
   $http,
   $route,
   $cookies,
+  $filter,
   $location,
   // $cookieStore,
   basicFunctionalities,
@@ -11,6 +12,8 @@ app.controller("jewellerControl", function(
   $q
 ) {
   $scope.auctionLister = [];
+  $scope.biddingAmount;
+  $scope.getBiddingAuctionData = [];
   $scope.signedInJewellerId = "";
   $scope.appliedAuctionId = $cookies.get('visitorId');
   $scope.auctionClosed = "closed";
@@ -112,7 +115,30 @@ app.controller("jewellerControl", function(
     { translateY: "100vh", opacity: 0 },
     { delay: 0, duration: 0, display: "none" }
   );
-  $scope.openBidding_popup = function() {
+  $scope.jewellerBidsOnPacket= function(packetId,auctionId,amount){
+	  if(basicFunctionalities.validJewellerBiddingValue(amount) == true){
+		var dt = {};
+		    dt.packetId = packetId;
+			dt.jewellerId = $scope.signedInJewellerId;
+			dt.amount = $scope.biddingAmount;
+			dt.auctionId = auctionId;
+		var url = APIDOMAIN+'jeweller/addbid';
+		dataFactory.getPostData(url,dt)
+			.then(function(response){
+				common.msg({ type: "success", text: 'Bidding amount is accepted.'});
+			})
+	  }
+  }
+  $scope.openBidding_popup = function(packetId,biddinAuctionDetails,packetCount) {
+	$scope.getAuctionData = biddinAuctionDetails;
+	$scope.getBiddingPacketId = packetId;
+	$scope.getBiddingPacketCount = packetCount;
+	$scope.getBiddingPacketAuctionId = biddinAuctionDetails.auctionId;
+	var bidFound = $filter('filter')($scope.getAuctionData.packet, {packetId: $scope.getBiddingPacketId}, true);
+	if (bidFound.length) {
+		$scope.getBiddingAuctionData = bidFound[0];
+		bidFound = [];
+	}
     $("#bpop").css("display", "block");
     $("#bpop").velocity(
       { opacity: [1, 0] },

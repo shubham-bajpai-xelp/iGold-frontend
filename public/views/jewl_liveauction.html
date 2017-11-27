@@ -68,25 +68,28 @@
                 <div class="col25 fLeft">
                     <div class="lblhedaer_Bidpop fLeft fmralewayB">bank details</div>
                     <div class="col100 fLeft">
-                        <span class="txtVal1 fLeft fmralewayR">Axis Bank</span>
-                        <span class="txtVal2 fLeft fmralewayB">Koromangala Branch</span>
+                        <span class="txtVal1 fLeft fmralewayR">{{getBiddingAuctionData.bankName}}</span>
+                        <span class="txtVal2 fLeft fmralewayB">{{getBiddingAuctionData.branchName}} Branch</span>
                     </div>
                 </div>
                 <div class="col25 fLeft">
                     <div class="lblhedaer_Bidpop fLeft fmralewayB">Packet no / net weight</div>
                     <div class="col100 fLeft">
-                        <span class="txtVal1 fLeft fmralewayR">Packet 1</span>
-                        <span class="txtVal2 fLeft fmralewayB clrGreen">800 grm</span>
+                        <span class="txtVal1 fLeft fmralewayR">Packet{{(getBiddingPacketCount+1)}}</span>
+                        <span class="txtVal2 fLeft fmralewayB clrGreen">{{getBiddingAuctionData.netWeight}} grm</span>
                     </div>
                 </div>
                 <div class="col25 fLeft">
                     <div class="lblhedaer_Bidpop fLeft fmralewayB">highest bid / my last bid</div>
                     <div class="col100 fLeft">
-                        <span class="txtVal1 fLeft fmralewayB">
-                            <span class="spnRpyorng">1,50,000</span>
+                        <span class="txtVal1 fLeft fmralewayB" ng-if="getBiddingAuctionData.bidding.length > 0">
+                            <span class="spnRpyorng">{{formatInrAmount(biddingDet.amount)}}</span>
+                        </span>
+						<span class="txtVal1 fLeft fmralewayB"  ng-if="getBiddingAuctionData.bidding.length == 0">
+                            <span class="spnRpyorng">0</span>
                         </span>
                         <span class="txtVal2 fLeft fmralewayB">
-                            <span class="spnRpy fmralewayB">1,00,000</span>
+                            <span class="spnRpy fmralewayB">{{formatInrAmount(100000)}}</span>
                         </span>
                     </div>
                 </div>
@@ -94,7 +97,7 @@
                     <div class="lblhedaer_Bidpop fLeft fmralewayB">base price</div>
                     <div class="col100 fLeft">
                         <span class="txtVal1 fLeft fmralewayB">
-                            <span class="spnRpyorng">1,50,000</span>
+                            <span class="spnRpyorng">{{formatInrAmount(getBiddingAuctionData.baseAmount)}}</span>
                         </span>
                     </div>
                 </div>
@@ -102,49 +105,79 @@
             <div class="col100 fLeft p15_0">
                 <div class="lblhedaer_Bidpop fLeft fmralewayB">packet details</div>
                 <div class="col100 fLeft">
-                    <span class="txtVal1 fLeft fmralewayR font12">2 Earrings , 5Rings ,10 Necklaces ,10 Bangales</span>
+                    <span class="txtVal1 fLeft fmralewayR font12">{{getBiddingAuctionData.remarks}}</span>
                 </div>
             </div>
             <div class="col100 fLeft">
                 <div class="lblhedaer_Bidpop fLeft fmralewayB">carat details</div>
                 <div class="col100 fLeft pTop5">
-                    <div class="caratBox fLeft">
+                    <div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_18 > 0">
                         <span class="dinline col100">
                             <span class="txtVal1 fLeft txtCenter">
                                 <span>18c</span>
                         </span>
                         <span class="txtVal2 fmralewayB fLeft txtCenter">
-                                <span>16 gm</span>
+                                <span>{{getBiddingAuctionData.carat_18}} gm</span>
                         </span>
                         </span>
                     </div>
-                    <div class="caratBox fLeft">
+                    <div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_19 > 0">
                         <span class="dinline col100">
                             <span class="txtVal1 fLeft txtCenter">
-                                <span>18c</span>
+                                <span>19c</span>
                         </span>
                         <span class="txtVal2 fmralewayB fLeft txtCenter">
-                                <span>16 gm</span>
+                                <span>{{getBiddingAuctionData.carat_19}} gm</span>
                         </span>
                         </span>
                     </div>
-                    <div class="caratBox fLeft">
+                    <div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_20 > 0">
                         <span class="dinline col100">
                             <span class="txtVal1 fLeft txtCenter">
-                                <span>18c</span>
+                                <span>20c</span>
                         </span>
                         <span class="txtVal2 fmralewayB fLeft txtCenter">
-                                <span>16 gm</span>
+                                <span>{{getBiddingAuctionData.carat_20}} gm</span>
                         </span>
                         </span>
                     </div>
-                    <div class="caratBox fLeft">
+                    <div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_21 > 0">
                         <span class="dinline col100">
                             <span class="txtVal1 fLeft txtCenter">
-                                <span>18c</span>
+                                <span>21c</span>
                         </span>
                         <span class="txtVal2 fmralewayB fLeft txtCenter">
-                                <span>16 gm</span>
+                                <span>{{getBiddingAuctionData.carat_21}} gm</span>
+                        </span>
+                        </span>
+                    </div>
+					<div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_22 > 0">
+                        <span class="dinline col100">
+                            <span class="txtVal1 fLeft txtCenter">
+                                <span>22c</span>
+                        </span>
+                        <span class="txtVal2 fmralewayB fLeft txtCenter">
+                                <span>{{getBiddingAuctionData.carat_22}} gm</span>
+                        </span>
+                        </span>
+                    </div>
+					<div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_23 > 0">
+                        <span class="dinline col100">
+                            <span class="txtVal1 fLeft txtCenter">
+                                <span>23c</span>
+                        </span>
+                        <span class="txtVal2 fmralewayB fLeft txtCenter">
+                                <span>{{getBiddingAuctionData.carat_23}} gm</span>
+                        </span>
+                        </span>
+                    </div>
+					<div class="caratBox fLeft" ng-if="getBiddingAuctionData.carat_24 > 0">
+                        <span class="dinline col100">
+                            <span class="txtVal1 fLeft txtCenter">
+                                <span>24c</span>
+                        </span>
+                        <span class="txtVal2 fmralewayB fLeft txtCenter">
+                                <span>{{getBiddingAuctionData.carat_24}} gm</span>
                         </span>
                         </span>
                     </div>
@@ -159,8 +192,8 @@
             <div class="col100 fLeft pTop15">
                 <div class="lblhedaer_Bidpop fLeft fmralewayB">my bid</div>
                 <div class="col100 fLeft pTop5">
-                    <input type="text" class="txtBox_enterbid fLeft" placeholder="Enter Your Bid">
-                    <div class="button fRight fmralewayB">submit</div>
+                    <input type="text" class="txtBox_enterbid fLeft" placeholder="Enter Your Bid" ng-model="biddingAmount" onkeypress="return common.isNumberKey(event);" maxlength=12>
+                    <div class="button fRight fmralewayB" ng-click="jewellerBidsOnPacket(getBiddingPacketId,getBiddingPacketAuctionId,biddingAmount)">submit</div>
                 </div>
             </div>
         </div>
@@ -250,7 +283,7 @@
                                 <div class="col7 icnMore dflex "></div>
                             </div>
                             <ul class="dataList fLeft ">
-                                <li class="dflex " ng-repeat="packetDetail in jewellerDetails.packet ">
+                                <li class="dflex " ng-repeat="packetDetail in jewellerDetails.packet track by $index">
                                     <div class="col10 dflex ">
                                         <span class="txtVal fmralewayB ">{{packetDetail.loanAccountNumber}}</span>
                                     </div>
@@ -318,7 +351,7 @@
                                         </span>
                                     </div>
                                     <div class="col7 itemCenter ">
-                                        <div class="statusBid fmralewayB transition300 " ng-click="openBidding_popup() ">bid now</div>
+                                        <div class="statusBid fmralewayB transition300 " ng-click="openBidding_popup(packetDetail.packetId,jewellerDetails,$index)">bid now</div>
                                     </div>
                                 </li>
                             </ul>
