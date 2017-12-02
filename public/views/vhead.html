@@ -9,13 +9,13 @@
             </div>
         </div>
         <div class="icn_setting fRight"></div>
-        <a ui-sref=".banker-upcoming-auctions">
+        <a ui-sref="banker-upcoming-auctions">
             <div class="icn_txtcnt fRight icn_bidauction" ng-class="{'icn_auctionSelect':selectedTab === 'auc'}" ng-model="auctionUpcoming" ng-click="fetchbankAuctions(auctionUpcoming)">auction</div>
         </a>
-        <a ui-sref=".banker-closed-auction">
+        <a ui-sref="banker-closed-auction">
             <div class="icn_txtcnt fRight icn_closedauction" ng-class="{'icn_closedauctionSelect':selectedTab === 'clsd'}" ng-model="auctionClosed" ng-click="fetchbankAuctions(auctionClosed)">closed auction</div>
         </a>
-        <a ui-sref=".banker-live-auctions">
+        <a ui-sref="banker-live-auctions">
             <div class="icn_txtcnt fRight icn_liveauction" ng-class="{'icn_liveauctionSelect':selectedTab === 'live'}" ng-model="auctionLive" ng-click="fetchbankAuctions(auctionLive)">live auction</div>
         </a>
         <div class="icn_txtcnt fRight icn_dashboard">dashboard</div>

@@ -115,14 +115,20 @@
                             </div>
                             <div class="col10 dflex">
                                 <span class="itemCenter col100 chngstatus">
-                                    <span class="statusSaved fmralewayB">saved</span>
+                                    <span class="fmralewayB" ng-class="(bankerDetails.status == 1 ? 'statusPosted':'statusSaved')">{{(bankerDetails.status == 1 ? 'Posted':'Saved')}}</span>
                                 </span>
                             </div>
                             <div class="col10">
                                 <center>
-                                    <div class="icnTrash showTooltip" ng-click="openDelete_popup()"><div class="toolTipcnt transition300">delete</div></div>
-                                    <div class="icnEdit showTooltip" ng-click="auctionEditMode(bankerDetails.auctionId)"> <div class="toolTipcnt transition300">edit</div></div>
-                                    <div class="icnPost showTooltip" ng-click="updateAuctionStatus($event.target,bankerDetails.auctionId)"> <div class="toolTipcnt transition300">post</div></div>
+                                    <div class="icnTrash showTooltip" ng-click="openDelete_popup()">
+                                        <div class="toolTipcnt transition300">delete</div>
+                                    </div>
+                                    <div class="icnEdit showTooltip" ng-click="auctionEditMode(bankerDetails.auctionId)">
+                                        <div class="toolTipcnt transition300">edit</div>
+                                    </div>
+                                    <div class="icnPost showTooltip" ng-click="updateAuctionStatus($event.target,bankerDetails.auctionId)">
+                                        <div class="toolTipcnt transition300">post</div>
+                                    </div>
                                 </center>
                             </div>
                         </div>

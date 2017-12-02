@@ -37,20 +37,20 @@ app.controller("auctionControl", function (
       bankEMDLastDate: $scope.auctionData.bankEMDLastDate,
       auctionPacketFile: $scope.auctionData.auctionPacketFile
     };
-    console.log(formObj);
     $scope.checkValid = postAuctionForm.validateAuctionForm(formObj);
     if ($scope.checkValid == true) {
       var url = "http://localhost:3000/banker/postAuction";
       var dt = {};
+      var bankerId = $cookies.get("visitorId");
+          bankerId = bankerId;
       dt.auctionDate = $scope.auctionData.auctionDate;
       dt.auctionTime = $scope.auctionData.auctionTime;
       dt.auctionEMDAmount = $scope.auctionData.auctionEMDAmount;
       dt.auctionEMDLastDate = $scope.auctionData.bankEMDLastDate;
       dt.bankName = $scope.auctionData.bankName;
       dt.bankBranch = $scope.auctionData.bankBranch;
-      var bankId = $cookies.get('visitorId');
-      dt.bankId = bankId.split('"')[1];
       dt.bankClass = "axis_bank";
+      dt.bankId = bankerId;
       dt.address = $scope.auctionData.bankAddress;
       dt.city = $scope.auctionData.bankCity;
       dt.auctionDate = $scope.auctionData.auctionDate;
@@ -58,6 +58,7 @@ app.controller("auctionControl", function (
       dt.auctionEMDAmount = $scope.auctionData.auctionEMDAmount;
       dt.EMDAccountNumber = $scope.auctionData.accountNumber;
       dt.description = "";
+      dt.status = 5;
       dt.EMDAccountNo = $scope.auctionData.auctionNumber;
       dt.pinCode = $scope.auctionData.bankPincode;
       dt.state = $scope.auctionData.bankState;
@@ -68,6 +69,7 @@ app.controller("auctionControl", function (
         headers: { "Content-Type": undefined },
         transformRequest: angular.identity
       };
+      console.log(fd);
       dataFactory.postFormData(url, fd, config).then(function (resp) {
         var response = JSON.parse(resp.data.body);
         console.log(response);

@@ -13,8 +13,16 @@ app.controller("jewellerControl", function(
   $scope.auctionLister = [];
   $scope.biddingAmount;
   $scope.getBiddingAuctionData = [];
-  $scope.signedInJewellerId = "";
-  $scope.appliedAuctionId = $cookies.get('visitorId');
+  $scope.signedInJewellerId = $cookies.get('visitorId');
+  jewellers.on('connection', function (data) {
+    jewellers.emit($scope.signedInJewellerId,function(dataVal){
+      alert(dataVal);
+    });
+  });
+  jewellers.on('disconnect', function (data) {
+    console.log(data);
+  });
+
   $scope.auctionClosed = "closed";
   $scope.auctionUpcoming = "upcoming";
   $scope.auctionLive = "live";
@@ -62,16 +70,17 @@ app.controller("jewellerControl", function(
       }
     });
     if($(i).hasClass('clsd')){
-     $(i).addClass('icn_closedauctionSelect');
-     $('.live').removeClass('icn_liveauctionSelect');
-     $('.auc').removeClass('icn_auctionSelect');
+        return false;
+        $(i).addClass('icn_closedauctionSelect');
+        $('.live').removeClass('icn_liveauctionSelect');
+        $('.auc').removeClass('icn_auctionSelect');
     }
-    else if ($(i).hasClass('live')){
+    if ($(i).hasClass('live')){
       $(i).addClass('icn_liveauctionSelect');
       $('.clsd').removeClass('icn_closedauctionSelect');
       $('.auc').removeClass('icn_auctionSelect');
     }
-    else if ($(i).hasClass('auc')){
+    if ($(i).hasClass('auc')){
       $(i).addClass('icn_auctionSelect');
       $('.clsd').removeClass('icn_closedauctionSelect');
       $('.live').removeClass('icn_liveauctionSelect');
@@ -129,11 +138,11 @@ app.controller("jewellerControl", function(
   );
   $scope.jewellerBidsOnPacket= function(packetId,auctionId,amount){
 	  if(basicFunctionalities.validJewellerBiddingValue(amount) == true){
-		var dt = {};
-		    dt.packetId = packetId;
+    var dt = {};
+        dt.packetId = packetId;
 			dt.jewellerId = $scope.signedInJewellerId;
-			dt.amount = $scope.biddingAmount;
-			dt.auctionId = auctionId;
+			dt.amount = amount;
+      dt.auctionId = auctionId;
 		var url = APIDOMAIN+'jeweller/addbid';
 		dataFactory.getPostData(url,dt)
 			.then(function(response){
@@ -144,7 +153,7 @@ app.controller("jewellerControl", function(
   $scope.openBidding_popup = function(packetId,biddinAuctionDetails,packetCount) {
 	$scope.getAuctionData = biddinAuctionDetails;
 	$scope.getBiddingPacketId = packetId;
-	$scope.getBiddingPacketCount = packetCount;
+  $scope.getBiddingPacketCount = packetCount;
 	$scope.getBiddingPacketAuctionId = biddinAuctionDetails.auctionId;
 	var bidFound = $filter('filter')($scope.getAuctionData.packet, {packetId: $scope.getBiddingPacketId}, true);
 	if (bidFound.length) {

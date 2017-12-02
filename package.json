@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/shubhambajpayee/iGold-frontend#readme",
   "dependencies": {
-    "@uirouter/angularjs": "^1.0.11",
+    "@uirouter/angularjs": "^1.0.7",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "noty": "^3.1.3"

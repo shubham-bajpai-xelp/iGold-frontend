@@ -43,16 +43,16 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
       templateUrl: "views/bank_auction.html",
 	    title: 'Bank Dashboard'
     })
-	.state("banker-dashboard.banker-upcoming-auctions", {
+	.state("banker-upcoming-auctions", {
       url: '/banker-upcoming-auctions',
       templateUrl: "views/bank_auction.html",
 	  title: 'Bank Upcoming Auction'
     })
-    .state("banker-dashboard.banker-live-auctions", {
+    .state("banker-live-auctions", {
       url: '/banker-live-auctions',
       templateUrl: "views/bank_liveauction.html"
     })
-    .state("banker-dashboard.banker-closed-auction", {
+    .state("banker-closed-auction", {
       url: '/banker-closed-auction',
       templateUrl: "views/bank_closedauction.html"
     })
@@ -60,17 +60,17 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
           url: "/jeweller-dashboard",
           templateUrl: "views/jewl_auction.html",
     })
-    .state("jeweller-dashboard.jeweller-live-auction", {
+    .state("jeweller-live-auction", {
       url: '/jeweller-live-auction',
       templateUrl: "views/jewl_liveauction.html",
       title: 'Jeweller Live Auctions'
     })
-    .state("jeweller-dashboard.jeweller-closed-auction", {
-      url: '/jeweller-closed-auction',
+    .state("jeweller-closed-auctions", {
+      url: '/jeweller-closed-auctions',
       templateUrl: "views/jewl_closedauction.html",
       title: 'Jeweller Closed Auctions'
     })
-    .state("jeweller-dashboard.jeweller-upcoming-auction", {
+    .state("jeweller-upcoming-auction", {
       url: "/jeweller-upcoming-auction",
       templateUrl: "views/jewl_auction.html",
     });
