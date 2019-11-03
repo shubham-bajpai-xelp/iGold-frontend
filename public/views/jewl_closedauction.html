@@ -1,5 +1,4 @@
 <div class="container fLeft fmralewayR" ng-init="selectedTab = 'clsd'">
-    <div ng-include="'views/vheadjewl.html'"></div>
     <div class="searchSection fmralewayB" id="srch_closejwl">
         <div class="wrapperMax">
             <div class="general_cont fLeft">
@@ -13,6 +12,7 @@
             </div>
         </div>
     </div>
+    <div ng-include="'views/vheadjewl.html'"></div>
     <div class="wrapper fLeft row">
         <div class="wrapperMax">
             <div class="norecords fLeft fmralewayR" ng-show="(auctionLister|filter:searchclosejewel).length == 0">

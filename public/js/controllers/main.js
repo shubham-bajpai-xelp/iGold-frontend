@@ -1,4 +1,4 @@
-var app = angular.module("serviceFactory", ["ngCookies", "ngRoute","timer"]);
+var app = angular.module("serviceFactory", ["ui.router","timer","ngCookies"]);
 app.factory("dataFactory", [
   "$http",
   function($http, dt, $q) {
@@ -30,33 +30,54 @@ app.factory("dataFactory", [
     return dataFactory;
   }
 ]);
-app.config(function($routeProvider) {
-  $routeProvider
-    // .when("/", {
-    //   templateUrl: "views/jewl_auction.html",
-    //   title: 'Jeweller Upcoming'
-    // })
-    // .when("/jewl_liveauction", {
-    //   templateUrl: "views/jewl_liveauction.html",
-    //   title: 'Jeweller Live Auctions'
-    // })
-    // .when("/jewl_closedauction", {
-    //   templateUrl: "views/jewl_closedauction.html",
-    //   title: 'Jeweller Closed Auctions'
-    // })
-   .when("/", {
-      templateUrl: "views/bank_auction.html"
+
+app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+  $locationProvider.html5Mode(true);
+  // $urlRouterProvider
+          // .when('/banker-dashboard', 'banker/banker-dashboard/')
+          // .when('/jeweller-dashboard', 'jeweller/jeweller-upcoming-auction/')
+          // .when('/jeweller/jeweller-upcoming-auction', 'login')
+  $stateProvider
+    .state("banker-dashboard", {
+      url: '/banker-dashboard',
+      templateUrl: "views/bank_auction.html",
+	    title: 'Bank Dashboard'
     })
-    .when("/bank_liveAuction", {
+	.state("banker-upcoming-auctions", {
+      url: '/banker-upcoming-auctions',
+      templateUrl: "views/bank_auction.html",
+	  title: 'Bank Upcoming Auction'
+    })
+    .state("banker-live-auctions", {
+      url: '/banker-live-auctions',
       templateUrl: "views/bank_liveauction.html"
     })
-    .when("/bank_closedauction", {
+    .state("banker-closed-auction", {
+      url: '/banker-closed-auction',
       templateUrl: "views/bank_closedauction.html"
+    })
+    .state("jeweller-dashboard", {
+          url: "/jeweller-dashboard",
+          templateUrl: "views/jewl_auction.html",
+    })
+    .state("jeweller-live-auction", {
+      url: '/jeweller-live-auction',
+      templateUrl: "views/jewl_liveauction.html",
+      title: 'Jeweller Live Auctions'
+    })
+    .state("jeweller-closed-auctions", {
+      url: '/jeweller-closed-auctions',
+      templateUrl: "views/jewl_closedauction.html",
+      title: 'Jeweller Closed Auctions'
+    })
+    .state("jeweller-upcoming-auction", {
+      url: "/jeweller-upcoming-auction",
+      templateUrl: "views/jewl_auction.html",
     });
 });
 app.factory("basicFunctionalities", function() {
-  return {
-    validateINRformat: function(nStr) {
+	var basicFunctionalities = {};
+    basicFunctionalities.validateINRformat= function(nStr) {
       nStr += "";
       x = nStr.split(".");
       x1 = x[0];
@@ -79,8 +100,20 @@ app.factory("basicFunctionalities", function() {
         }
       }
       return x1 + x2;
-    }
-  };
+    };
+	basicFunctionalities.validJewellerBiddingValue= function(biddingAmount){
+		var checkTrue = true;
+			biddingAmount = parseFloat(biddingAmount);
+		if(checkTrue == true && (biddingAmount < 100 || biddingAmount == "" || biddingAmount == "0" )){
+			check = false;
+			common.msg({ type: "error", text: 'Bidding amount can not be less than 100 rupees'});
+			return false;
+		}
+		if(checkTrue == true){
+			return true;
+		}
+	}
+	return basicFunctionalities;
 });
 app.factory("userSignIn", function() {
   return {

@@ -1,7 +1,7 @@
 app.controller("loginControl", function(
   $scope,
   $location,
-  $cookieStore,
+  $cookies,
   userSignIn,
   dataFactory
 ) {
@@ -24,19 +24,20 @@ app.controller("loginControl", function(
         if(status==200){
             var response = JSON.parse(res.data.body);
             if (response.userType == 1 && response.userId) {
-                $cookieStore.put('visitorId',response.userId);
-                $cookieStore.put('visitorToken',response.token);
-                window.location.href = "bankview";
+                $cookies.put('visitorId',response.userId);
+                $cookies.put('visitorToken',response.token);
                 common.msg({type:'success',text: 'login successfully'});
+                setTimeout(function(){
+                  window.location.href = "banker-dashboard";
+                },600);
             }
             else if (response.userType == 2 && response.userId) {
-                $cookieStore.put('visitorId',response.userId);
-                $cookieStore.put('visitorToken',response.token);
-                window.location.href = "jewelview";
-                if(e.keyCode == 13){
-                  window.location.href = "jewelview";
-                }
+                $cookies.put('visitorId',response.userId);
+                $cookies.put('visitorToken',response.token);
                 common.msg({type:'success',text: 'login successfully'});
+                setTimeout(function(){
+                  window.location.href = "jeweller-dashboard";
+                },600);
             }
            
               else{

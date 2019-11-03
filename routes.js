@@ -8,7 +8,7 @@ module.exports = function(app) {
     headerDetails.server = req.hostname;
     headerDetails.page = designatedPath.replace("/", "");
     headerDetails.services = "adminNew";
-    headerDetails.port = ":8008/";
+    headerDetails.port = ":3000/";
     headerDetails.nodomain = headerDetails.servers + headerDetails.port;
     headerDetails.service = "";
     headerDetails.serviceFile = "main.js";
@@ -29,14 +29,14 @@ module.exports = function(app) {
     headerDetails.server = req.hostname;
     headerDetails.page = designatedPath.replace("/", "");
     headerDetails.services = "adminNew";
-    headerDetails.port = ":8008/";
+    headerDetails.port = ":3000/";
     headerDetails.nodomain = headerDetails.servers + headerDetails.port;
     headerDetails.service = "";
     headerDetails.serviceFile = "main.js";
     headerDetails.title = headerDetails.page;
     headerDetails.controllerFile = "";
     switch (designatedPath) {
-      case "/bankview":
+      case "/banker-dashboard":
       headerDetails.controllerFile = "bankController.js";
         res.render("bankview.html", { headerDetails: headerDetails });
         break;
@@ -44,11 +44,15 @@ module.exports = function(app) {
         headerDetails.controllerFile = "auctionController.js";
         res.render("createAuction.html", { headerDetails: headerDetails,auctionId:''});
         break;
-      case "/jewelview":
-      headerDetails.controllerFile = "jewellerController.js";
+      case "/jeweller-dashboard":
+      case "/jeweller":
+        headerDetails.controllerFile = "jewellerController.js";
         res.render("jewelview.html", { headerDetails: headerDetails });
         break;
+        
       case "/login":
+      case "/iGold":
+        headerDetails.controllerFile = "loginController.js";
         res.render("signin.html", { headerDetails: headerDetails });
         break;
       case '/bankonboarding_mobile':
@@ -58,8 +62,12 @@ module.exports = function(app) {
         res.render('onbjewl_mobile.html', { headerDetails: headerDetails });
       break;  
       case "/":
-        headerDetails.controllerFile = "loginController.js";
-        res.render("signin.html", { headerDetails: headerDetails });
+        res.redirect('/login');
+/*        headerDetails.controllerFile = "loginController.js";
+        res.render("signin.html", { headerDetails: headerDetails });*/
+      break;
+      default:
+        next();
       break;
     }
   });

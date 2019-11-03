@@ -1,18 +1,28 @@
 app.controller("jewellerControl", function(
   $scope,
   $http,
-  $route,
   $cookies,
+  $filter,
   $location,
-  // $cookieStore,
+  $cookieStore,
   basicFunctionalities,
   postAuctionForm,
   dataFactory,
   $q
 ) {
   $scope.auctionLister = [];
-  $scope.signedInJewellerId = "";
-  $scope.appliedAuctionId = $cookies.get('visitorId');
+  $scope.biddingAmount;
+  $scope.getBiddingAuctionData = [];
+  $scope.signedInJewellerId = $cookies.get('visitorId');
+  jewellers.on('connection', function (data) {
+    jewellers.emit($scope.signedInJewellerId,function(dataVal){
+      alert(dataVal);
+    });
+  });
+  jewellers.on('disconnect', function (data) {
+    console.log(data);
+  });
+
   $scope.auctionClosed = "closed";
   $scope.auctionUpcoming = "upcoming";
   $scope.auctionLive = "live";
@@ -31,40 +41,54 @@ app.controller("jewellerControl", function(
       }
     });
   };
-  $scope.fetchUpCommingAuctions = function(auctionType) {
+  $scope.fetchUpCommingAuctions = function(auctionType,i) {
     var dt = {};
     dt.auctionType = auctionType;
+    switch(auctionType){
+      case 'closed':
+        $scope.selectedTab = 'clsd';
+      break;
+      case 'upcoming':
+        $scope.selectedTab = 'auc';
+      break;
+      case 'live':
+        $scope.selectedTab = 'live';
+      break;
+      default:
+      $scope.selectedTab = 'auc';
+      break;
+    }
     dt.jewellerId = $cookies.get("visitorId");
     var url = "http://localhost:3000/jeweller/getauction";
     dataFactory.putData(url, dt).then(function(result) {
       var response = JSON.parse(result.data.body);
       if(result.data.status == 201) {
           $scope.auctionLister = response;
-          console.log($scope.auctionLister)
+          console.log($scope.auctionLister);
       } else {
         alert("Something Went Wrong");
       }
     });
+    if($(i).hasClass('clsd')){
+        return false;
+        $(i).addClass('icn_closedauctionSelect');
+        $('.live').removeClass('icn_liveauctionSelect');
+        $('.auc').removeClass('icn_auctionSelect');
+    }
+    if ($(i).hasClass('live')){
+      $(i).addClass('icn_liveauctionSelect');
+      $('.clsd').removeClass('icn_closedauctionSelect');
+      $('.auc').removeClass('icn_auctionSelect');
+    }
+    if ($(i).hasClass('auc')){
+      $(i).addClass('icn_auctionSelect');
+      $('.clsd').removeClass('icn_closedauctionSelect');
+      $('.live').removeClass('icn_liveauctionSelect');
+    }
   };
   $scope.formatInrAmount = function(ammount){
     return basicFunctionalities.validateINRformat(ammount);
   };
-  switch($location.url()){
-    case '/jewl_closedauction':
-      $scope.fetchUpCommingAuctions('closed');
-    break;
-    case '/#%2F!':
-    case '/jewl_auction':
-      $scope.fetchUpCommingAuctions('upcoming');
-    break;
-    case '/jewl_liveauction':
-      $scope.fetchUpCommingAuctions('live');
-    break;
-    default:
-    $scope.fetchUpCommingAuctions('upcoming');
-    break;
-  }
-  
   $("input").bind("focus", function() {
     $(this)
       .next("label")
@@ -112,7 +136,30 @@ app.controller("jewellerControl", function(
     { translateY: "100vh", opacity: 0 },
     { delay: 0, duration: 0, display: "none" }
   );
-  $scope.openBidding_popup = function() {
+  $scope.jewellerBidsOnPacket= function(packetId,auctionId,amount){
+	  if(basicFunctionalities.validJewellerBiddingValue(amount) == true){
+    var dt = {};
+        dt.packetId = packetId;
+			dt.jewellerId = $scope.signedInJewellerId;
+			dt.amount = amount;
+      dt.auctionId = auctionId;
+		var url = APIDOMAIN+'jeweller/addbid';
+		dataFactory.getPostData(url,dt)
+			.then(function(response){
+				common.msg({ type: "success", text: 'Bidding amount is accepted.'});
+			})
+	  }
+  }
+  $scope.openBidding_popup = function(packetId,biddinAuctionDetails,packetCount) {
+	$scope.getAuctionData = biddinAuctionDetails;
+	$scope.getBiddingPacketId = packetId;
+  $scope.getBiddingPacketCount = packetCount;
+	$scope.getBiddingPacketAuctionId = biddinAuctionDetails.auctionId;
+	var bidFound = $filter('filter')($scope.getAuctionData.packet, {packetId: $scope.getBiddingPacketId}, true);
+	if (bidFound.length) {
+		$scope.getBiddingAuctionData = bidFound[0];
+		bidFound = [];
+	}
     $("#bpop").css("display", "block");
     $("#bpop").velocity(
       { opacity: [1, 0] },

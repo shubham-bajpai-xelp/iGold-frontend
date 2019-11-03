@@ -11,7 +11,7 @@ app.controller("bankcontroller", function (
 ) {
   $scope.auctionLister = [];
   var bankerId = $cookies.get("visitorId");
-      bankerId = bankerId.split('"')[1];
+      bankerId = bankerId;
   $scope.auctionClosed = "closed";
   $scope.auctionUpcoming = "upcoming";
   $scope.auctionLive = "live";
@@ -116,7 +116,6 @@ app.controller("bankcontroller", function (
       var response = JSON.parse(result.data.body);
       if (result.data.status == 201) {
         $scope.auctionLister = response;
-        console.log($scope.auctionLister);
       } else {
         alert("Something Went Wrong");
       }
